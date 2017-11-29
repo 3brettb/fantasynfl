@@ -1,0 +1,44 @@
+{
+  "name": "3brettb/fantasynfl",
+  "description": "Laravel NFL Fantasy Football Resource",
+  "license": "MIT",
+  "homepage": "https://github.com/3brettb/fantasynfl",
+  "support": {
+    "issues": "https://github.com/3brettb/fantasynfl/issues",
+    "source": "https://github.com/3brettb/fantasynfl"
+  },
+  "authors": [
+    {
+      "name": "Brett Brist",
+      "email": "3brettb@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0",
+    "illuminate/session": "v5.5.17",
+    "illuminate/support": "v5.5.17"
+  },
+  "require-dev": {
+
+  },
+  "autoload": {
+    "psr-4": {
+      "FantasyNFL\\": "src/"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "FantasyNFL\\FantasyNFLServiceProvider"
+      ],
+      "aliases": {
+        "FantasyNFL": "FantasyNFL\\FantasyNFLFacade"
+      }
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
