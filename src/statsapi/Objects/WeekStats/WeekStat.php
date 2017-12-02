@@ -3,7 +3,6 @@
 namespace Fantasy\NFL\StatsAPI\Objects\WeekStats;
 
 use Fantasy\NFL\StatsAPI\Objects\StatPlayer;
-use Fantasy\NFL\Resources\MapObjects;
 
 class WeekStat extends StatPlayer
 {

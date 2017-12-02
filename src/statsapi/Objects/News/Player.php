@@ -3,7 +3,6 @@
 namespace Fantasy\NFL\StatsAPI\Objects\News;
 
 use Fantasy\NFL\StatsAPI\Objects\StatPlayer;
-use Fantasy\NFL\Resources\MapObjects;
 
 class Player extends StatPlayer
 {
