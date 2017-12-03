@@ -24,6 +24,7 @@ class CreateFantasyGamesTable extends Migration
             $table->unsignedBigInteger('winner_id')->comment('Winning Team');
             $table->boolean('complete');
             $table->tinyInteger('type');
+            $table->json('stats');
             $table->timestamps();
         });
     }
