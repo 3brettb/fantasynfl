@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('team_id')->comment('Most Recent Team');
             $table->string('password');
             $table->rememberToken();
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }
