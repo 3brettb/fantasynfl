@@ -14,7 +14,7 @@ class FantasyNFLServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //$this->mergeConfigFrom(__DIR__.'/path/to/config/file.php', 'file');
+        $this->mergeConfigFrom(__DIR__.'/config/auth.php', 'auth');
     }
 
     /**
