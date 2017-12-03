@@ -4,11 +4,11 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFantasyWeeksTable extends Migration
+class CreateIrPlayersTable extends Migration
 {
     // Define Table Name
-    private $table_name = "fantasy_weeks";
-    
+    private $table_name = "fantasy_ir_players";
+
     /**
      * Run the migrations.
      *
@@ -18,9 +18,8 @@ class CreateFantasyWeeksTable extends Migration
     {
         Schema::create($this->table_name, function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('season_id');
-            $table->tinyInteger('number');
-            $table->tinyInteger('nflweek');
+            $table->unsignedBigInteger('league_id');
+            $table->unsignedBigInteger('player_id');
             $table->timestamps();
         });
     }

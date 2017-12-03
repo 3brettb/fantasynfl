@@ -17,9 +17,9 @@ class CreateFantasyRostersTable extends Migration
     public function up()
     {
         Schema::create($this->table_name, function (Blueprint $table) {
-            $table->increments('id', 20);
-            $table->integer('week_id', 20)->unsigned();
-            $table->integer('team_id', 20)->unsigned();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('week_id');
+            $table->unsignedBigInteger('team_id');
             $table->timestamps();
         });
     }

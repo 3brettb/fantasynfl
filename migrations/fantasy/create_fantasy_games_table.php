@@ -17,13 +17,13 @@ class CreateFantasyGamesTable extends Migration
     public function up()
     {
         Schema::create($this->table_name, function (Blueprint $table) {
-            $table->increments('id', 20);
-            $table->integer('season_id', 20)->unsigned();
-            $table->integer('home_id', 20)->unsigned()->comment('Home Team Roster');
-            $table->integer('away_id', 20)->unsigned()->comment('Away Team Roster');
-            $table->integer('winner_id', 20)->unsigned()->comment('Winning Team');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('week_id');
+            $table->unsignedBigInteger('home_id')->comment('Home Team Roster');
+            $table->unsignedBigInteger('away_id')->comment('Away Team Roster');
+            $table->unsignedBigInteger('winner_id')->comment('Winning Team');
             $table->boolean('complete');
-            $table->integer('type', 4);
+            $table->tinyInteger('type');
             $table->timestamps();
         });
     }

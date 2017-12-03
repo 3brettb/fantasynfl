@@ -17,10 +17,10 @@ class CreateFantasyRankingsTable extends Migration
     public function up()
     {
         Schema::create($this->table_name, function (Blueprint $table) {
-            $table->increments('id', 20);
-            $table->integer('user_id', 20)->unsigned();
-            $table->integer('week_id', 20)->unsigned();
-            $table->integer('type', 4);
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('week_id');
+            $table->tinyInteger('type');
             $table->json('data');
             $table->timestamps();
         });

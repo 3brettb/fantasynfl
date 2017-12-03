@@ -17,10 +17,10 @@ class CreateFantasyTradesTable extends Migration
     public function up()
     {
         Schema::create($this->table_name, function (Blueprint $table) {
-            $table->increments('id', 20);
-            $table->integer('league_id', 20)->unsigned();
-            $table->integer('user_id', 20)->unsigned()->comment('Trade Initiator');
-            $table->integer('status', 4);
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('league_id');
+            $table->unsignedBigInteger('user_id')->comment('Trade Initiator');
+            $table->tinyInteger('status');
             $table->json('data');
             $table->timestamps();
         });

@@ -17,8 +17,8 @@ class CreateFantasyStatsPlayerNewsTable extends Migration
     public function up()
     {
         Schema::create($this->table_name, function (Blueprint $table) {
-            $table->increments('id', 20);
-            $table->integer('playerId', 20)->unsigned();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('playerId');
             $table->string('timestamp', 50);
             $table->string('source');
             $table->string('headline');

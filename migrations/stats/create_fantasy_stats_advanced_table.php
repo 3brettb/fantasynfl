@@ -17,18 +17,18 @@ class CreateFantasyStatsAdvancedTable extends Migration
     public function up()
     {
         Schema::create($this->table_name, function (Blueprint $table) {
-            $table->increments('id', 20);
-            $table->integer('playerId', 20)->unsigned();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('playerId');
             $table->string('season', 4);
-            $table->integer('week', 2)->nullable();
-            $table->integer('carries', 4)->nullable();
-            $table->integer('touches', 4)->nullable();
-            $table->integer('receptions', 4)->nullable();
-            $table->integer('targets', 4)->nullable();
+            $table->smallInteger('week')->nullable();
+            $table->smallInteger('carries')->nullable();
+            $table->smallInteger('touches')->nullable();
+            $table->smallInteger('receptions')->nullable();
+            $table->smallInteger('targets')->nullable();
             $table->float('receptionPercent', 5, 2)->nullable();
-            $table->integer('redzoneTargets', 4)->nullable();
-            $table->integer('redzoneTouches', 4)->nullable();
-            $table->integer('redzoneG2g', 4)->nullable();
+            $table->smallInteger('redzoneTargets')->nullable();
+            $table->smallInteger('redzoneTouches')->nullable();
+            $table->smallInteger('redzoneG2g')->nullable();
             $table->string('status', 100)->nullable();
             $table->timestamps();
         });

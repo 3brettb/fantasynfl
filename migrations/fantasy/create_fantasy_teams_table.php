@@ -17,9 +17,9 @@ class CreateFantasyTeamsTable extends Migration
     public function up()
     {
         Schema::create($this->table_name, function (Blueprint $table) {
-            $table->increments('id', 20);
-            $table->integer('league_id', 20)->unsigned();
-            $table->integer('user_id', 20)->unsigned()->comment('Team Owner');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('league_id');
+            $table->unsignedBigInteger('user_id')->comment('Team Owner');
             $table->string('name', 30);
             $table->string('mascot', 30);
             $table->timestamps();

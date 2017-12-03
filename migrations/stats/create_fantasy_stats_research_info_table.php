@@ -16,19 +16,19 @@ class CreateFantasyStatsResearchInfoTable extends Migration
      */
     public function up()
     {
-        Schema::create($table_name, function (Blueprint $table) {
-            $table->integer('id', 20)->unsigned()->unique();
+        Schema::create($this->table_name, function (Blueprint $table) {
+            $table->unsignedBigInteger('id')->unique();
             $table->string('oppTeamAbbr', 20)->nullable();
             $table->float('percentOwned', 5, 2);
             $table->float('percentOwnedChange', 5, 2);
             $table->float('percentStarted', 5, 2);
             $table->float('percentStartedChange', 5, 2);
-            $table->integer('depthChartOrder', 3)->nullable();
-            $table->integer('numAdds', 5)->nullable();
-            $table->integer('numDrops', 5)->nullable();
+            $table->smallInteger('depthChartOrder')->nullable();
+            $table->smallInteger('numAdds')->nullable();
+            $table->smallInteger('numDrops')->nullable();
             $table->float('averagePoints', 5, 2)->nullable();
             $table->float('seasonPoints', 5, 2)->nullable();
-            $table->integer('positionRank', 3)->nullable();
+            $table->smallInteger('positionRank')->nullable();
             $table->timestamps();
             $table->primary('id');
         });
@@ -41,6 +41,6 @@ class CreateFantasyStatsResearchInfoTable extends Migration
      */
     public function down()
     {
-        Schema::drop($table_name);
+        Schema::drop($this->table_name);
     }
 }

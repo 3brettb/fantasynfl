@@ -17,10 +17,10 @@ class CreateFantasyStatsPlayerStatsTable extends Migration
     public function up()
     {
         Schema::create($this->table_name, function (Blueprint $table) {
-            $table->increments('id', 20);
-            $table->integer('playerId', 20)->unsigned();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('playerId');
             $table->string('season', 4);
-            $table->integer('week', 2)->nullable();
+            $table->tinyInteger('week')->nullable();
             $table->boolean('projected');
             $table->json('data');
             $table->timestamps();

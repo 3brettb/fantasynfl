@@ -17,8 +17,8 @@ class CreateFantasySeasonsTable extends Migration
     public function up()
     {
         Schema::create($this->table_name, function (Blueprint $table) {
-            $table->increments('id', 20);
-            $table->integer('league_id', 20)->unsigned();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('league_id');
             $table->string('year', 4);
             $table->json('standings');
             $table->timestamps();

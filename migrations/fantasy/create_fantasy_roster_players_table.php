@@ -17,11 +17,11 @@ class CreateFantasyRosterPlayersTable extends Migration
     public function up()
     {
         Schema::create($this->table_name, function (Blueprint $table) {
-            $table->increments('id', 20);
-            $table->integer('roster_id', 20)->unsigned();
-            $table->integer('player_id', 20)->unsigned();
-            $table->integer('projected', 4);
-            $table->integer('score');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('roster_id');
+            $table->unsignedBigInteger('player_id');
+            $table->smallInteger('projected');
+            $table->smallInteger('score');
             $table->timestamps();
         });
     }

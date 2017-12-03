@@ -17,9 +17,9 @@ class CreateFantasyDivisionTeamsTable extends Migration
     public function up()
     {
         Schema::create($this->table_name, function (Blueprint $table) {
-            $table->increments('id', 20);
-            $table->integer('division_id', 20)->unsigned();
-            $table->integer('team_id', 20)->unsigned();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('division_id');
+            $table->unsignedBigInteger('team_id');
             $table->timestamps();
         });
     }

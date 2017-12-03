@@ -17,9 +17,10 @@ class CreateFantasyLeaguesTable extends Migration
     public function up()
     {
         Schema::create($this->table_name, function (Blueprint $table) {
-            $table->increments('id', 20);
+            $table->bigIncrements('id');
             $table->string('name', 100);
-            $table->integer('user_id', 20)->unsigned()->comment('League Owner');
+            $table->unsignedBigInteger('user_id')->comment('League Owner');
+            $table->unsignedBigInteger('week_id')->comment('Current Week');
             $table->timestamps();
         });
     }
