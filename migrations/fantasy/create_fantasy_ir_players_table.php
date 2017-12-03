@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIrPlayersTable extends Migration
+class CreateFantasyIrPlayersTable extends Migration
 {
     // Define Table Name
     private $table_name = "fantasy_ir_players";
