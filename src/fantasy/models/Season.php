@@ -44,4 +44,9 @@ class Season extends Model
 
     // relations here
 
+    public function divisions()
+    {
+        return $this->hasMany(Division::class);
+    }
+
 }
