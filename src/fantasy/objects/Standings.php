@@ -2,15 +2,15 @@
 
 namespace Fantasy\NFL\Fantasy\Objects;
 
-use Fantasy\NFL\Resources\Object;
+use Fantasy\NFL\Resources\ObjectJson;
 use Illuminate\Database\Eloquent\Model;
 
-class Standings extends Object
+class Standings extends ObjectJson
 {
 
-    static function mapModel(Model $model)
+    static  function mapJson(string $json)
     {
-        // TODO: Implement mapModel() method.
+        // TODO: Implement mapJson() method.
         return new Standings();
     }
 

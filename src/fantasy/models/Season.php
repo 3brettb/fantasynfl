@@ -49,4 +49,9 @@ class Season extends Model
         return $this->hasMany(Division::class);
     }
 
+    public function weeks()
+    {
+        return $this->hasMany(Week::class);
+    }
+
 }

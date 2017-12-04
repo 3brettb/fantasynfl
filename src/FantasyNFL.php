@@ -74,7 +74,7 @@ class FantasyNFL
         if($team_id == null) $team_id = StoredSettings::getTeamId();
         if($week == null) $week = StoredSettings::getWeekNumber();
         if($year == null) $year = StoredSettings::getYear();
-        return Explicit::roster($team_id, $week, $year);
+        return Explicit::roster($team_id, $week, $year, StoredSettings::getLeagueId());
     }
 
     public static function player($id)
@@ -99,7 +99,7 @@ class FantasyNFL
         if($team_id == null) $team_id = StoredSettings::getTeamId();
         if($week == null) $week = StoredSettings::getWeekNumber();
         if($year == null) $year = StoredSettings::getYear();
-        return Explicit::game($team_id, $week, $year);
+        return Explicit::game($team_id, $week, $year, StoredSettings::getLeagueId());
     }
 
     public static function standings($year = null)

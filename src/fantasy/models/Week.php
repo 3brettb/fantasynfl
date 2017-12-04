@@ -35,4 +35,14 @@ class Week extends Model
 
     // relations here
 
+    public function games()
+    {
+        return $this->hasMany(Game::class);
+    }
+
+    public function rankings()
+    {
+        return $this->hasMany(Ranking::class);
+    }
+
 }

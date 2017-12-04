@@ -2,7 +2,10 @@
 
 namespace Fantasy\NFL\StatsAPI\Objects;
 
-class Player
+use Fantasy\NFL\Resources\Object;
+use Illuminate\Database\Eloquent\Model;
+
+class Player extends Object
 {
 
     public $id;
@@ -34,5 +37,11 @@ class Player
     public $weeks = [];
 
     public $stats = [];
+
+    static  function mapModel(Model $model)
+    {
+        // TODO: Implement mapModel() method.
+        return new Player();
+    }
 
 }
