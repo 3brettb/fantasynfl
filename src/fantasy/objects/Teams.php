@@ -5,18 +5,18 @@ namespace Fantasy\NFL\Fantasy\Objects;
 use Fantasy\NFL\Resources\ObjectArray;
 use Illuminate\Support\Collection;
 
-class Weeks extends ObjectArray
+class Teams extends ObjectArray
 {
 
     static function mapModels(array $models)
     {
-        $weeks = new Collection();
+        $teams = new Collection();
         foreach($models as $model)
         {
-            $week = Week::mapModel($model);
-            $weeks->push($week);
+            $team = Team::mapModel($model);
+            $teams->push($team);
         }
-        return $weeks;
+        return $teams;
     }
 
 }

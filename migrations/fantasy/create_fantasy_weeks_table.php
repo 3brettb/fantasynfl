@@ -21,6 +21,7 @@ class CreateFantasyWeeksTable extends Migration
             $table->unsignedBigInteger('season_id');
             $table->tinyInteger('number');
             $table->tinyInteger('nflweek');
+            $table->tinyInteger('type');
             $table->timestamps();
         });
     }

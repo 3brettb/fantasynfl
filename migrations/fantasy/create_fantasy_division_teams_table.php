@@ -20,6 +20,7 @@ class CreateFantasyDivisionTeamsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('division_id');
             $table->unsignedBigInteger('team_id');
+            $table->json('standings');
             $table->timestamps();
         });
     }

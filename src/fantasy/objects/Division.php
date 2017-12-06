@@ -8,10 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Division extends Object
 {
 
+    public $league;
+
+    public $teams;
+
+    public $standings;
+
     static function mapModel(Model $model)
     {
-        // TODO: Implement mapModel() method.
-        return new Division();
+        $division = new Division();
+        $division->league = $model->league;
+        $division->teams = Teams::mapModels($model->teams);
+        $division->standings = Standings::mapJson($model->standings);
+        return $division;
     }
 
 }

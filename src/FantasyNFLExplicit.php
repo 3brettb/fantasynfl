@@ -8,19 +8,25 @@ use Fantasy\NFL\Fantasy\Objects\Game as GameObject;
 use Fantasy\NFL\Fantasy\Objects\Games as GamesObject;
 use Fantasy\NFL\Fantasy\Objects\League as LeagueObject;
 use Fantasy\NFL\Fantasy\Objects\Offseason as OffseasonObject;
+use Fantasy\NFL\Fantasy\Objects\Players as PlayersObject;
 use Fantasy\NFL\StatsAPI\Objects\Player as PlayerObject;
 use Fantasy\NFL\Fantasy\Objects\Playoffs as PlayoffObject;
 use Fantasy\NFL\Fantasy\Objects\Postseason as PostseasonObject;
 use Fantasy\NFL\Fantasy\Objects\Rankings as RankingsObject;
 use Fantasy\NFL\Fantasy\Objects\Roster as RosterObject;
 use Fantasy\NFL\Fantasy\Objects\Season as SeasonObject;
+use Fantasy\NFL\Fantasy\Objects\StandingsGroup as StandingsGroupObject;
 use Fantasy\NFL\Fantasy\Objects\Standings as StandingsObject;
+use Fantasy\NFL\Fantasy\Objects\Teams as TeamsObject;
 use Fantasy\NFL\Fantasy\Objects\Team as TeamObject;
+use Fantasy\NFL\Fantasy\Objects\Trades as TradesObject;
+use Fantasy\NFL\Fantasy\Objects\Trade as TradeObject;
 use Fantasy\NFL\Fantasy\Objects\Week as WeekObject;
 use Fantasy\NFL\Fantasy\Objects\Weeks as WeeksObject;
 
 use Fantasy\NFL\Fantasy\Models as FantasyModels;
 use Fantasy\NFL\StatsAPI\Models as StatsModels;
+use Illuminate\Support\Collection;
 
 class FantasyNFLExplicit
 {
@@ -62,7 +68,7 @@ class FantasyNFLExplicit
      * Get Season Week collection
      * @param $season_number
      * @param $league_id
-     * @return WeekObject[]
+     * @return Collection
      */
     public static function weeks($season_number, $league_id)
     {
@@ -84,6 +90,16 @@ class FantasyNFLExplicit
     }
 
     /**
+     * @param $league_id
+     * @return Collection
+     */
+    public static function teams($league_id)
+    {
+        $teams = FantasyModels\Team::where('league_id', $league_id);
+        return TeamsObject::mapModels($teams);
+    }
+
+    /**
      * Find a Team
      * @param $team_id
      * @return TeamObject
@@ -98,7 +114,7 @@ class FantasyNFLExplicit
      * Return Division Collection
      * @param $season_number
      * @param $league_id
-     * @return DivisionObject[]
+     * @return Collection
      */
     public static function divisions($season_number, $league_id)
     {
@@ -108,12 +124,22 @@ class FantasyNFLExplicit
     }
 
     /**
+     * @param $division_id
+     * @return DivisionObject
+     */
+    public static function division($division_id)
+    {
+        $division = FantasyModels\Division::find($division_id);
+        return DivisionObject::mapModel($division);
+    }
+
+    /**
      * @param $team_id
      * @param $season_number
      * @param $league_id
      * @return DivisionObject
      */
-    public static function division($team_id, $season_number, $league_id)
+    public static function team_division($team_id, $season_number, $league_id)
     {
         $season = static::getSeason($season_number, $league_id);
         $divisions = $season->divisions()->pluck('id')->toArray();
@@ -133,6 +159,14 @@ class FantasyNFLExplicit
         $week = static::getWeek($week_number, $season_number, $league_id);
         $roster = FantasyModels\Roster::where('team_id', $team_id)->where('week_id', $week->id)->first();
         return RosterObject::mapModel($roster);
+    }
+
+    /**
+     * @return Collection
+     */
+    public static function players()
+    {
+        return PlayersObject::mapModels(StatsModels\Player::all());
     }
 
     /**
@@ -176,10 +210,27 @@ class FantasyNFLExplicit
      * @param $league_id
      * @return StandingsObject
      */
-    public static function standings($season_number, $league_id)
+    public static function league_standings($season_number, $league_id)
     {
         $season = static::getSeason($season_number, $league_id);
         return StandingsObject::mapJson($season->standings);
+    }
+
+    public static function division_standings($season_number, $league_id)
+    {
+        $season = static::getSeason($season_number, $league_id);
+        $standings = $season->divisions()->pluck('standings')->toArray();
+        return StandingsGroupObject::mapJsons($standings);
+    }
+
+    /**
+     * @param $division_id
+     * @return StandingsObject
+     */
+    public static function division_standing($division_id)
+    {
+        $division = FantasyModels\Division::find($division_id);
+        return StandingsObject::mapJson($division->standings);
     }
 
     /**
@@ -187,7 +238,7 @@ class FantasyNFLExplicit
      * @param $week_number
      * @param $season_number
      * @param $league_id
-     * @return RankingObject[]
+     * @return Collection
      */
     public static function rankings($type, $week_number, $season_number, $league_id)
     {
@@ -229,6 +280,40 @@ class FantasyNFLExplicit
         return OffseasonObject::mapModel($season);
     }
 
+    /**
+     * @param $trade_id
+     * @return TradeObject
+     */
+    public static function trade($trade_id)
+    {
+        $trade = FantasyModels\Trade::find($trade_id);
+        return TradeObject::mapModel($trade);
+    }
+
+    /**
+     * @param $season_number
+     * @param $league_id
+     * @return Collection
+     */
+    public static function league_trades($season_number, $league_id)
+    {
+        $season = static::getSeason($season_number, $league_id);
+        return TradesObject::mapModels($season->trades);
+    }
+
+    /**
+     * @param $team_id
+     * @param $season_number
+     * @param $league_id
+     * @return Collection
+     */
+    public static function team_trades($team_id, $season_number, $league_id)
+    {
+        $season = static::getSeason($season_number, $league_id);
+        $trades = FantasyModels\Team::find($team_id)->trades()->where('season_id', $season->id)->get();
+        return TradesObject::mapModels($trades);
+    }
+
     // ----------------------------------------------------------------------------------------------------
     // Private Helper Methods -----------------------------------------------------------------------------
     // ----------------------------------------------------------------------------------------------------
@@ -243,6 +328,12 @@ class FantasyNFLExplicit
         return FantasyModels\Season::where('league_id', $league_id)->where('year', $season_number)->first();
     }
 
+    /**
+     * @param $week_number
+     * @param $season_number
+     * @param $league_id
+     * @return FantasyModels\Week
+     */
     private static function getWeek($week_number, $season_number, $league_id)
     {
         $season = static::getSeason($season_number, $league_id);

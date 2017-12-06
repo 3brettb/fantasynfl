@@ -19,7 +19,7 @@ class Week extends Model
      *
      * @var array
      */
-    protected $fillable = ['season_id', 'number', 'nflweek'];
+    protected $fillable = ['season_id', 'number', 'nflweek', 'type'];
 
     /**
      * The "booting" method of the model.
@@ -43,6 +43,11 @@ class Week extends Model
     public function rankings()
     {
         return $this->hasMany(Ranking::class);
+    }
+
+    public function season()
+    {
+        return $this->belongsTo(Season::class);
     }
 
 }

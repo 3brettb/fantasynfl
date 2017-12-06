@@ -35,4 +35,29 @@ class League extends Model
 
     // relations here
 
+    public function getSeasonAttribute()
+    {
+        return $this->week()->season;
+    }
+
+    public function getCurrentWeekAttribute()
+    {
+        return $this->week;
+    }
+
+    public function week()
+    {
+        return $this->belongsTo(Week::class);
+    }
+
+    public function teams()
+    {
+        return $this->hasMany(Team::class);
+    }
+
+    public function weeks()
+    {
+        return $this->hasManyThrough(Week::class, 'fantasy_seasons', 'league_id', 'season_id');
+    }
+
 }

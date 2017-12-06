@@ -3,14 +3,20 @@
 namespace Fantasy\NFL\Fantasy\Objects;
 
 use Fantasy\NFL\Resources\ObjectArray;
+use Illuminate\Support\Collection;
 
 class Divisions extends ObjectArray
 {
 
     static function mapModels(array $models)
     {
-        // TODO: Implement mapModels() method.
-        return array(new Division());
+        $divisions = new Collection();
+        foreach($models as $model)
+        {
+            $division = Division::mapModel($model);
+            $divisions->push($division);
+        }
+        return $divisions;
     }
 
 }

@@ -3,6 +3,7 @@
 namespace Fantasy\NFL;
 
 use Fantasy\NFL\Enums\RankingType;
+use Fantasy\NFL\Enums\StandingsType;
 use Fantasy\NFL\FantasyNFLExplicit as Explicit;
 use Fantasy\NFL\FantasyNFLSettings as StoredSettings;
 
@@ -56,11 +57,15 @@ class FantasyNFL
         return Explicit::divisions($year, StoredSettings::getLeagueId());
     }
 
-    public static function division($team_id = null, $year = null)
+    public static function division($division_id = null, $team_id = null, $year = null)
     {
-        if($team_id == null) $team_id = StoredSettings::getTeamId();
-        if($year == null) $year = StoredSettings::getYear();
-        return Explicit::division($team_id, $year, StoredSettings::getLeagueId());
+        if($division_id == null)
+        {
+            if($team_id == null) $team_id = StoredSettings::getTeamId();
+            if($year == null) $year = StoredSettings::getYear();
+            return Explicit::team_division($team_id, $year, StoredSettings::getLeagueId());
+        }
+        return Explicit::division($division_id);
     }
 
     public static function myroster($week = null, $year = null)
@@ -102,10 +107,14 @@ class FantasyNFL
         return Explicit::game($team_id, $week, $year, StoredSettings::getLeagueId());
     }
 
-    public static function standings($year = null)
+    public static function standings($type = null, $year = null)
     {
-        if($year == null) $year = StoredSettings::getYear();
-        return Explicit::standings($year, StoredSettings::getLeagueId());
+        if($type == null || $type == StandingsType::LEAGUE)
+        {
+            if($year == null) $year = StoredSettings::getYear();
+            return Explicit::standings($year, StoredSettings::getLeagueId());
+        }
+
     }
 
     public static function rankings($week = null, $year = null)
@@ -145,6 +154,18 @@ class FantasyNFL
     {
         if($year == null) $year = StoredSettings::getYear();
         return Explicit::offseason($year, StoredSettings::getLeagueId());
+    }
+
+    public static function trades($year = null, $team_id = null)
+    {
+        if($year == null) $year = StoredSettings::getYear();
+        if($team_id == null) return Explicit::league_trades($year, StoredSettings::getLeagueId());
+        else return Explicit::team_trades($team_id, $year, StoredSettings::getLeagueId());
+    }
+
+    public static function trade($trade_id)
+    {
+        return Explicit::trade($trade_id);
     }
 
 }

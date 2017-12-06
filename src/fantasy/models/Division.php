@@ -19,7 +19,16 @@ class Division extends Model
      *
      * @var array
      */
-    protected $fillable = ['season_id', 'name'];
+    protected $fillable = ['season_id', 'name', 'standings'];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'standings' => 'array',
+    ];
 
     /**
      * The "booting" method of the model.
@@ -34,5 +43,10 @@ class Division extends Model
     }
 
     // relations here
+
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class, 'fantasy_division_teams');
+    }
 
 }

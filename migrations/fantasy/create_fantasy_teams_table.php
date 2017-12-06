@@ -22,6 +22,7 @@ class CreateFantasyTeamsTable extends Migration
             $table->unsignedBigInteger('user_id')->comment('Team Owner');
             $table->string('name', 30);
             $table->string('mascot', 30);
+            $table->string('abbr', 4);
             $table->timestamps();
         });
     }

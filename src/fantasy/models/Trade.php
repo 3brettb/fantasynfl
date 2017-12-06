@@ -19,7 +19,7 @@ class Trade extends Model
      *
      * @var array
      */
-    protected $fillable = ['league_id', 'user_id', 'status', 'data'];
+    protected $fillable = ['league_id', 'season_id', 'user_id', 'status', 'data'];
 
     /**
      * The attributes that should be cast to native types.
@@ -43,5 +43,20 @@ class Trade extends Model
     }
 
     // relations here
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function league()
+    {
+        return $this->belongsTo(League::class);
+    }
+
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class, 'fantasy_trade_teams');
+    }
 
 }

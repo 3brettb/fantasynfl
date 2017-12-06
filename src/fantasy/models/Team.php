@@ -19,7 +19,7 @@ class Team extends Model
      *
      * @var array
      */
-    protected $fillable = ['league_id', 'user_id', 'name', 'mascot'];
+    protected $fillable = ['league_id', 'user_id', 'name', 'mascot', 'abbr'];
 
     /**
      * The "booting" method of the model.
@@ -34,5 +34,40 @@ class Team extends Model
     }
 
     // relations here
+
+    public function getOwnerAttribute()
+    {
+        return $this->user;
+    }
+
+    public function getFullnameAttribute()
+    {
+        return $this->name.' '.$this->mascot;
+    }
+
+    public function getDivisionAttribute()
+    {
+        return $this->divisions()->where('season_id', season()->id)->get();
+    }
+
+    public function league()
+    {
+        return $this->belongsTo(League::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function trades()
+    {
+        return $this->belongsToMany(Trade::class, 'fantasy_trade_teams');
+    }
+
+    public function divisions()
+    {
+        return $this->belongsToMany(Division::class, 'fantasy_division_teams');
+    }
 
 }

@@ -19,6 +19,7 @@ class CreateFantasyTradesTable extends Migration
         Schema::create($this->table_name, function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('league_id');
+            $table->unsignedBigInteger('season_id');
             $table->unsignedBigInteger('user_id')->comment('Trade Initiator');
             $table->tinyInteger('status');
             $table->json('data');
