@@ -25,9 +25,7 @@ class Team extends Object
         $team->owner = $model->owner;
         $team->name = $model->fullname;
         $team->abbr = $model->abbr;
-        // standings includes overall record, official rank, composite rank, and league standing
-        // TODO: Complete this method
-        $team->standing = Standings::getTeamStanding($team->league, $team);
+        $team->standing = TeamStanding::mapModel($model);
         return $team;
     }
 
