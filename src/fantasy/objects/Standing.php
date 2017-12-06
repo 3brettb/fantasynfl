@@ -4,6 +4,7 @@ namespace Fantasy\NFL\Fantasy\Objects;
 
 use Fantasy\NFL\Resources\Object;
 use Illuminate\Database\Eloquent\Model;
+use Fantasy\NFL\Fantasy\Models\Team as TeamModel;
 
 class Standing extends Object
 {
@@ -30,5 +31,11 @@ class Standing extends Object
     {
         // Not Implemented
     }
+
+    static function getTeamStanding(TeamModel $team)
+    {
+        // TODO: Complete this method
+    }
+
 
 }
