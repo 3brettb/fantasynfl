@@ -1,6 +1,6 @@
 <?php
 
-namespace Fantasy\NFL;
+namespace Fantasy\NFL\FantasyNFL;
 
 use Fantasy\NFL\Fantasy\Objects\Division as DivisionObject;
 use Fantasy\NFL\Fantasy\Objects\Divisions as DivisionsObject;
@@ -28,7 +28,7 @@ use Fantasy\NFL\Fantasy\Models as FantasyModels;
 use Fantasy\NFL\StatsAPI\Models as StatsModels;
 use Illuminate\Support\Collection;
 
-class FantasyNFLExplicit
+class GetterExplicit
 {
 
     /**

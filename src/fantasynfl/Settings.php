@@ -1,10 +1,10 @@
 <?php
 
-namespace Fantasy\NFL;
+namespace Fantasy\NFL\FantasyNFL;
 
 use Fantasy\NFL\Resources\Session;
 
-class FantasyNFLSettings
+class Settings
 {
 
     /**
