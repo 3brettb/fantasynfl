@@ -5,18 +5,18 @@ namespace Fantasy\NFL\Fantasy\Objects;
 use Fantasy\NFL\Resources\ObjectArray;
 use Illuminate\Support\Collection;
 
-class Games extends ObjectArray
+class Activitys extends ObjectArray
 {
 
     static function mapModels(array $models)
     {
-        $games = new Collection();
+        $activitys = new Collection();
         foreach($models as $model)
         {
-            $game = Game::mapModel($model);
-            $games->push($game);
+            $activity = Activity::mapModel($model);
+            $activitys->push($activity);
         }
-        return $games;
+        return $activitys;
     }
 
 }

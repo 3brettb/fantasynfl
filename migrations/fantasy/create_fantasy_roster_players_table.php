@@ -18,12 +18,8 @@ class CreateFantasyRosterPlayersTable extends Migration
     {
         Schema::create($this->table_name, function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('roster_id');
+            $table->unsignedBigInteger('team_id');
             $table->unsignedBigInteger('player_id');
-            $table->smallInteger('projected');
-            $table->smallInteger('score');
-            $table->tinyInteger('type');
-            $table->tinyInteger('place');
             $table->timestamps();
         });
     }

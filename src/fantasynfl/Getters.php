@@ -20,40 +20,47 @@ trait Getters
         StoredSettings::setLeagueId($id);
     }
 
+    public static function activity($year, $league_id)
+    {
+        static::resolveYear($year);
+        static::resolveLeague($league_id);
+        return Explicit::activity($year, $league_id);
+    }
+
     public static function league($league_id = null)
     {
-        if($league_id == null) $league_id = StoredSettings::getLeagueId();
+        static::resolveLeague($league_id);
         return Explicit::league($league_id);
     }
 
     public static function season($year = null)
     {
-        if($year == null) $year = StoredSettings::getYear();
+        static::resolveYear($year);
         return Explicit::season($year, StoredSettings::getLeagueId());
     }
 
     public static function weeks($year = null)
     {
-        if($year == null) $year = StoredSettings::getYear();
+        static::resolveYear($year);
         return Explicit::weeks($year, StoredSettings::getLeagueId());
     }
 
     public static function week($number = null, $year = null)
     {
-        if($number == null) $number = StoredSettings::getWeekNumber();
-        if($year == null) $year = StoredSettings::getYear();
+        static::resolveWeek($number);
+        static::resolveYear($year);
         return Explicit::week($number, $year, StoredSettings::getLeagueId());
     }
 
     public static function team($team_id = null)
     {
-        if($team_id == null) $team_id = StoredSettings::getTeamId();
+        static::resolveTeam($team_id);
         return Explicit::team($team_id);
     }
 
     public static function divisions($year = null)
     {
-        if($year == null) $year = StoredSettings::getYear();
+        static::resolveYear($year);
         return Explicit::divisions($year, StoredSettings::getLeagueId());
     }
 
@@ -61,11 +68,25 @@ trait Getters
     {
         if($division_id == null)
         {
-            if($team_id == null) $team_id = StoredSettings::getTeamId();
-            if($year == null) $year = StoredSettings::getYear();
+            static::resolveTeam($team_id);
+            static::resolveYear($year);
             return Explicit::team_division($team_id, $year, StoredSettings::getLeagueId());
         }
         return Explicit::division($division_id);
+    }
+
+    public static function draft($year, $league_id)
+    {
+        static::resolveYear($year);
+        static::resolveLeague($league_id);
+        return Explicit::draft($year, $league_id);
+    }
+
+    public static function draftpicks($team_id, $year)
+    {
+        static::resolveTeam($team_id);
+        static::resolveYear($year);
+        return Explicit::draft_picks($team_id, $year, StoredSettings::getLeagueId());
     }
 
     public static function myroster($week = null, $year = null)
@@ -76,9 +97,9 @@ trait Getters
 
     public static function roster($team_id = null, $week = null, $year = null)
     {
-        if($team_id == null) $team_id = StoredSettings::getTeamId();
-        if($week == null) $week = StoredSettings::getWeekNumber();
-        if($year == null) $year = StoredSettings::getYear();
+        static::resolveTeam($team_id);
+        static::resolveWeek($week);
+        static::resolveYear($year);
         return Explicit::roster($team_id, $week, $year, StoredSettings::getLeagueId());
     }
 
@@ -89,8 +110,8 @@ trait Getters
 
     public static function games($week = null, $year = null)
     {
-        if($week == null) $week = StoredSettings::getWeekNumber();
-        if($year == null) $year = StoredSettings::getYear();
+        static::resolveWeek($week);
+        static::resolveYear($year);
         return Explicit::games($week, $year, StoredSettings::getLeagueId());
     }
 
@@ -101,15 +122,15 @@ trait Getters
 
     public static function game($team_id = null, $week = null, $year = null)
     {
-        if($team_id == null) $team_id = StoredSettings::getTeamId();
-        if($week == null) $week = StoredSettings::getWeekNumber();
-        if($year == null) $year = StoredSettings::getYear();
+        static::resolveTeam($team_id);
+        static::resolveWeek($week);
+        static::resolveYear($year);
         return Explicit::game($team_id, $week, $year, StoredSettings::getLeagueId());
     }
 
     public static function standings($type = null, $year = null)
     {
-        if($year == null) $year = StoredSettings::getYear();
+        static::resolveYear($year);
         switch($type)
         {
             case StandingsType::DIVISION:
@@ -123,46 +144,46 @@ trait Getters
 
     public static function rankings($week = null, $year = null)
     {
-        if($week == null) $week = StoredSettings::getWeekNumber();
-        if($year == null) $year = StoredSettings::getYear();
+        static::resolveWeek($week);
+        static::resolveYear($year);
         return Explicit::rankings(RankingType::OFFICIAL, $week, $year, StoredSettings::getLeagueId());
     }
 
     public static function otherrankings($week = null, $year = null)
     {
-        if($week == null) $week = StoredSettings::getWeekNumber();
-        if($year == null) $year = StoredSettings::getYear();
+        static::resolveWeek($week);
+        static::resolveYear($year);
         return Explicit::rankings(RankingType::UNOFFICIAL, $week, $year, StoredSettings::getLeagueId());
     }
 
     public static function allrankings($week = null, $year = null)
     {
-        if($week == null) $week = StoredSettings::getWeekNumber();
-        if($year == null) $year = StoredSettings::getYear();
+        static::resolveWeek($week);
+        static::resolveYear($year);
         return Explicit::rankings(RankingType::ALL, $week, $year, StoredSettings::getLeagueId());
     }
 
     public static function playoffs($year = null)
     {
-        if($year == null) $year = StoredSettings::getYear();
+        static::resolveYear($year);
         return Explicit::playoffs($year, StoredSettings::getLeagueId());
     }
 
     public static function postseason($year = null)
     {
-        if($year == null) $year = StoredSettings::getYear();
+        static::resolveYear($year);
         return Explicit::postseason($year, StoredSettings::getLeagueId());
     }
 
     public static function offseason($year = null)
     {
-        if($year == null) $year = StoredSettings::getYear();
+        static::resolveYear($year);
         return Explicit::offseason($year, StoredSettings::getLeagueId());
     }
 
     public static function trades($year = null, $team_id = null)
     {
-        if($year == null) $year = StoredSettings::getYear();
+        static::resolveYear($year);
         if($team_id == null) return Explicit::league_trades($year, StoredSettings::getLeagueId());
         else return Explicit::team_trades($team_id, $year, StoredSettings::getLeagueId());
     }
@@ -170,6 +191,26 @@ trait Getters
     public static function trade($trade_id)
     {
         return Explicit::trade($trade_id);
+    }
+
+    private static function resolveYear(&$year)
+    {
+        if($year == null) $year = StoredSettings::getYear();
+    }
+
+    private static function resolveWeek(&$week)
+    {
+        if($week == null) $week = StoredSettings::getWeekNumber();
+    }
+
+    private static function resolveTeam(&$team)
+    {
+        if($team == null) $team = StoredSettings::getTeamId();
+    }
+
+    private static function resolveLeague(&$league)
+    {
+        if($league == null) $league = StoredSettings::getLeagueId();
     }
 
 }

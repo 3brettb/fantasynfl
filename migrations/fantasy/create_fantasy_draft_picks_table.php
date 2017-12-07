@@ -4,11 +4,11 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFantasyTeamPlayersTable extends Migration
+class CreateFantasyDraftPicksTable extends Migration
 {
     // Define Table Name
-    private $table_name = "fantasy_team_players";
-    
+    private $table_name = "fantasy_draft_picks";
+
     /**
      * Run the migrations.
      *
@@ -18,8 +18,13 @@ class CreateFantasyTeamPlayersTable extends Migration
     {
         Schema::create($this->table_name, function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('team_id');
-            $table->unsignedBigInteger('player_id');
+            $table->unsignedBigInteger('draft_id');
+            $table->unsignedBigInteger('team_id')->comment('Team Place of Pick');
+            $table->unsignedBigInteger('owner_id')->comment('Team Owner of Pick');
+            $table->unsignedBigInteger('player_id')->nullable();
+            $table->smallInteger('round')->nullable();
+            $table->smallInteger('overall')->nullable();
+            $table->tinyInteger('type');
             $table->timestamps();
         });
     }

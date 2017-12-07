@@ -4,7 +4,7 @@ namespace Fantasy\NFL\Fantasy\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TeamPlayer extends Model
+class Lineup extends Model
 {
 
     /**
@@ -12,14 +12,14 @@ class TeamPlayer extends Model
      *
      * @var string
      */
-    protected $table = 'fantasy_team_players';
+    protected $table = 'fantasy_lineups';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['team_id', 'player_id'];
+    protected $fillable = ['week_id', 'team_id'];
 
     // relations here
 

@@ -19,19 +19,7 @@ class RosterPlayer extends Model
      *
      * @var array
      */
-    protected $fillable = ['roster_id', 'player_id', 'projected', 'score', 'type', 'place'];
-
-    /**
-     * The "booting" method of the model.
-     *
-     * @return void
-     */
-    protected static function boot()
-    {
-        parent::boot();
-
-        //
-    }
+    protected $fillable = ['team_id', 'player_id'];
 
     // relations here
 
