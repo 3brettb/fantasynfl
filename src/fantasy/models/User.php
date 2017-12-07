@@ -4,7 +4,7 @@ namespace Fantasy\NFL\Fantasy\Models;
 
 use Fantasy\NFL\Enums\UserStatus;
 use Illuminate\Notifications\Notifiable;
-use Fantasy\NFL\Auth\User as Authenticatable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
