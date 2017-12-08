@@ -29,8 +29,7 @@ class FantasyNFLServiceProvider extends ServiceProvider
             __DIR__.'/assets' => public_path('vendor/fantasynfl')
         ]);
 
-        $this->loadMigrationsFrom(__DIR__.'/migrations/stats');
-        $this->loadMigrationsFrom(__DIR__.'/migrations/fantasy');
+        $this->loadMigrationsFrom([__DIR__.'/migrations/fantasy', __DIR__.'/migrations/stats']);
 
         $this->loadRoutesFrom(__DIR__.'/routes.php');
     }
