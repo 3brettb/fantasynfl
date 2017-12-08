@@ -20,7 +20,7 @@ class CreateFantasySeasonsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('league_id');
             $table->string('year', 4);
-            $table->json('standings');
+            $table->longText('standings');
             $table->timestamps();
         });
     }

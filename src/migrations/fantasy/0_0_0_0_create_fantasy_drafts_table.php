@@ -21,7 +21,7 @@ class CreateFantasyDraftsTable extends Migration
             $table->unsignedBigInteger('season_id');
             $table->boolean('complete');
             $table->tinyIncrements('type');
-            $table->json('content')->comment('Draft Order and Historical Picks');
+            $table->longText('content')->comment('Draft Order and Historical Picks');
             $table->timestamps();
         });
     }

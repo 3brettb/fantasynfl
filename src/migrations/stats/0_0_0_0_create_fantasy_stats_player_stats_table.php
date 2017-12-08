@@ -22,7 +22,7 @@ class CreateFantasyStatsPlayerStatsTable extends Migration
             $table->string('season', 4);
             $table->tinyInteger('week')->nullable();
             $table->boolean('projected');
-            $table->json('data');
+            $table->longText('data');
             $table->timestamps();
         });
     }

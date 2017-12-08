@@ -21,7 +21,7 @@ class CreateFantasyRankingsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('week_id');
             $table->tinyInteger('type');
-            $table->json('data');
+            $table->longText('data');
             $table->timestamps();
         });
     }

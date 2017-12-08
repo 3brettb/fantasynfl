@@ -20,7 +20,7 @@ class CreateFantasyStatsPlayerWeekStatsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('playerId');
             $table->string('season', 4);
-            $table->json('data');
+            $table->longText('data');
             $table->timestamps();
         });
     }
