@@ -8,6 +8,7 @@ use Fantasy\NFL\Fantasy\Objects as Object;
 use Fantasy\NFL\Fantasy\Models as FantasyModels;
 use Fantasy\NFL\StatsAPI\Models as StatsModels;
 use Illuminate\Support\Collection;
+use Fantasy\NFL\FantasyNFL\Handlers\DataReceiver;
 
 class GetterExplicit
 {
@@ -183,7 +184,7 @@ class GetterExplicit
      */
     public static function players()
     {
-        return Object\Players::mapModels(StatsModels\Player::all());
+        return DataReceiver::instance()->getPlayers();
     }
 
     /**

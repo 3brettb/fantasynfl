@@ -15,11 +15,6 @@ trait Getters
         return Explicit::find($id);
     }
 
-    public static function setLeague($id)
-    {
-        StoredSettings::setLeagueId($id);
-    }
-
     public static function activity($year, $league_id)
     {
         static::resolveYear($year);

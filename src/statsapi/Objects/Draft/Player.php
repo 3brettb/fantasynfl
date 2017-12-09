@@ -22,4 +22,10 @@ class Player extends StatPlayer
         return $player;
     }
 
+    static function mapJson($json)
+    {
+        $player = parent::mapJson($json);
+        return static::map($player, $json->rank, $json->auction, $json->stock);
+    }
+
 }

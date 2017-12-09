@@ -18,7 +18,7 @@ class CreateFantasyStatsPlayersTable extends Migration
     {
         Schema::create($this->table_name, function (Blueprint $table) {
             $table->unsignedBigInteger('id')->unique();
-            $table->string('esbid', 30)->unique();
+            $table->string('esbid', 30)->nullable();
             $table->string('gsisPlayerId', 30)->unique();
             $table->string('name', 150);
             $table->string('firstName', 75);

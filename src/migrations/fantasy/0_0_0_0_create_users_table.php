@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('first');
             $table->string('last');
             $table->string('email', 150)->unique();
-            $table->unsignedBigInteger('team_id')->comment('Most Recent Team');
+            $table->unsignedBigInteger('team_id')->nullable()->comment('Most Recent Team');
             $table->string('password');
             $table->rememberToken();
             $table->tinyInteger('status');
