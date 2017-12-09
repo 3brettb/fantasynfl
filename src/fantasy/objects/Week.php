@@ -4,7 +4,7 @@ namespace Fantasy\NFL\Fantasy\Objects;
 
 use Fantasy\NFL\Enums\WeekStrings;
 use Fantasy\NFL\Enums\WeekType;
-use Fantasy\NFL\Resources\Object;
+use Fantasy\NFL\Resources\Data\Object;
 use Illuminate\Database\Eloquent\Model;
 
 class Week extends Object

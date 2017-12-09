@@ -4,7 +4,7 @@ namespace Fantasy\NFL\Fantasy\Objects;
 
 use Fantasy\NFL\Enums\TradeStatus;
 use Fantasy\NFL\Enums\TradeStatusStrings;
-use Fantasy\NFL\Resources\Object;
+use Fantasy\NFL\Resources\Data\Object;
 use Illuminate\Database\Eloquent\Model;
 
 class Trade extends Object

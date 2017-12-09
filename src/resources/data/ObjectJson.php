@@ -1,6 +1,6 @@
 <?php
 
-namespace Fantasy\NFL\Resources;
+namespace Fantasy\NFL\Resources\Data;
 
 abstract class ObjectJson
 {

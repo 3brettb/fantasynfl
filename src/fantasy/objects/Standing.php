@@ -4,7 +4,7 @@ namespace Fantasy\NFL\Fantasy\Objects;
 
 use Fantasy\NFL\Enums\StandingsStrings;
 use Fantasy\NFL\Enums\StandingsType;
-use Fantasy\NFL\Resources\Object;
+use Fantasy\NFL\Resources\Data\Object;
 use Illuminate\Database\Eloquent\Model;
 use Fantasy\NFL\Fantasy\Models\Team as TeamModel;
 

@@ -2,8 +2,7 @@
 
 namespace Fantasy\NFL\Fantasy\Objects;
 
-use Fantasy\NFL\Resources\ObjectJson;
-use Illuminate\Database\Eloquent\Model;
+use Fantasy\NFL\Resources\Data\ObjectJson;
 
 class Standings extends ObjectJson
 {

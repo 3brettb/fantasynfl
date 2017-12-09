@@ -3,7 +3,7 @@
 namespace Fantasy\NFL\Fantasy\Objects;
 
 use Fantasy\NFL\Enums\StandingsType;
-use Fantasy\NFL\Resources\Object;
+use Fantasy\NFL\Resources\Data\Object;
 use Illuminate\Database\Eloquent\Model;
 
 class TeamStanding extends Object

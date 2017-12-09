@@ -2,7 +2,7 @@
 
 namespace Fantasy\NFL\Fantasy\Objects;
 
-use Fantasy\NFL\Resources\Object;
+use Fantasy\NFL\Resources\Data\Object;
 use Fantasy\NFL\StatsAPI\Models\Player;
 use Illuminate\Database\Eloquent\Model;
 

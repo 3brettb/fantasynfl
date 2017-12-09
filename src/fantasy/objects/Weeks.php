@@ -2,7 +2,7 @@
 
 namespace Fantasy\NFL\Fantasy\Objects;
 
-use Fantasy\NFL\Resources\ObjectArray;
+use Fantasy\NFL\Resources\Data\ObjectArray;
 use Illuminate\Support\Collection;
 
 class Weeks extends ObjectArray

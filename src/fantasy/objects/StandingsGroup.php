@@ -2,7 +2,7 @@
 
 namespace Fantasy\NFL\Fantasy\Objects;
 
-use Fantasy\NFL\Resources\JsonArray;
+use Fantasy\NFL\Resources\Data\JsonArray;
 use Illuminate\Support\Collection;
 
 class StandingsGroup extends JsonArray
