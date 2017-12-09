@@ -26,12 +26,22 @@ class NFLAPI
         return self::$instance;
     }
 
+    /**
+     * @param $call
+     * @param null $params
+     * @return Query
+     */
     public function perform($call, $params = null)
     {
         $query = $this->get($call, $params);
         return $query->execute();
     }
 
+    /**
+     * @param $call
+     * @param null $params
+     * @return Query
+     */
     public function get($call, $params = null)
     {
         $query = $this->calls[$call];

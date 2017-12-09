@@ -8,6 +8,11 @@ use Fantasy\NFL\StatsAPI\Models\Player as PlayerModel;
 
 class FantasyNFLAdmin
 {
+    public static function Test()
+    {
+        $player = FantasyNFL::player(234);
+        dd($player);
+    }
 
     public static function Build()
     {
@@ -17,7 +22,7 @@ class FantasyNFLAdmin
 
     public static function LoadPlayerDatabase()
     {
-        $data = NflData::AllPlayers();
+        $data = NflData::getAllPlayers();
         $players = collect();
         foreach($data as $group)
         {

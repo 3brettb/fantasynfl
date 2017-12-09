@@ -203,8 +203,7 @@ class GetterExplicit
      */
     public static function player($player_id)
     {
-        $player = StatsModels\Player::find($player_id);
-        return StatsObject\Player::mapModel($player);
+        return DataReceiver::instance()->getPlayer($player_id);
     }
 
     /**

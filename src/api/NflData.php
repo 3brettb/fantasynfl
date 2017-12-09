@@ -9,7 +9,15 @@ use Fantasy\NFL\API\Query\QueryGroup;
 class NflData extends NFLAPI
 {
 
-    public static function AllPlayers()
+    public static function getPlayer($player_id)
+    {
+        $query = NFLAPI::instance()->get(Uri::DETAILS, [
+           'playerId' => $player_id
+        ]);
+        return $query->execute()->normalize()->get();
+    }
+
+    public static function getAllPlayers()
     {
         $instance = NflData::instance();
         $count = 1000;
