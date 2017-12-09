@@ -172,11 +172,21 @@ class GetterExplicit
      * @param $league_id
      * @return Object\Lineup
      */
-    public static function roster($team_id, $week_number, $season_number, $league_id)
+    public static function lineup($team_id, $week_number, $season_number, $league_id)
     {
         $week = static::getWeek($week_number, $season_number, $league_id);
         $roster = FantasyModels\Lineup::where('team_id', $team_id)->where('week_id', $week->id)->first();
         return Object\Lineup::mapModel($roster);
+    }
+
+    /**
+     * @param $team_id
+     * @return Object\Roster
+     */
+    public static function roster($team_id)
+    {
+        $players = FantasyModels\RosterPlayer::where('team_id', $team_id);
+        return Object\Roster::mapModels($players);
     }
 
     /**

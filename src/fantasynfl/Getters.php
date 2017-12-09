@@ -6,6 +6,7 @@ use Fantasy\NFL\Enums\RankingType;
 use Fantasy\NFL\Enums\StandingsType;
 use Fantasy\NFL\FantasyNFL\GetterExplicit as Explicit;
 use Fantasy\NFL\FantasyNFL\Settings as StoredSettings;
+use Fantasy\NFL\FantasyNFL\Handlers\DataReceiver;
 
 trait Getters
 {
@@ -15,7 +16,7 @@ trait Getters
         return Explicit::find($id);
     }
 
-    public static function activity($year, $league_id)
+    public static function activity($year = null, $league_id = null)
     {
         static::resolveYear($year);
         static::resolveLeague($league_id);
@@ -70,32 +71,38 @@ trait Getters
         return Explicit::division($division_id);
     }
 
-    public static function draft($year, $league_id)
+    public static function draft($year = null, $league_id = null)
     {
         static::resolveYear($year);
         static::resolveLeague($league_id);
         return Explicit::draft($year, $league_id);
     }
 
-    public static function draftpicks($team_id, $year)
+    public static function draftpicks($team_id = null, $year = null)
     {
         static::resolveTeam($team_id);
         static::resolveYear($year);
         return Explicit::draft_picks($team_id, $year, StoredSettings::getLeagueId());
     }
 
-    public static function myroster($week = null, $year = null)
+    public static function roster($team_id = null)
     {
-        $team_id = StoredSettings::getTeamId();
-        return self::roster($team_id, $week, $year);
+        static::resolveTeam($team_id);
+        return Explicit::roster($team_id);
     }
 
-    public static function roster($team_id = null, $week = null, $year = null)
+    public static function mylineup($week = null, $year = null)
+    {
+        $team_id = StoredSettings::getTeamId();
+        return self::lineup($team_id, $week, $year);
+    }
+
+    public static function lineup($team_id = null, $week = null, $year = null)
     {
         static::resolveTeam($team_id);
         static::resolveWeek($week);
         static::resolveYear($year);
-        return Explicit::roster($team_id, $week, $year, StoredSettings::getLeagueId());
+        return Explicit::lineup($team_id, $week, $year, StoredSettings::getLeagueId());
     }
 
     public static function player($id)
@@ -187,6 +194,8 @@ trait Getters
     {
         return Explicit::trade($trade_id);
     }
+
+    // Private Helper Methods ------------------------------------------------------------------------------------------
 
     private static function resolveYear(&$year)
     {

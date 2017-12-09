@@ -4,6 +4,7 @@ namespace Fantasy\NFL;
 
 use Fantasy\NFL\API\NflData;
 use Fantasy\NFL\StatsAPI\Objects\Draft\Player;
+use Fantasy\NFL\StatsAPI\Models\Player as PlayerModel;
 
 class FantasyNFLAdmin
 {
@@ -27,18 +28,22 @@ class FantasyNFLAdmin
             }
         }
 
-        foreach($players as $player)
-        {
-            $model = new \Fantasy\NFL\StatsAPI\Models\Player();
-            $model->id = $player->id;
-            $model->esbid = $player->esbid;
-            $model->gsisPlayerId = $player->gsisPlayerId;
-            $model->firstName = $player->firstName;
-            $model->lastName = $player->lastName;
-            $model->teamAbbr = $player->teamAbbr;
-            $model->position = $player->position;
-            $model->save();
+        PlayerModel::truncate();
+        $data_array = array();
+        foreach($players as $player){
+            $a = array(
+                'id' => $player->id,
+                'esbid' => $player->esbid,
+                'gsisPlayerId' => $player->gsisPlayerId,
+                'name' => $player->firstName.' '.$player->lastName,
+                'firstName' => $player->firstName,
+                'lastName' => $player->lastName,
+                'teamAbbr' => $player->teamAbbr,
+                'position' => $player->position
+            );
+            array_push($data_array, $a);
         }
+        PlayerModel::insert($data_array);
     }
 
 }
