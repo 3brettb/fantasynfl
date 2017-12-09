@@ -10,7 +10,7 @@ class HttpClient
 
     public static $http = "http";
 
-    public static $api = "api.fantasy.nfl.com/v1";
+    public static $api_default = "api.fantasy.nfl.com/v1";
 
     public static $format = "json";
 
@@ -51,7 +51,8 @@ class HttpClient
 
     private static function normalizeUri($uri)
     {
-        return self::$http."://".self::$api.$uri;
+        $api = config('fantasynfl.api.uri', static::$api_default);
+        return self::$http."://".$api.$uri;
     }
 
     private static function formRequestUri($uri, $options = [])
