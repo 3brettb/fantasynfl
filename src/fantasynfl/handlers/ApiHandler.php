@@ -77,14 +77,16 @@ class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
 
     public function getResearchInfo($week = null, $player_id = null)
     {
-        $dto = NflData::getResearch();
+        $dto = NflData::getResearch($week);
         // TODO: Implement getResearchInfo() method.
         dd($dto);
     }
 
     public function getWeekRanks($week = null, $position = null)
     {
+        $dto = NflData::getWeekRanks($week, $position);
         // TODO: Implement getWeekRanks() method.
+        dd($dto);
     }
 
     public function getNews($player_id = null)

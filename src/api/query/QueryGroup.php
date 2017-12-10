@@ -33,7 +33,7 @@ class QueryGroup extends HandlesJsonData
         return $this;
     }
 
-    public function applyGroupParams(array $params)
+    public function setParams(array $params)
     {
         foreach($this->queries as $query)
         {

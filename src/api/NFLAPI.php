@@ -61,7 +61,7 @@ class NFLAPI
                 ->param("count", 50)
                 ->param("offset", 0),
             Uri::WEEKRANKS => Query::define(Uri::WEEKRANKS)
-                ->param("position", null, null, true, Options::REGULARPOSITIONS)
+                ->param("position", null, null, false, Options::REGULARPOSITIONS)
                 ->param("season")
                 ->param("week")
                 ->param("count", 50)

@@ -11,8 +11,10 @@ class FantasyNFLAdmin
 {
     public static function Test()
     {
-        $stats = DataReceiver::instance()->getPlayerSeasonStats(234, 2017);
-        dd($stats);
+        //$stats = DataReceiver::instance()->getPlayerWeekStats(234, 2017);
+        //dd($stats);
+        $data = DataReceiver::instance()->getResearchInfo();
+        dd($data);
     }
 
     public static function Build()

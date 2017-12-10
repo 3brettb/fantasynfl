@@ -10,6 +10,8 @@ use Fantasy\NFL\API\Query\QueryGroup;
 class NflData extends NFLAPI
 {
 
+    private static $count = 5000;
+
     public static function convert($response_data, $dto_class)
     {
         return $dto_class::dtomap($response_data);
@@ -28,36 +30,43 @@ class NflData extends NFLAPI
         return self::convert($response->players[0], DTO\PlayerDetails\PlayerDto::class);
     }
 
-    public static function getAllPlayers()
+    /**
+     * @param null $week
+     * @return DTO\WeekRanks\WeekRanksDto[]
+     */
+    public static function getAllPlayers($week=null)
     {
-        $instance = NflData::instance();
-        $count = 1000;
+        $instance = self::instance();
         $query = QueryGroup::define()
             ->query("QB", $instance->get(Uri::WEEKRANKS, [
-                'position' => PositionStrings::QB,
-                'count' => $count
+                'position' => PositionStrings::QB
             ]))
             ->query("RB", $instance->get(Uri::WEEKRANKS, [
-                'position' => PositionStrings::RB,
-                'count' => $count
+                'position' => PositionStrings::RB
             ]))
             ->query("WR", $instance->get(Uri::WEEKRANKS, [
-                'position' => PositionStrings::WR,
-                'count' => $count
+                'position' => PositionStrings::WR
             ]))
             ->query("TE", $instance->get(Uri::WEEKRANKS, [
-                'position' => PositionStrings::TE,
-                'count' => $count
+                'position' => PositionStrings::TE
             ]))
             ->query("K", $instance->get(Uri::WEEKRANKS, [
-                'position' => PositionStrings::K,
-                'count' => $count
+                'position' => PositionStrings::K
             ]))
             ->query("DEF", $instance->get(Uri::WEEKRANKS, [
-                'position' => PositionStrings::DEF,
-                'count' => $count
+                'position' => PositionStrings::DEF
             ]));
-        return $query->execute()->normalize()->get();
+
+        if($week != null) $query->setParams(['week' => $week, 'count' => self::$count]);
+        else $query->setParams(['count' => self::$count]);
+
+        $response = $query->execute()->normalize()->get();
+
+        foreach($response as $key => $position)
+        {
+            $response[$key] = self::convert($position, DTO\WeekRanks\WeekRanksDto::class);
+        }
+        return $response;
     }
 
     /**
@@ -69,7 +78,7 @@ class NflData extends NFLAPI
     public static function getStats($type=null, $season=null, $week=null)
     {
         $params = array();
-        $instance = NflData::instance();
+        $instance = self::instance();
 
         if($season != null) $params['season'] = $season;
         if($week != null) $params['week'] = $week;
@@ -94,7 +103,7 @@ class NflData extends NFLAPI
             ->query("DEF", $instance->get(Uri::STATS, [
                 'position' => PositionStrings::DEF
             ]))
-            ->applyGroupParams($params);
+            ->setParams($params);
 
         $response = $query->execute()->normalize()->get();
         $out = null;
@@ -106,14 +115,44 @@ class NflData extends NFLAPI
         return $out;
     }
 
-    public static function getResearch()
+    /**
+     * @param null $week
+     * @return DTO\Research\ResearchDto
+     */
+    public static function getResearch($week=null)
     {
-        $max = 5000;
-        $query = NFLAPI::instance()->get(Uri::RESEARCH, [
-            'count' => $max
+        $query = self::instance()->get(Uri::RESEARCH, [
+            'count' => self::$count
         ]);
+
+        if($week != null) $query->set('week', $week);
+
         $response = $query->execute()->normalize()->get();
         return self::convert($response, DTO\Research\ResearchDto::class);
+    }
+
+    /**
+     * @param null $week
+     * @param null $position
+     * @return DTO\WeekRanks\WeekRanksDto[]
+     */
+    public static function getWeekRanks($week=null,$position=null)
+    {
+        if($position == null) return self::getAllPlayers($week);
+
+        $query = self::instance()->get(Uri::WEEKRANKS, [
+            'position' => $position
+        ]);
+
+        if($week != null) $query->setParams(['week' => $week, 'count' => self::$count]);
+        else $query->setParams(['count' => self::$count]);
+
+        $response = $query->execute()->normalize()->get();
+
+        $out = array(
+            $position => self::convert($response, DTO\WeekRanks\WeekRanksDto::class)
+        );
+        return $out;
     }
 
 }
