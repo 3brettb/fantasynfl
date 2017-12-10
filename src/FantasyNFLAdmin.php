@@ -3,6 +3,7 @@
 namespace Fantasy\NFL;
 
 use Fantasy\NFL\API\NflData;
+use Fantasy\NFL\FantasyNFL\Handlers\DataReceiver;
 use Fantasy\NFL\StatsAPI\Objects\Draft\Player;
 use Fantasy\NFL\StatsAPI\Models\Player as PlayerModel;
 
@@ -10,8 +11,8 @@ class FantasyNFLAdmin
 {
     public static function Test()
     {
-        $player = FantasyNFL::player(234);
-        dd($player);
+        $stats = DataReceiver::instance()->getPlayerSeasonStats(234, 2017);
+        dd($stats);
     }
 
     public static function Build()

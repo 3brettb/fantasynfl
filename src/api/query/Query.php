@@ -23,6 +23,15 @@ class Query extends HandlesJsonData
         return $this;
     }
 
+    public function setParams(array $params)
+    {
+        foreach($params as $name => $value)
+        {
+            $this->set($name, $value);
+        }
+        return $this;
+    }
+
     public function set($param, $value)
     {
         $this->params[$param]->set($value);

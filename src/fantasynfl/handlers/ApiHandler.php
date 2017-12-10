@@ -4,6 +4,7 @@ namespace Fantasy\NFL\FantasyNFL\Handlers;
 
 use Fantasy\NFL\API\DTO\PlayerDetails\PlayerDto;
 use Fantasy\NFL\API\NflData;
+use Fantasy\NFL\Enums\StatType;
 use Fantasy\NFL\StatsAPI\Objects\StatPlayer as Player;
 
 class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
@@ -41,15 +42,16 @@ class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
 
     public function getPlayerDetails($player_id)
     {
-        $json = NflData::getPlayer($player_id);
-        $data = PlayerDto::dtomap($json->players[0]);
-        dd($data);
-        return Player::mapJson($json);
+        $dto = NflData::getPlayer($player_id);
+        dd($dto);
+        // TODO: Complete the Map of Dto, Possibly change all maps to mapping DTO's
+        return Player::mapJson($dto);
     }
 
     public function getPlayerSeasonStats($player_id, $season = null)
     {
-        // TODO: Implement getPlayerSeasonStats() method.
+        $dto = NflData::getStats(StatType::Season, $season);
+        dd($dto);
     }
 
     public function getPlayerSeasonProjectedStats($player_id, $season = null)
