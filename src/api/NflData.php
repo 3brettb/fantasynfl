@@ -60,6 +60,12 @@ class NflData extends NFLAPI
         return $query->execute()->normalize()->get();
     }
 
+    /**
+     * @param null $type
+     * @param null $season
+     * @param null $week
+     * @return DTO\Stats\StatsDto
+     */
     public static function getStats($type=null, $season=null, $week=null)
     {
         $params = array();
@@ -98,6 +104,16 @@ class NflData extends NFLAPI
             else $out->players = array_merge($out->players, self::convert($item, DTO\Stats\StatsDto::class)->players);
         }
         return $out;
+    }
+
+    public static function getResearch()
+    {
+        $max = 5000;
+        $query = NFLAPI::instance()->get(Uri::RESEARCH, [
+            'count' => $max
+        ]);
+        $response = $query->execute()->normalize()->get();
+        return self::convert($response, DTO\Research\ResearchDto::class);
     }
 
 }

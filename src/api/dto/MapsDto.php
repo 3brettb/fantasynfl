@@ -2,9 +2,29 @@
 
 namespace Fantasy\NFL\API\DTO;
 
-interface MapsDto
+abstract class MapsDto
 {
 
-    public static function dtomap($data);
+    abstract static function dtomap($data);
+
+    protected static function mapArray(array $items, $dto_class)
+    {
+        $out = array();
+        foreach($items as $item)
+        {
+            array_push($out, $dto_class::dtomap($item));
+        }
+        return $out;
+    }
+
+    protected static function mapKeyValue($items, $dto_class)
+    {
+        $out = array();
+        foreach($items as $key => $value)
+        {
+            array_push($out, new $dto_class($key, $value));
+        }
+        return $out;
+    }
 
 }

@@ -1,17 +1,20 @@
 <?php
 
-namespace Fantasy\NFL\API\DTO\PlayerDetails;
+namespace Fantasy\NFL\API\DTO\Research;
 
 use Fantasy\NFL\API\DTO\MapsDto;
 
-class PlayersDto extends MapsDto
+class ResearchDto extends MapsDto
 {
+
+    public $lastUpdated;
 
     public $players;
 
     public static function dtomap($data)
     {
-        $obj = new PlayersDto();
+        $obj = new ResearchDto();
+        $obj->lastUpdated = $data->lastUpdated;
         $obj->players = parent::mapArray($data->players, PlayerDto::class);
         return $obj;
     }

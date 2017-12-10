@@ -2,7 +2,6 @@
 
 namespace Fantasy\NFL\FantasyNFL\Handlers;
 
-use Fantasy\NFL\API\DTO\PlayerDetails\PlayerDto;
 use Fantasy\NFL\API\NflData;
 use Fantasy\NFL\Enums\StatType;
 use Fantasy\NFL\StatsAPI\Objects\StatPlayer as Player;
@@ -51,27 +50,36 @@ class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
     public function getPlayerSeasonStats($player_id, $season = null)
     {
         $dto = NflData::getStats(StatType::Season, $season);
+        // TODO: Implement getPlayerSeasonStats() method.
         dd($dto);
     }
 
     public function getPlayerSeasonProjectedStats($player_id, $season = null)
     {
+        $dto = NflData::getStats(StatType::SeasonProjected, $season);
         // TODO: Implement getPlayerSeasonProjectedStats() method.
+        dd($dto);
     }
 
     public function getPlayerWeekStats($player_id, $season = null)
     {
+        $dto = NflData::getStats(StatType::Week, $season);
         // TODO: Implement getPlayerWeekStats() method.
+        dd($dto);
     }
 
     public function getPlayerWeekProjectedStats($player_id, $season = null)
     {
+        $dto = NflData::getStats(StatType::WeekProjected, $season);
         // TODO: Implement getPlayerWeekProjectedStats() method.
+        dd($dto);
     }
 
     public function getResearchInfo($week = null, $player_id = null)
     {
+        $dto = NflData::getResearch();
         // TODO: Implement getResearchInfo() method.
+        dd($dto);
     }
 
     public function getWeekRanks($week = null, $position = null)

@@ -4,7 +4,7 @@ namespace Fantasy\NFL\API\DTO\Stats;
 
 use Fantasy\NFL\API\DTO\MapsDto;
 
-class StatsDto implements MapsDto
+class StatsDto extends MapsDto
 {
 
     public $statType;
@@ -21,18 +21,8 @@ class StatsDto implements MapsDto
         $obj->statType = $data->statType;
         $obj->season = $data->season;
         $obj->week = $data->week;
-        $obj->players = static::mapPlayers($data->players);
+        $obj->players = parent::mapArray($data->players, PlayerDto::class);
         return $obj;
-    }
-
-    private static function mapPlayers($data)
-    {
-        $out = array();
-        foreach($data as $item)
-        {
-            array_push($out, PlayerDto::dtomap($item));
-        }
-        return $out;
     }
 
 }

@@ -4,7 +4,7 @@ namespace Fantasy\NFL\API\DTO\PlayerDetails;
 
 use Fantasy\NFL\API\DTO\MapsDto;
 
-class VideoDto implements MapsDto
+class VideoDto extends MapsDto
 {
 
     public $id;
@@ -35,7 +35,7 @@ class VideoDto implements MapsDto
         $obj->id = $data->id;
         $obj->smallPhotoUrl = $data->smallPhotoUrl;
         $obj->mediumPhotoUrl = $data->mediumPhotoUrl;
-        $obj->playerIds = self::mapPlayerIds($data->playerIds);
+        $obj->playerIds = $data->playerIds;
         $obj->title = $data->title;
         $obj->description = $data->description;
         $obj->timestamp = $data->timestamp;
@@ -44,16 +44,6 @@ class VideoDto implements MapsDto
         $obj->gameClock = $data->gameClock;
         $obj->gamePlayId = $data->gamePlayId;
         return $obj;
-    }
-
-    private static function mapPlayerIds($data)
-    {
-        $out = array();
-        foreach($data as $item)
-        {
-            array_push($out, $item);
-        }
-        return $out;
     }
 
 }

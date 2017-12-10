@@ -4,7 +4,7 @@ namespace Fantasy\NFL\API\DTO\PlayerDetails;
 
 use Fantasy\NFL\API\DTO\MapsDto;
 
-class PlayerDto implements MapsDto
+class PlayerDto extends MapsDto
 {
 
     public $id;
@@ -40,40 +40,10 @@ class PlayerDto implements MapsDto
         $obj->status = $data->status;
         $obj->injuryGameStatus = $data->injuryGameStatus;
         $obj->jerseyNumber = $data->jerseyNumber;
-        $obj->notes = self::mapNotes($data->notes);
-        $obj->videos = self::mapVideos($data->videos);
-        $obj->weeks = self::mapWeeks($data->weeks);
+        $obj->notes = parent::mapArray($data->notes, NoteDto::class);
+        $obj->videos = parent::mapArray($data->videos, VideoDto::class);
+        $obj->weeks = parent::mapArray($data->weeks, WeekDto::class);
         return $obj;
-    }
-
-    private static function mapNotes($data)
-    {
-        $out = array();
-        foreach($data as $item)
-        {
-            array_push($out, NoteDto::dtomap($item));
-        }
-        return $out;
-    }
-
-    private static function mapVideos($data)
-    {
-        $out = array();
-        foreach($data as $item)
-        {
-            array_push($out, VideoDto::dtomap($item));
-        }
-        return $out;
-    }
-
-    private static function mapWeeks($data)
-    {
-        $out = array();
-        foreach($data as $item)
-        {
-            array_push($out, WeekDto::dtomap($item));
-        }
-        return $out;
     }
 
 }

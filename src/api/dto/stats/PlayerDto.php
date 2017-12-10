@@ -5,7 +5,7 @@ namespace Fantasy\NFL\API\DTO\Stats;
 use Fantasy\NFL\API\DTO\MapsDto;
 use Fantasy\NFL\API\DTO\PlayerDetails\StatDto;
 
-class PlayerDto implements MapsDto
+class PlayerDto extends MapsDto
 {
 
     public $id;
@@ -28,18 +28,8 @@ class PlayerDto implements MapsDto
         $obj->gsisPlayerId = $data->gsisPlayerId;
         $obj->name = $data->name;
         $obj->teamAbbr = $data->teamAbbr;
-        $obj->stats = static::mapStats($data->stats);
+        $obj->stats = static::mapKeyValue($data->stats, StatDto::class);
         return $obj;
-    }
-
-    private static function mapStats($data)
-    {
-        $out = array();
-        foreach($data as $key => $value)
-        {
-            array_push($out, new StatDto($key, $value));
-        }
-        return $out;
     }
 
 }

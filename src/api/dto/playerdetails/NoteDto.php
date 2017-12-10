@@ -4,7 +4,7 @@ namespace Fantasy\NFL\API\DTO\PlayerDetails;
 
 use Fantasy\NFL\API\DTO\MapsDto;
 
-class NoteDto implements MapsDto
+class NoteDto extends MapsDto
 {
 
     public $id;
