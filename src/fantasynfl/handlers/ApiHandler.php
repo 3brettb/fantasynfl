@@ -98,7 +98,9 @@ class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
 
     public function getScoringLeaders($week = null, $position = null)
     {
+        $dto = NflData::getScoringLeaders($week, $position);
         // TODO: Implement getScoringLeaders() method.
+        dd($dto);
     }
 
     public function getSeasonStats($season = null, $position = null)

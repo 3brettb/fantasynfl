@@ -2,6 +2,8 @@
 
 namespace Fantasy\NFL\API;
 
+use Fantasy\NFL\API\Query\QueryGroup;
+use Fantasy\NFL\Enums\PositionStrings;
 use Fantasy\NFL\Resources\Common\APIUris as Uri;
 use Fantasy\NFL\Resources\Common\APIOptions as Options;
 use Fantasy\NFL\API\Query\Query;
@@ -51,6 +53,30 @@ class NFLAPI
             }
         }
         return unserialize(serialize($query));
+    }
+
+    public static function getPositionsQueryGroup($uri, array $positions)
+    {
+        $query = QueryGroup::define();
+        foreach($positions as $position)
+        {
+            $query->query($position, self::instance()->get($uri, [
+                'position' => $position
+            ]));
+        }
+        return $query;
+    }
+
+    public static function getDefaultPositionsQueryGroup($uri)
+    {
+        return self::getPositionsQueryGroup($uri, [
+            PositionStrings::QB,
+            PositionStrings::RB,
+            PositionStrings::WR,
+            PositionStrings::TE,
+            PositionStrings::K,
+            PositionStrings::DEF
+        ]);
     }
 
     private function init()

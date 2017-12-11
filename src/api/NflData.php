@@ -3,9 +3,7 @@
 namespace Fantasy\NFL\API;
 
 use Fantasy\NFL\API\DTO;
-use Fantasy\NFL\Enums\PositionStrings;
 use Fantasy\NFL\Resources\Common\APIUris as Uri;
-use Fantasy\NFL\API\Query\QueryGroup;
 
 class NflData extends NFLAPI
 {
@@ -38,26 +36,7 @@ class NflData extends NFLAPI
      */
     public static function getAllPlayers($week=null)
     {
-        $instance = self::instance();
-        $query = QueryGroup::define()
-            ->query("QB", $instance->get(Uri::WEEKRANKS, [
-                'position' => PositionStrings::QB
-            ]))
-            ->query("RB", $instance->get(Uri::WEEKRANKS, [
-                'position' => PositionStrings::RB
-            ]))
-            ->query("WR", $instance->get(Uri::WEEKRANKS, [
-                'position' => PositionStrings::WR
-            ]))
-            ->query("TE", $instance->get(Uri::WEEKRANKS, [
-                'position' => PositionStrings::TE
-            ]))
-            ->query("K", $instance->get(Uri::WEEKRANKS, [
-                'position' => PositionStrings::K
-            ]))
-            ->query("DEF", $instance->get(Uri::WEEKRANKS, [
-                'position' => PositionStrings::DEF
-            ]));
+        $query = parent::getDefaultPositionsQueryGroup(Uri::WEEKRANKS);
 
         if($week != null) $query->setParams(['week' => $week, 'count' => self::$count]);
         else $query->setParams(['count' => self::$count]);
@@ -80,32 +59,12 @@ class NflData extends NFLAPI
     public static function getStats($type=null, $season=null, $week=null)
     {
         $params = array();
-        $instance = self::instance();
 
         if($season != null) $params['season'] = $season;
         if($week != null) $params['week'] = $week;
         if($type != null) $params['statType'] = $type;
 
-        $query = QueryGroup::define()
-            ->query("QB", $instance->get(Uri::STATS, [
-                'position' => PositionStrings::QB
-            ]))
-            ->query("RB", $instance->get(Uri::STATS, [
-                'position' => PositionStrings::RB
-            ]))
-            ->query("WR", $instance->get(Uri::STATS, [
-                'position' => PositionStrings::WR
-            ]))
-            ->query("TE", $instance->get(Uri::STATS, [
-                'position' => PositionStrings::TE
-            ]))
-            ->query("K", $instance->get(Uri::STATS, [
-                'position' => PositionStrings::K
-            ]))
-            ->query("DEF", $instance->get(Uri::STATS, [
-                'position' => PositionStrings::DEF
-            ]))
-            ->setParams($params);
+        $query = parent::getDefaultPositionsQueryGroup(Uri::STATS)->setParams($params);
 
         $response = $query->execute()->normalize()->get();
         $out = null;
@@ -167,6 +126,41 @@ class NflData extends NFLAPI
         ]);
         $response = $query->execute()->normalize()->get();
         return self::convert($response, DTO\News\NewsDto::class);
+    }
+
+    /**
+     * @param null $week
+     * @param null $position
+     * @return DTO\ScoringLeaders\ScoringLeadersDto[]
+     */
+    public static function getScoringLeaders($week=null, $position=null)
+    {
+        if($position != null)
+        {
+            $query = self::instance()->get(Uri::SCORINGLEADERS, [
+                'position' => $position
+            ]);
+            if($week != null) $query->setParams(['week' => $week]);
+
+            $response = $query->execute()->normalize()->get();
+
+            return array(
+                $position => self::convert($response, DTO\ScoringLeaders\ScoringLeadersDto::class)
+            );
+        }
+        else
+        {
+            $query = parent::getDefaultPositionsQueryGroup(Uri::SCORINGLEADERS);
+            if($week != null) $query->setParams(['week' => $week]);
+
+            $response = $query->execute()->normalize()->get();
+
+            foreach($response as $key => $group)
+            {
+                $response[$key] = self::convert($group, DTO\ScoringLeaders\ScoringLeadersDto::class);
+            }
+            return $response;
+        }
     }
 
 }
