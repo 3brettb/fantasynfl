@@ -49,28 +49,28 @@ class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
 
     public function getPlayerSeasonStats($player_id, $position, $season = null)
     {
-        $dto = NflData::getStats(StatType::Season, $position, $season);
+        $dto = static::getSeasonStats($season, $position);
         // TODO: Implement getPlayerSeasonStats() method.
         dd($dto);
     }
 
     public function getPlayerSeasonProjectedStats($player_id, $position, $season = null)
     {
-        $dto = NflData::getStats(StatType::SeasonProjected, $position, $season);
+        $dto = static::getSeasonProjectedStats($season, $position);
         // TODO: Implement getPlayerSeasonProjectedStats() method.
         dd($dto);
     }
 
     public function getPlayerWeekStats($player_id, $position, $season = null)
     {
-        $dto = NflData::getStats(StatType::Week, $position, $season);
+        $dto = static::getWeekStats($season, $position);
         // TODO: Implement getPlayerWeekStats() method.
         dd($dto);
     }
 
     public function getPlayerWeekProjectedStats($player_id, $position, $season = null)
     {
-        $dto = NflData::getStats(StatType::WeekProjected, $position, $season);
+        $dto = static::getWeekProjectedStats($season, $position);
         // TODO: Implement getPlayerWeekProjectedStats() method.
         dd($dto);
     }
