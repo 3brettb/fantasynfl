@@ -37,7 +37,7 @@ interface AccessesPlayerData
 
     public function getWeekProjectedStats($week=null, $position=null);
 
-    public function getAdvancedStats($position=null, $week=null, $season=null);
+    public function getAdvancedStats($week=null, $season=null, $position=null);
 
     public function getGameStats($gameId);
 
