@@ -16,7 +16,9 @@ class FantasyNFLAdmin
         //dd($stats);
         //$data = DataReceiver::instance()->getResearchInfo();
         //dd($data);
-        $data = DataReceiver::instance()->getAdvancedStats(null, null, PositionStrings::RB);
+        //$data = DataReceiver::instance()->getAdvancedStats(null, null, PositionStrings::RB);
+        //dd($data);
+        $data = DataReceiver::instance()->getGameStats(2017120700);
         dd($data);
     }
 

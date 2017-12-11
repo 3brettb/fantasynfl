@@ -203,5 +203,16 @@ class NflData extends NFLAPI
         }
     }
 
+    public static function getGameStats($gameId)
+    {
+        $query = self::instance()->get(Uri::WEEKSTATS, [
+            'gameId' => $gameId
+        ]);
+
+        $response = $query->execute()->normalize()->get();
+
+        return self::convert($response, DTO\GameStats\GameStatsDto::class);
+    }
+
 }
 
