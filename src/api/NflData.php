@@ -171,13 +171,13 @@ class NflData extends NFLAPI
      * @param null $position
      * @return DTO\Advanced\AdvancedDto[]
      */
-    public static function getAdvancedStats($week = null, $season = null, $position = null)
+    public static function getAdvancedStats($position = null, $week = null, $season = null)
     {
         if($position != null)
         {
             $query = self::instance()->get(Uri::ADVANCED, [
                 'position' => $position
-            ]);
+            ])->setParams(['count' => static::$count]);
             if($week != null) $query->setParams(['week' => $week]);
             if($season != null) $query->setParams(['season' => $season]);
 
@@ -189,7 +189,7 @@ class NflData extends NFLAPI
         }
         else
         {
-            $query = parent::getDefaultPositionsQueryGroup(Uri::ADVANCED);
+            $query = parent::getDefaultPositionsQueryGroup(Uri::ADVANCED)->setParams(['count' => static::$count]);
             if($week != null) $query->setParams(['week' => $week]);
             if($season != null) $query->setParams(['season' => $season]);
 
@@ -197,7 +197,7 @@ class NflData extends NFLAPI
 
             foreach($response as $key => $group)
             {
-                $response[$key] = self::convert($group->{$key}, DTO\Advanced\AdvancedDto::class);
+                $response[$key] = self::convert($group, DTO\Advanced\AdvancedDto::class);
             }
             return $response;
         }

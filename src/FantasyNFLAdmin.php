@@ -3,6 +3,7 @@
 namespace Fantasy\NFL;
 
 use Fantasy\NFL\API\NflData;
+use Fantasy\NFL\Enums\PositionStrings;
 use Fantasy\NFL\FantasyNFL\Handlers\DataReceiver;
 use Fantasy\NFL\StatsAPI\Objects\Draft\Player;
 use Fantasy\NFL\StatsAPI\Models\Player as PlayerModel;
@@ -15,7 +16,7 @@ class FantasyNFLAdmin
         //dd($stats);
         //$data = DataReceiver::instance()->getResearchInfo();
         //dd($data);
-        $data = DataReceiver::instance()->getAdvancedStats();
+        $data = DataReceiver::instance()->getAdvancedStats(null, null, PositionStrings::RB);
         dd($data);
     }
 

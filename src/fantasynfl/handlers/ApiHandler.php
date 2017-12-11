@@ -140,7 +140,7 @@ class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
 
     public function getAdvancedStats($week = null, $season = null, $position = null)
     {
-        $dto = NflData::getAdvancedStats($season, $position, $week);
+        $dto = NflData::getAdvancedStats($position, $week, $season);
         // TODO: Implement getAdvancedStats() method.
         dd($dto);
     }

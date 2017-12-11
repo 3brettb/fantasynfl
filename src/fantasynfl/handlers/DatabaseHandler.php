@@ -101,7 +101,7 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
         // TODO: Implement getWeekProjectedStats() method.
     }
 
-    public function getAdvancedStats($week = null, $season = null, $position = null)
+    public function getAdvancedStats($position = null, $week = null, $season = null)
     {
         // TODO: Implement getAdvancedStats() method.
     }
