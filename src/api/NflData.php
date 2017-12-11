@@ -12,6 +12,8 @@ class NflData extends NFLAPI
 
     private static $count = 5000;
 
+    private static $news_count = 500;
+
     public static function convert($response_data, $dto_class)
     {
         return $dto_class::dtomap($response_data);
@@ -153,6 +155,18 @@ class NflData extends NFLAPI
             $position => self::convert($response, DTO\WeekRanks\WeekRanksDto::class)
         );
         return $out;
+    }
+
+    /**
+     * @return DTO\News\NewsDto
+     */
+    public static function getNews()
+    {
+        $query = self::instance()->get(Uri::NEWS, [
+            'count' => self::$news_count
+        ]);
+        $response = $query->execute()->normalize()->get();
+        return self::convert($response, DTO\News\NewsDto::class);
     }
 
 }
