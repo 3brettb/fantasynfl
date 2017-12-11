@@ -13,7 +13,9 @@ class FantasyNFLAdmin
     {
         //$stats = DataReceiver::instance()->getPlayerWeekStats(234, 2017);
         //dd($stats);
-        $data = DataReceiver::instance()->getResearchInfo();
+        //$data = DataReceiver::instance()->getResearchInfo();
+        //dd($data);
+        $data = DataReceiver::instance()->getAdvancedStats();
         dd($data);
     }
 

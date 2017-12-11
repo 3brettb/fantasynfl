@@ -36,24 +36,29 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
         // TODO: Implement getPlayerDetails() method.
     }
 
-    public function getPlayerSeasonStats($player_id, $season = null)
+    public function getPlayerSeasonStats($player_id, $position, $season = null)
     {
         // TODO: Implement getPlayerSeasonStats() method.
     }
 
-    public function getPlayerSeasonProjectedStats($player_id, $season = null)
+    public function getPlayerSeasonProjectedStats($player_id, $position, $season = null)
     {
         // TODO: Implement getPlayerSeasonProjectedStats() method.
     }
 
-    public function getPlayerWeekStats($player_id, $season = null)
+    public function getPlayerWeekStats($player_id, $position, $season = null)
     {
         // TODO: Implement getPlayerWeekStats() method.
     }
 
-    public function getPlayerWeekProjectedStats($player_id, $season = null)
+    public function getPlayerWeekProjectedStats($player_id, $position, $season = null)
     {
         // TODO: Implement getPlayerWeekProjectedStats() method.
+    }
+
+    public function getPlayerAdvancedStats($player_id, $position, $week = null, $season = null)
+    {
+        // TODO: Implement getPlayerAdvancedStats() method.
     }
 
     public function getResearchInfo($week = null, $player_id = null)
@@ -96,7 +101,7 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
         // TODO: Implement getWeekProjectedStats() method.
     }
 
-    public function getAdvancedStats($week = null, $position = null)
+    public function getAdvancedStats($week = null, $season = null, $position = null)
     {
         // TODO: Implement getAdvancedStats() method.
     }

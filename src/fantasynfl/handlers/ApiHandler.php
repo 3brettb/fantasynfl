@@ -47,31 +47,38 @@ class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
         return Player::mapJson($dto);
     }
 
-    public function getPlayerSeasonStats($player_id, $season = null)
+    public function getPlayerSeasonStats($player_id, $position, $season = null)
     {
-        $dto = NflData::getStats(StatType::Season, $season);
+        $dto = NflData::getStats(StatType::Season, $position, $season);
         // TODO: Implement getPlayerSeasonStats() method.
         dd($dto);
     }
 
-    public function getPlayerSeasonProjectedStats($player_id, $season = null)
+    public function getPlayerSeasonProjectedStats($player_id, $position, $season = null)
     {
-        $dto = NflData::getStats(StatType::SeasonProjected, $season);
+        $dto = NflData::getStats(StatType::SeasonProjected, $position, $season);
         // TODO: Implement getPlayerSeasonProjectedStats() method.
         dd($dto);
     }
 
-    public function getPlayerWeekStats($player_id, $season = null)
+    public function getPlayerWeekStats($player_id, $position, $season = null)
     {
-        $dto = NflData::getStats(StatType::Week, $season);
+        $dto = NflData::getStats(StatType::Week, $position, $season);
         // TODO: Implement getPlayerWeekStats() method.
         dd($dto);
     }
 
-    public function getPlayerWeekProjectedStats($player_id, $season = null)
+    public function getPlayerWeekProjectedStats($player_id, $position, $season = null)
     {
-        $dto = NflData::getStats(StatType::WeekProjected, $season);
+        $dto = NflData::getStats(StatType::WeekProjected, $position, $season);
         // TODO: Implement getPlayerWeekProjectedStats() method.
+        dd($dto);
+    }
+
+    public function getPlayerAdvancedStats($player_id, $position, $week = null, $season = null)
+    {
+        $dto = static::getAdvancedStats($week, $season, $position);
+        // TODO: Implement getPlayerAdvancedStats() method.
         dd($dto);
     }
 
@@ -105,27 +112,37 @@ class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
 
     public function getSeasonStats($season = null, $position = null)
     {
+        $dto = NflData::getStats(StatType::Season, $position, $season, null);
         // TODO: Implement getSeasonStats() method.
+        dd($dto);
     }
 
     public function getSeasonProjectedStats($season = null, $position = null)
     {
+        $dto = NflData::getStats(StatType::SeasonProjected, $position, $season, null);
         // TODO: Implement getSeasonProjectedStats() method.
+        dd($dto);
     }
 
     public function getWeekStats($week = null, $position = null)
     {
+        $dto = NflData::getStats(StatType::Week, $position, null, $week);
         // TODO: Implement getWeekStats() method.
+        dd($dto);
     }
 
     public function getWeekProjectedStats($week = null, $position = null)
     {
+        $dto = NflData::getStats(StatType::WeekProjected, $position, null, $week);
         // TODO: Implement getWeekProjectedStats() method.
+        dd($dto);
     }
 
-    public function getAdvancedStats($week = null, $position = null)
+    public function getAdvancedStats($week = null, $season = null, $position = null)
     {
+        $dto = NflData::getAdvancedStats($season, $position, $week);
         // TODO: Implement getAdvancedStats() method.
+        dd($dto);
     }
 
     public function getGameStats($gameId)

@@ -54,15 +54,17 @@ class NflData extends NFLAPI
      * @param null $type
      * @param null $season
      * @param null $week
+     * @param null $position
      * @return DTO\Stats\StatsDto
      */
-    public static function getStats($type=null, $season=null, $week=null)
+    public static function getStats($type=null, $position = null, $season=null, $week=null)
     {
         $params = array();
 
         if($season != null) $params['season'] = $season;
         if($week != null) $params['week'] = $week;
         if($type != null) $params['statType'] = $type;
+        if($position != null) $params['position'] = $position;
 
         $query = parent::getDefaultPositionsQueryGroup(Uri::STATS)->setParams($params);
 
@@ -158,6 +160,44 @@ class NflData extends NFLAPI
             foreach($response as $key => $group)
             {
                 $response[$key] = self::convert($group, DTO\ScoringLeaders\ScoringLeadersDto::class);
+            }
+            return $response;
+        }
+    }
+
+    /**
+     * @param null $week
+     * @param null $season
+     * @param null $position
+     * @return DTO\Advanced\AdvancedDto[]
+     */
+    public static function getAdvancedStats($week = null, $season = null, $position = null)
+    {
+        if($position != null)
+        {
+            $query = self::instance()->get(Uri::ADVANCED, [
+                'position' => $position
+            ]);
+            if($week != null) $query->setParams(['week' => $week]);
+            if($season != null) $query->setParams(['season' => $season]);
+
+            $response = $query->execute()->normalize()->get();
+
+            return array(
+                $position => self::convert($response, DTO\Advanced\AdvancedDto::class)
+            );
+        }
+        else
+        {
+            $query = parent::getDefaultPositionsQueryGroup(Uri::ADVANCED);
+            if($week != null) $query->setParams(['week' => $week]);
+            if($season != null) $query->setParams(['season' => $season]);
+
+            $response = $query->execute()->normalize()->get();
+
+            foreach($response as $key => $group)
+            {
+                $response[$key] = self::convert($group->{$key}, DTO\Advanced\AdvancedDto::class);
             }
             return $response;
         }

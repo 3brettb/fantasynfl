@@ -11,13 +11,15 @@ interface AccessesPlayerData
 
     public function getPlayerDetails($player_id);
 
-    public function getPlayerSeasonStats($player_id, $season=null);
+    public function getPlayerSeasonStats($player_id, $position, $season=null);
 
-    public function getPlayerSeasonProjectedStats($player_id, $season=null);
+    public function getPlayerSeasonProjectedStats($player_id, $position, $season=null);
 
-    public function getPlayerWeekStats($player_id, $season=null);
+    public function getPlayerWeekStats($player_id, $position, $season=null);
 
-    public function getPlayerWeekProjectedStats($player_id, $season=null);
+    public function getPlayerWeekProjectedStats($player_id, $position, $season=null);
+
+    public function getPlayerAdvancedStats($player_id, $position, $week=null, $season=null);
 
     public function getResearchInfo($week=null, $player_id=null);
 
@@ -35,7 +37,7 @@ interface AccessesPlayerData
 
     public function getWeekProjectedStats($week=null, $position=null);
 
-    public function getAdvancedStats($week=null, $position=null);
+    public function getAdvancedStats($week=null, $season=null, $position=null);
 
     public function getGameStats($gameId);
 
