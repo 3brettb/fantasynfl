@@ -41,4 +41,6 @@ interface AccessesPlayerData
 
     public function getGameStats($gameId);
 
+    public function getStatsConfig();
+
 }

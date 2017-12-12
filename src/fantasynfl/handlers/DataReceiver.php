@@ -59,6 +59,7 @@ class DataReceiver implements AccessesPlayerData, AccessesFantasyData
     public function getWeekProjectedStats($week = null, $position = null){return $this->handler->getWeekProjectedStats($week, $position);}
     public function getAdvancedStats($week = null, $season = null, $position = null){return $this->handler->getAdvancedStats($week, $season, $position);}
     public function getGameStats($gameId){return $this->handler->getGameStats($gameId);}
+    public function getStatsConfig(){return $this->handler->getStatsConfig();}
 
     // -----------------------------------------------------------------------------------------------------------------
     // ----------------------------------- AccessesFantasyData Implementation ------------------------------------------

@@ -152,6 +152,13 @@ class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
         dd($dto);
     }
 
+    public function getStatsConfig()
+    {
+        $dto = NflData::getStatsConfig();
+        // TODO: implement getStatsConfig() method.
+        dd($dto);
+    }
+
     // -----------------------------------------------------------------------------------------------------------------
     // ----------------------------------- AccessesFantasyData Implementation ------------------------------------------
     // -----------------------------------------------------------------------------------------------------------------

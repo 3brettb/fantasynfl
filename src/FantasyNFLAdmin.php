@@ -13,13 +13,10 @@ class FantasyNFLAdmin
     public static function Test()
     {
         //$stats = DataReceiver::instance()->getPlayerWeekStats(234, 2017);
-        //dd($stats);
         //$data = DataReceiver::instance()->getResearchInfo();
-        //dd($data);
         //$data = DataReceiver::instance()->getAdvancedStats(null, null, PositionStrings::RB);
-        //dd($data);
-        $data = DataReceiver::instance()->getGameStats(2017120700);
-        dd($data);
+        //$data = DataReceiver::instance()->getGameStats(2017120700);
+        $data = DataReceiver::instance()->getStatsConfig();
     }
 
     public static function Build()

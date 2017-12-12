@@ -111,6 +111,11 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
         // TODO: Implement getGameStats() method.
     }
 
+    public function getStatsConfig()
+    {
+        // TODO: Implement getStatsConfig() method.
+    }
+
     // -----------------------------------------------------------------------------------------------------------------
     // ----------------------------------- AccessesFantasyData Implementation ------------------------------------------
     // -----------------------------------------------------------------------------------------------------------------

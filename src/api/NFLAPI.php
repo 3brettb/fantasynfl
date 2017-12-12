@@ -140,7 +140,8 @@ class NFLAPI
                 ->param("gameId")
                 ->param("season")
                 ->param("week")
-                ->param("timezone", "US/EASTERN")
+                ->param("timezone", "US/EASTERN"),
+            Uri::GAMESTATS => Query::define(Uri::GAMESTATS)
         );
     }
 

@@ -203,6 +203,10 @@ class NflData extends NFLAPI
         }
     }
 
+    /**
+     * @param $gameId
+     * @return DTO\GameStats\GameStatsDto
+     */
     public static function getGameStats($gameId)
     {
         $query = self::instance()->get(Uri::WEEKSTATS, [
@@ -212,6 +216,15 @@ class NflData extends NFLAPI
         $response = $query->execute()->normalize()->get();
 
         return self::convert($response, DTO\GameStats\GameStatsDto::class);
+    }
+
+    public static function getStatsConfig()
+    {
+        $query = self::instance()->get(Uri::GAMESTATS);
+
+        $response = $query->execute()->normalize()->get();
+
+        return self::convert($response, DTO\Config\StatsConfigDto::class);
     }
 
 }
