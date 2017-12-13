@@ -2,8 +2,8 @@
 
 namespace Fantasy\NFL\FantasyNFL;
 
-use Fantasy\NFL\StatsAPI\Objects as StatsObject;
-use Fantasy\NFL\Fantasy\Objects as Object;
+use Fantasy\NFL\API\DTO as StatsDTO;
+use Fantasy\NFL\Fantasy\DTO as FantasyDTO;
 
 use Fantasy\NFL\Fantasy\Models as FantasyModels;
 use Fantasy\NFL\StatsAPI\Models as StatsModels;
@@ -16,18 +16,17 @@ class GetterExplicit
     /**
      * Find a league by id
      * @param $league_id
-     * @return Object\League
+     * @return FantasyDTO\League\LeagueDto
      */
     public static function find($league_id)
     {
-        $league = FantasyModels\League::find($league_id);
-        return Object\League::mapModel($league);
+        return DataReceiver::instance()->getLeague($league_id);
     }
 
     /**
      * Find a league by id
      * @param $league_id
-     * @return Object\League
+     * @return FantasyDTO\League\LeagueDto
      */
     public static function league($league_id)
     {
@@ -35,38 +34,36 @@ class GetterExplicit
     }
 
     /**
-     * @param $year
      * @param $league_id
-     * @return Collection
+     * @return FantasyDTO\Activity\ActivityDto
      */
-    public static function activity($year, $league_id)
+    public static function activity($league_id)
     {
-        $season = static::getSeason($year, $league_id);
-        return Object\Activitys::mapModels($season->activity);
+        return DataReceiver::instance()->getLeagueActivity($league_id);
     }
 
     /**
      * Find Season
      * @param $season_number
      * @param $league_id
-     * @return Object\Season
+     * @return FantasyDTO\Season\SeasonDto
      */
     public static function season($season_number, $league_id)
     {
         $season = static::getSeason($season_number, $league_id);
-        return Object\Season::mapModel($season);
+        return DataReceiver::instance()->getSeason($season->id);
     }
 
     /**
      * Get Season Week collection
      * @param $season_number
      * @param $league_id
-     * @return Collection
+     * @return FantasyDTO\Season\WeeksDto
      */
     public static function weeks($season_number, $league_id)
     {
         $season = static::getSeason($season_number, $league_id);
-        return Object\Weeks::mapModels($season->weeks);
+        return DataReceiver::instance()->getSeasonWeeks($season->id);
     }
 
     /**
@@ -74,95 +71,89 @@ class GetterExplicit
      * @param $week_number
      * @param $season_number
      * @param $league_id
-     * @return Object\Week
+     * @return FantasyDTO\Season\WeekDto
      */
     public static function week($week_number, $season_number, $league_id)
     {
         $week = static::getWeek($week_number, $season_number, $league_id);
-        return Object\Week::mapModel($week);
+        return DataReceiver::instance()->getWeek($week->id);
     }
 
     /**
      * @param $league_id
-     * @return Collection
+     * @return FantasyDTO\League\TeamsDto
      */
     public static function teams($league_id)
     {
-        $teams = FantasyModels\Team::where('league_id', $league_id);
-        return Object\Teams::mapModels($teams);
+        return DataReceiver::instance()->getLeagueTeams($league_id);
     }
 
     /**
      * Find a Team
      * @param $team_id
-     * @return Object\Team
+     * @return FantasyDTO\Team\TeamDto
      */
     public static function team($team_id)
     {
-        $team = FantasyModels\Team::find($team_id);
-        return Object\Team::mapModel($team);
+        return DataReceiver::instance()->getTeam($team_id);
     }
 
     /**
      * Return Division Collection
      * @param $season_number
      * @param $league_id
-     * @return Collection
+     * @return FantasyDTO\League\DivisionsDto
      */
     public static function divisions($season_number, $league_id)
     {
         $season = static::getSeason($season_number, $league_id);
-        $divisions = FantasyModels\Division::where('season_id', $season->id)->get();
-        return Object\Divisions::mapModels($divisions);
+        return DataReceiver::instance()->getDivisions($season->id, $league_id);
     }
 
     /**
      * @param $division_id
-     * @return Object\Division
+     * @return FantasyDTO\Division\DivisionDto
      */
     public static function division($division_id)
     {
-        $division = FantasyModels\Division::find($division_id);
-        return Object\Division::mapModel($division);
+        return DataReceiver::instance()->getDivision($division_id);
     }
 
     /**
      * @param $team_id
      * @param $season_number
      * @param $league_id
-     * @return Object\Division
+     * @return FantasyDTO\Division\DivisionDto
      */
     public static function team_division($team_id, $season_number, $league_id)
     {
         $season = static::getSeason($season_number, $league_id);
         $divisions = $season->divisions()->pluck('id')->toArray();
         $division = FantasyModels\DivisionTeam::where('team_id', $team_id)->whereIn('division_id', $divisions)->first();
-        return Object\Division::mapModel($division);
+        return self::division($division->id);
     }
 
     /**
      * @param $year
      * @param $league_id
-     * @return Object\Draft
+     * @return FantasyDTO\Draft\DraftDto
      */
     public static function draft($year, $league_id)
     {
         $season = static::getSeason($year, $league_id);
-        return Object\Draft::mapModel($season->draft);
+        return DataReceiver::instance()->getDraft($season->draft->id);
     }
 
     /**
      * @param $team_id
      * @param $year
      * @param $league_id
-     * @return Collection
+     * @return FantasyDTO\Draft\DraftPicksDto
      */
     public static function draft_picks($team_id, $year, $league_id)
     {
-        $team = FantasyModels\Team::find($team_id);
         $season = static::getSeason($year, $league_id);
-        $picks = $team->picks()->where('draft_id', $season->draft->id)->get();
-        return Object\DraftPicks::mapModels($picks);
+        return DataReceiver::instance()->getDraftPicks($team_id, $season->draft->id);
     }
 
     /**
@@ -170,27 +161,25 @@ class GetterExplicit
      * @param $week_number
      * @param $season_number
      * @param $league_id
-     * @return Object\Lineup
+     * @return FantasyDTO\Lineup\LineupDto
      */
     public static function lineup($team_id, $week_number, $season_number, $league_id)
     {
         $week = static::getWeek($week_number, $season_number, $league_id);
-        $roster = FantasyModels\Lineup::where('team_id', $team_id)->where('week_id', $week->id)->first();
-        return Object\Lineup::mapModel($roster);
+        return DataReceiver::instance()->getLineup($team_id, $week->id);
     }
 
     /**
      * @param $team_id
-     * @return Object\Roster
+     * @return FantasyDTO\Team\RosterDto
      */
     public static function roster($team_id)
     {
-        $players = FantasyModels\RosterPlayer::where('team_id', $team_id);
-        return Object\Roster::mapModels($players);
+        return DataReceiver::instance()->getRoster($team_id);
     }
 
     /**
-     * @return Collection
+     * @return FantasyDTO\League\PlayersDto
      */
     public static function players()
     {
@@ -199,7 +188,7 @@ class GetterExplicit
 
     /**
      * @param $player_id
-     * @return StatsObject\Player
+     * @return FantasyDTO\League\PlayerDto
      */
     public static function player($player_id)
     {
@@ -210,12 +199,12 @@ class GetterExplicit
      * @param $week_number
      * @param $season_number
      * @param $league_id
-     * @return Collection
+     * @return FantasyDTO\Week\GamesDto
      */
     public static function games($week_number, $season_number, $league_id)
     {
         $week = static::getWeek($week_number, $season_number, $league_id);
-        return Object\Games::mapModels($week->games);
+        return DataReceiver::instance()->getWeekGames($week->id);
     }
 
     /**
@@ -223,41 +212,45 @@ class GetterExplicit
      * @param $week_number
      * @param $season_number
      * @param $league_id
-     * @return Object\Game
+     * @return FantasyDTO\Week\GameDto
      */
     public static function game($team_id, $week_number, $season_number, $league_id)
     {
         $week = static::getWeek($week_number, $season_number, $league_id);
         $game = $week->games()->where('home_id', $team_id)->orWhere('away_id', $team_id)->first();
-        return Object\Game::mapModel($game);
+        return DataReceiver::instance()->getGame($game->id);
     }
 
     /**
      * @param $season_number
      * @param $league_id
-     * @return Object\Standings
+     * @return FantasyDTO\Standings\LeagueStandingsDto
      */
     public static function league_standings($season_number, $league_id)
     {
         $season = static::getSeason($season_number, $league_id);
-        return Object\Standings::mapJson($season->standings);
+        return DataReceiver::instance()->getLeagueStandings($season->id);
     }
 
+    /**
+     * @param  $season_number
+     * @param $league_id
+     * @return FantasyDTO\Standings\DivisionStandingsDto
+     */
     public static function division_standings($season_number, $league_id)
     {
         $season = static::getSeason($season_number, $league_id);
-        $standings = $season->divisions()->pluck('standings')->toArray();
-        return Object\StandingsGroup::mapJsons($standings);
+        return DataReceiver::instance()->getAllDivisionStandings($season->id, $league_id);
     }
 
     /**
      * @param $division_id
-     * @return Object\Standings
+     * @return FantasyDTO\Standings\StandingDto
      */
     public static function division_standing($division_id)
     {
         $division = FantasyModels\Division::find($division_id);
-        return Object\Standings::mapJson($division->standings);
+        return DataReceiver::instance()->getDivisionStandings($division->id);
     }
 
     /**
@@ -265,80 +258,73 @@ class GetterExplicit
      * @param $week_number
      * @param $season_number
      * @param $league_id
-     * @return Collection
+     * @return FantasyDTO\Rankings\RankingDto
      */
     public static function rankings($type, $week_number, $season_number, $league_id)
     {
         $week = static::getWeek($week_number, $season_number, $league_id);
         $rankings = $week->rankings()->where('type', $type)->get();
-        return Object\Rankings::mapModels($rankings);
+        return DataReceiver::instance()->getRanking($rankings->id);
     }
 
     /**
      * @param $season_number
      * @param $league_id
-     * @return Object\Playoffs
+     * @return FantasyDTO\League\PlayoffsDto
      */
     public static function playoffs($season_number, $league_id)
     {
         $season = static::getSeason($season_number, $league_id);
-        return Object\Playoffs::mapModel($season);
+        return DataReceiver::instance()->getPlayoffs($season->id, $league_id);
     }
 
     /**
      * @param $season_number
      * @param $league_id
-     * @return Object\Postseason
+     * @return FantasyDTO\League\PostseasonDto
      */
     public static function postseason($season_number, $league_id)
     {
         $season = static::getSeason($season_number, $league_id);
-        return Object\Postseason::mapModel($season);
+        return DataReceiver::instance()->getPostseason($season->id, $league_id);
     }
 
     /**
      * @param $season_number
      * @param $league_id
-     * @return Object\Offseason
+     * @return FantasyDTO\League\OffseasonDto
      */
     public static function offseason($season_number, $league_id)
     {
         $season = static::getSeason($season_number, $league_id);
-        return Object\Offseason::mapModel($season);
+        return DataReceiver::instance()->getOffseason($season->id, $league_id);
     }
 
     /**
      * @param $trade_id
-     * @return Object\Trade
+     * @return FantasyDTO\Trade\TradeDto
      */
     public static function trade($trade_id)
     {
-        $trade = FantasyModels\Trade::find($trade_id);
-        return Object\Trade::mapModel($trade);
+        return DataReceiver::instance()->getTrade($trade_id);
     }
 
     /**
-     * @param $season_number
      * @param $league_id
-     * @return Collection
+     * @return FantasyDTO\Trade\TradesDto
      */
-    public static function league_trades($season_number, $league_id)
+    public static function league_trades($league_id)
     {
-        $season = static::getSeason($season_number, $league_id);
-        return Object\Trades::mapModels($season->trades);
+        return DataReceiver::instance()->getLeagueTrades($league_id);
     }
 
     /**
      * @param $team_id
-     * @param $season_number
-     * @param $league_id
-     * @return Collection
+     * @return FantasyDTO\Trade\TradesDto
      */
-    public static function team_trades($team_id, $season_number, $league_id)
+    public static function team_trades($team_id)
     {
-        $season = static::getSeason($season_number, $league_id);
-        $trades = FantasyModels\Team::find($team_id)->trades()->where('season_id', $season->id)->get();
-        return Object\Trades::mapModels($trades);
+        return DataReceiver::instance()->getTeamTrades($team_id);
     }
 
     // ----------------------------------------------------------------------------------------------------

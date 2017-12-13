@@ -13,6 +13,8 @@ interface AccessesFantasyData
 
     public function getLeagueTrades($league_id);
 
+    public function getLeagueTeams($league_id);
+
     public function getSeason($season_id);
 
     public function getSeasonWeeks($season_id);
@@ -31,13 +33,15 @@ interface AccessesFantasyData
 
     public function getDivision($division_id);
 
+    public function getAllDivisionStandings($season_id, $league_id);
+
     public function getDivisionStandings($division_id);
 
     public function getDraft($draft_id);
 
     public function getDraftPicks($draft_id);
 
-    public function getRoster($roster_id);
+    public function getRoster($team_id);
 
     public function getLineup($team_id, $week_id);
 

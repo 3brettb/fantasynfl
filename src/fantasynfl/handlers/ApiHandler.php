@@ -168,6 +168,7 @@ class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
     public function getLeagueActivity($league_id){return $this->DATABASE_HANDLER->getLeagueActivity($league_id);}
     public function getLeagueStandings($season_id){return $this->DATABASE_HANDLER->getLeagueStandings($season_id);}
     public function getLeagueTrades($league_id){return $this->DATABASE_HANDLER->getLeagueTrades($league_id);}
+    public function getLeagueTeams($league_id){return $this->DATABASE_HANDLER->getLeagueTeams($league_id);}
     public function getSeason($season_id){return $this->DATABASE_HANDLER->getSeason($season_id);}
     public function getSeasonWeeks($season_id){return $this->DATABASE_HANDLER->getSeasonWeeks($season_id);}
     public function getSeasonActivity($season_id){return $this->DATABASE_HANDLER->getSeasonActivity($season_id);}
@@ -177,10 +178,11 @@ class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
     public function getTeam($team_id){return $this->DATABASE_HANDLER->getTeam($team_id);}
     public function getDivisions($league_id){return $this->DATABASE_HANDLER->getDivisions($league_id);}
     public function getDivision($division_id){return $this->DATABASE_HANDLER->getDivision($division_id);}
+    public function getAllDivisionStandings($season_id, $league_id){return $this->DATABASE_HANDLER->getAllDivisionStandings($season_id, $league_id);}
     public function getDivisionStandings($division_id){return $this->DATABASE_HANDLER->getDivisionStandings($division_id);}
     public function getDraft($draft_id){return $this->DATABASE_HANDLER->getDraft($draft_id);}
     public function getDraftPicks($draft_id){return $this->DATABASE_HANDLER->getDraftPicks($draft_id);}
-    public function getRoster($roster_id){return $this->DATABASE_HANDLER->getRoster($roster_id);}
+    public function getRoster($team_id){return $this->DATABASE_HANDLER->getRoster($team_id);}
     public function getLineup($team_id, $week_id){return $this->DATABASE_HANDLER->getLineup($team_id, $week_id);}
     public function getGame($game_id){return $this->DATABASE_HANDLER->getGame($game_id);}
     public function getRanking($ranking_id){return $this->DATABASE_HANDLER->getRanking($ranking_id);}

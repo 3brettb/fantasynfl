@@ -16,11 +16,10 @@ trait Getters
         return Explicit::find($id);
     }
 
-    public static function activity($year = null, $league_id = null)
+    public static function activity($league_id = null)
     {
-        static::resolveYear($year);
         static::resolveLeague($league_id);
-        return Explicit::activity($year, $league_id);
+        return Explicit::activity($league_id);
     }
 
     public static function league($league_id = null)
@@ -183,11 +182,10 @@ trait Getters
         return Explicit::offseason($year, StoredSettings::getLeagueId());
     }
 
-    public static function trades($year = null, $team_id = null)
+    public static function trades($team_id = null)
     {
-        static::resolveYear($year);
-        if($team_id == null) return Explicit::league_trades($year, StoredSettings::getLeagueId());
-        else return Explicit::team_trades($team_id, $year, StoredSettings::getLeagueId());
+        if($team_id == null) return Explicit::league_trades(StoredSettings::getLeagueId());
+        else return Explicit::team_trades($team_id);
     }
 
     public static function trade($trade_id)

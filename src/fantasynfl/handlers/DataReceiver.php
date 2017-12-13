@@ -79,6 +79,7 @@ class DataReceiver implements AccessesPlayerData, AccessesFantasyData
     public function getTeam($team_id){return $this->handler->getTeam($team_id);}
     public function getDivisions($league_id){return $this->handler->getDivisions($league_id);}
     public function getDivision($division_id){return $this->handler->getDivision($division_id);}
+    public function getAllDivisionStandings($season_id, $league_id){return $this->handler->getAllDivisionStandings($season_id, $league_id);}
     public function getDivisionStandings($division_id){return $this->handler->getDivisionStandings($division_id);}
     public function getDraft($draft_id){return $this->handler->getDraft($draft_id);}
     public function getDraftPicks($draft_id){return $this->handler->getDraftPicks($draft_id);}
