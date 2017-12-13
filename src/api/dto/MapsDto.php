@@ -27,4 +27,10 @@ abstract class MapsDto
         return $out;
     }
 
+    protected static function mapWithVars($data, $vars, $dto_class)
+    {
+        $data->dto_vars = $vars;
+        return $dto_class::dtomap($data);
+    }
+
 }
