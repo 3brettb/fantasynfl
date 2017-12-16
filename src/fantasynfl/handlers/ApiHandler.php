@@ -4,7 +4,6 @@ namespace Fantasy\NFL\FantasyNFL\Handlers;
 
 use Fantasy\NFL\API\NflData;
 use Fantasy\NFL\Enums\StatType;
-use Fantasy\NFL\StatsAPI\Objects\StatPlayer as Player;
 
 class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
 {
@@ -176,16 +175,20 @@ class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
     public function getWeekGames($week_id){return $this->DATABASE_HANDLER->getWeekGames($week_id);}
     public function getWeekRankings($week_id){return $this->DATABASE_HANDLER->getWeekRankings($week_id);}
     public function getTeam($team_id){return $this->DATABASE_HANDLER->getTeam($team_id);}
-    public function getDivisions($league_id){return $this->DATABASE_HANDLER->getDivisions($league_id);}
+    public function getTeamTrades($team_id){return $this->DATABASE_HANDLER->getTeamTrades($team_id);}
+    public function getDivisions($season_id){return $this->DATABASE_HANDLER->getDivisions($season_id);}
     public function getDivision($division_id){return $this->DATABASE_HANDLER->getDivision($division_id);}
-    public function getAllDivisionStandings($season_id, $league_id){return $this->DATABASE_HANDLER->getAllDivisionStandings($season_id, $league_id);}
+    public function getAllDivisionStandings($season_id){return $this->DATABASE_HANDLER->getAllDivisionStandings($season_id);}
     public function getDivisionStandings($division_id){return $this->DATABASE_HANDLER->getDivisionStandings($division_id);}
     public function getDraft($draft_id){return $this->DATABASE_HANDLER->getDraft($draft_id);}
-    public function getDraftPicks($draft_id){return $this->DATABASE_HANDLER->getDraftPicks($draft_id);}
+    public function getDraftPicks($team_id, $draft_id){return $this->DATABASE_HANDLER->getDraftPicks($team_id, $draft_id);}
     public function getRoster($team_id){return $this->DATABASE_HANDLER->getRoster($team_id);}
     public function getLineup($team_id, $week_id){return $this->DATABASE_HANDLER->getLineup($team_id, $week_id);}
     public function getGame($game_id){return $this->DATABASE_HANDLER->getGame($game_id);}
     public function getRanking($ranking_id){return $this->DATABASE_HANDLER->getRanking($ranking_id);}
     public function getTrade($trade_id){return $this->DATABASE_HANDLER->getTrade($trade_id);}
+    public function getPlayoffs($season_id){return $this->DATABASE_HANDLER->getPlayoffs($season_id);}
+    public function getPostseason($season_id){return $this->DATABASE_HANDLER->getPostseason($season_id);}
+    public function getOffseason($season_id){return $this->DATABASE_HANDLER->getOffseason($season_id);}
 
 }

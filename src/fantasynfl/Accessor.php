@@ -104,7 +104,7 @@ class Accessor
     public static function divisions($season_number, $league_id)
     {
         $season = static::getSeason($season_number, $league_id);
-        return DataReceiver::instance()->getDivisions($season->id, $league_id);
+        return DataReceiver::instance()->getDivisions($season->id);
     }
 
     /**
@@ -237,7 +237,7 @@ class Accessor
     public static function division_standings($season_number, $league_id)
     {
         $season = static::getSeason($season_number, $league_id);
-        return DataReceiver::instance()->getAllDivisionStandings($season->id, $league_id);
+        return DataReceiver::instance()->getAllDivisionStandings($season->id);
     }
 
     /**
@@ -272,7 +272,7 @@ class Accessor
     public static function playoffs($season_number, $league_id)
     {
         $season = static::getSeason($season_number, $league_id);
-        return DataReceiver::instance()->getPlayoffs($season->id, $league_id);
+        return DataReceiver::instance()->getPlayoffs($season->id);
     }
 
     /**
@@ -283,7 +283,7 @@ class Accessor
     public static function postseason($season_number, $league_id)
     {
         $season = static::getSeason($season_number, $league_id);
-        return DataReceiver::instance()->getPostseason($season->id, $league_id);
+        return DataReceiver::instance()->getPostseason($season->id);
     }
 
     /**
@@ -294,7 +294,7 @@ class Accessor
     public static function offseason($season_number, $league_id)
     {
         $season = static::getSeason($season_number, $league_id);
-        return DataReceiver::instance()->getOffseason($season->id, $league_id);
+        return DataReceiver::instance()->getOffseason($season->id);
     }
 
     /**

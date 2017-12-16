@@ -180,7 +180,12 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
         // TODO: Implement getTeam() method.
     }
 
-    public function getDivisions($league_id)
+    public function getTeamTrades($team_id)
+    {
+        // TODO: Implement getTeamTrades() method.
+    }
+
+    public function getDivisions($season_id)
     {
         // TODO: Implement getDivisions() method.
     }
@@ -190,7 +195,7 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
         // TODO: Implement getDivision() method.
     }
 
-    public function getAllDivisionStandings($season_id, $league_id)
+    public function getAllDivisionStandings($season_id)
     {
         // TODO: Implement getAllDivisionStandings() method.
     }
@@ -205,7 +210,7 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
         // TODO: Implement getDraft() method.
     }
 
-    public function getDraftPicks($draft_id)
+    public function getDraftPicks($team_id, $draft_id)
     {
         // TODO: Implement getDraftPicks() method.
     }
@@ -233,6 +238,21 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
     public function getTrade($trade_id)
     {
         // TODO: Implement getTrade() method.
+    }
+
+    public function getPlayoffs($season_id)
+    {
+        // TODO: Implement getPlayoffs() method.
+    }
+
+    public function getPostseason($season_id)
+    {
+        // TODO: Implement getPostseason() method.
+    }
+
+    public function getOffseason($season_id)
+    {
+        // TODO: Implement getOffseason() method.
     }
 
 }

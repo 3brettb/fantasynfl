@@ -29,17 +29,19 @@ interface AccessesFantasyData
 
     public function getTeam($team_id);
 
-    public function getDivisions($league_id);
+    public function getTeamTrades($team_id);
+
+    public function getDivisions($season_id);
 
     public function getDivision($division_id);
 
-    public function getAllDivisionStandings($season_id, $league_id);
+    public function getAllDivisionStandings($season_id);
 
     public function getDivisionStandings($division_id);
 
     public function getDraft($draft_id);
 
-    public function getDraftPicks($draft_id);
+    public function getDraftPicks($team_id, $draft_id);
 
     public function getRoster($team_id);
 
@@ -50,5 +52,11 @@ interface AccessesFantasyData
     public function getRanking($ranking_id);
 
     public function getTrade($trade_id);
+
+    public function getPlayoffs($season_id);
+
+    public function getPostseason($season_id);
+
+    public function getOffseason($season_id);
 
 }
