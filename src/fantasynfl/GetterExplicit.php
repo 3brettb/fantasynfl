@@ -2,12 +2,9 @@
 
 namespace Fantasy\NFL\FantasyNFL;
 
-use Fantasy\NFL\API\DTO as StatsDTO;
 use Fantasy\NFL\Fantasy\DTO as FantasyDTO;
 
 use Fantasy\NFL\Fantasy\Models as FantasyModels;
-use Fantasy\NFL\StatsAPI\Models as StatsModels;
-use Illuminate\Support\Collection;
 use Fantasy\NFL\FantasyNFL\Handlers\DataReceiver;
 
 class GetterExplicit
@@ -35,7 +32,7 @@ class GetterExplicit
 
     /**
      * @param $league_id
-     * @return FantasyDTO\Activity\ActivityDto
+     * @return FantasyDTO\League\ActivityDto
      */
     public static function activity($league_id)
     {
@@ -71,7 +68,7 @@ class GetterExplicit
      * @param $week_number
      * @param $season_number
      * @param $league_id
-     * @return FantasyDTO\Season\WeekDto
+     * @return FantasyDTO\Week\WeekDto
      */
     public static function week($week_number, $season_number, $league_id)
     {
@@ -112,7 +109,7 @@ class GetterExplicit
 
     /**
      * @param $division_id
-     * @return FantasyDTO\Division\DivisionDto
+     * @return FantasyDTO\League\DivisionDto
      */
     public static function division($division_id)
     {
@@ -123,7 +120,7 @@ class GetterExplicit
      * @param $team_id
      * @param $season_number
      * @param $league_id
-     * @return FantasyDTO\Division\DivisionDto
+     * @return FantasyDTO\League\DivisionDto
      */
     public static function team_division($team_id, $season_number, $league_id)
     {
@@ -161,7 +158,7 @@ class GetterExplicit
      * @param $week_number
      * @param $season_number
      * @param $league_id
-     * @return FantasyDTO\Lineup\LineupDto
+     * @return FantasyDTO\Team\LineupDto
      */
     public static function lineup($team_id, $week_number, $season_number, $league_id)
     {
@@ -270,7 +267,7 @@ class GetterExplicit
     /**
      * @param $season_number
      * @param $league_id
-     * @return FantasyDTO\League\PlayoffsDto
+     * @return FantasyDTO\Season\PlayoffsDto
      */
     public static function playoffs($season_number, $league_id)
     {
@@ -281,7 +278,7 @@ class GetterExplicit
     /**
      * @param $season_number
      * @param $league_id
-     * @return FantasyDTO\League\PostseasonDto
+     * @return FantasyDTO\Season\PostseasonDto
      */
     public static function postseason($season_number, $league_id)
     {
@@ -292,7 +289,7 @@ class GetterExplicit
     /**
      * @param $season_number
      * @param $league_id
-     * @return FantasyDTO\League\OffseasonDto
+     * @return FantasyDTO\Season\OffseasonDto
      */
     public static function offseason($season_number, $league_id)
     {
