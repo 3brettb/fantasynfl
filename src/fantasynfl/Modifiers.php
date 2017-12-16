@@ -4,7 +4,7 @@ namespace Fantasy\NFL\FantasyNFL;
 
 use Fantasy\NFL\FantasyNFL\Settings as StoredSettings;
 
-trait Setters
+trait Modifiers
 {
 
     public static function setLeague($id)

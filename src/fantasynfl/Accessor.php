@@ -7,7 +7,7 @@ use Fantasy\NFL\Fantasy\DTO as FantasyDTO;
 use Fantasy\NFL\Fantasy\Models as FantasyModels;
 use Fantasy\NFL\FantasyNFL\Handlers\DataReceiver;
 
-class GetterExplicit
+class Accessor
 {
 
     /**

@@ -2,12 +2,12 @@
 
 namespace Fantasy\NFL;
 
-use Fantasy\NFL\FantasyNFL\Getters;
-use Fantasy\NFL\FantasyNFL\Setters;
+use Fantasy\NFL\FantasyNFL\Accessors as FantasyAccessors;
+use Fantasy\NFL\FantasyNFL\Modifiers as FantasyModifiers;
 
 class FantasyNFL
 {
 
-    use Getters, Setters;
+    use FantasyAccessors, FantasyModifiers;
 
 }

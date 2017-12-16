@@ -4,11 +4,9 @@ namespace Fantasy\NFL\FantasyNFL;
 
 use Fantasy\NFL\Enums\RankingType;
 use Fantasy\NFL\Enums\StandingsType;
-use Fantasy\NFL\FantasyNFL\GetterExplicit as Explicit;
 use Fantasy\NFL\FantasyNFL\Settings as StoredSettings;
-use Fantasy\NFL\FantasyNFL\Handlers\DataReceiver;
 
-trait Getters
+trait Accessors
 {
 
     /**
@@ -17,7 +15,7 @@ trait Getters
      */
     public static function find($id)
     {
-        return Explicit::find($id);
+        return Accessor::find($id);
     }
 
     /**
@@ -27,7 +25,7 @@ trait Getters
     public static function activity($league_id = null)
     {
         static::resolveLeague($league_id);
-        return Explicit::activity($league_id);
+        return Accessor::activity($league_id);
     }
 
     /**
@@ -37,7 +35,7 @@ trait Getters
     public static function league($league_id = null)
     {
         static::resolveLeague($league_id);
-        return Explicit::league($league_id);
+        return Accessor::league($league_id);
     }
 
     /**
@@ -47,7 +45,7 @@ trait Getters
     public static function season($year = null)
     {
         static::resolveYear($year);
-        return Explicit::season($year, StoredSettings::getLeagueId());
+        return Accessor::season($year, StoredSettings::getLeagueId());
     }
 
     /**
@@ -57,7 +55,7 @@ trait Getters
     public static function weeks($year = null)
     {
         static::resolveYear($year);
-        return Explicit::weeks($year, StoredSettings::getLeagueId());
+        return Accessor::weeks($year, StoredSettings::getLeagueId());
     }
 
     /**
@@ -69,7 +67,7 @@ trait Getters
     {
         static::resolveWeek($number);
         static::resolveYear($year);
-        return Explicit::week($number, $year, StoredSettings::getLeagueId());
+        return Accessor::week($number, $year, StoredSettings::getLeagueId());
     }
 
     /**
@@ -79,7 +77,7 @@ trait Getters
     public static function team($team_id = null)
     {
         static::resolveTeam($team_id);
-        return Explicit::team($team_id);
+        return Accessor::team($team_id);
     }
 
     /**
@@ -89,7 +87,7 @@ trait Getters
     public static function divisions($year = null)
     {
         static::resolveYear($year);
-        return Explicit::divisions($year, StoredSettings::getLeagueId());
+        return Accessor::divisions($year, StoredSettings::getLeagueId());
     }
 
     /**
@@ -104,9 +102,9 @@ trait Getters
         {
             static::resolveTeam($team_id);
             static::resolveYear($year);
-            return Explicit::team_division($team_id, $year, StoredSettings::getLeagueId());
+            return Accessor::team_division($team_id, $year, StoredSettings::getLeagueId());
         }
-        return Explicit::division($division_id);
+        return Accessor::division($division_id);
     }
 
     /**
@@ -118,7 +116,7 @@ trait Getters
     {
         static::resolveYear($year);
         static::resolveLeague($league_id);
-        return Explicit::draft($year, $league_id);
+        return Accessor::draft($year, $league_id);
     }
 
     /**
@@ -130,7 +128,7 @@ trait Getters
     {
         static::resolveTeam($team_id);
         static::resolveYear($year);
-        return Explicit::draft_picks($team_id, $year, StoredSettings::getLeagueId());
+        return Accessor::draft_picks($team_id, $year, StoredSettings::getLeagueId());
     }
 
     /**
@@ -140,7 +138,7 @@ trait Getters
     public static function roster($team_id = null)
     {
         static::resolveTeam($team_id);
-        return Explicit::roster($team_id);
+        return Accessor::roster($team_id);
     }
 
     /**
@@ -165,7 +163,7 @@ trait Getters
         static::resolveTeam($team_id);
         static::resolveWeek($week);
         static::resolveYear($year);
-        return Explicit::lineup($team_id, $week, $year, StoredSettings::getLeagueId());
+        return Accessor::lineup($team_id, $week, $year, StoredSettings::getLeagueId());
     }
 
     /**
@@ -174,7 +172,7 @@ trait Getters
      */
     public static function player($id)
     {
-        return Explicit::player($id);
+        return Accessor::player($id);
     }
 
     /**
@@ -186,7 +184,7 @@ trait Getters
     {
         static::resolveWeek($week);
         static::resolveYear($year);
-        return Explicit::games($week, $year, StoredSettings::getLeagueId());
+        return Accessor::games($week, $year, StoredSettings::getLeagueId());
     }
 
     /**
@@ -210,7 +208,7 @@ trait Getters
         static::resolveTeam($team_id);
         static::resolveWeek($week);
         static::resolveYear($year);
-        return Explicit::game($team_id, $week, $year, StoredSettings::getLeagueId());
+        return Accessor::game($team_id, $week, $year, StoredSettings::getLeagueId());
     }
 
     /**
@@ -224,10 +222,10 @@ trait Getters
         switch($type)
         {
             case StandingsType::DIVISION:
-                return Explicit::division_standings($year, StoredSettings::getLeagueId());
+                return Accessor::division_standings($year, StoredSettings::getLeagueId());
             case StandingsType::LEAGUE:
             default:
-                return Explicit::league_standings($year, StoredSettings::getLeagueId());
+                return Accessor::league_standings($year, StoredSettings::getLeagueId());
         }
 
     }
@@ -241,7 +239,7 @@ trait Getters
     {
         static::resolveWeek($week);
         static::resolveYear($year);
-        return Explicit::rankings(RankingType::OFFICIAL, $week, $year, StoredSettings::getLeagueId());
+        return Accessor::rankings(RankingType::OFFICIAL, $week, $year, StoredSettings::getLeagueId());
     }
 
     /**
@@ -253,7 +251,7 @@ trait Getters
     {
         static::resolveWeek($week);
         static::resolveYear($year);
-        return Explicit::rankings(RankingType::UNOFFICIAL, $week, $year, StoredSettings::getLeagueId());
+        return Accessor::rankings(RankingType::UNOFFICIAL, $week, $year, StoredSettings::getLeagueId());
     }
 
     /**
@@ -265,7 +263,7 @@ trait Getters
     {
         static::resolveWeek($week);
         static::resolveYear($year);
-        return Explicit::rankings(RankingType::ALL, $week, $year, StoredSettings::getLeagueId());
+        return Accessor::rankings(RankingType::ALL, $week, $year, StoredSettings::getLeagueId());
     }
 
     /**
@@ -275,7 +273,7 @@ trait Getters
     public static function playoffs($year = null)
     {
         static::resolveYear($year);
-        return Explicit::playoffs($year, StoredSettings::getLeagueId());
+        return Accessor::playoffs($year, StoredSettings::getLeagueId());
     }
 
     /**
@@ -285,7 +283,7 @@ trait Getters
     public static function postseason($year = null)
     {
         static::resolveYear($year);
-        return Explicit::postseason($year, StoredSettings::getLeagueId());
+        return Accessor::postseason($year, StoredSettings::getLeagueId());
     }
 
     /**
@@ -295,7 +293,7 @@ trait Getters
     public static function offseason($year = null)
     {
         static::resolveYear($year);
-        return Explicit::offseason($year, StoredSettings::getLeagueId());
+        return Accessor::offseason($year, StoredSettings::getLeagueId());
     }
 
     /**
@@ -304,8 +302,8 @@ trait Getters
      */
     public static function trades($team_id = null)
     {
-        if($team_id == null) return Explicit::league_trades(StoredSettings::getLeagueId());
-        else return Explicit::team_trades($team_id);
+        if($team_id == null) return Accessor::league_trades(StoredSettings::getLeagueId());
+        else return Accessor::team_trades($team_id);
     }
 
     /**
@@ -314,7 +312,7 @@ trait Getters
      */
     public static function trade($trade_id)
     {
-        return Explicit::trade($trade_id);
+        return Accessor::trade($trade_id);
     }
 
     // Private Helper Methods ------------------------------------------------------------------------------------------
