@@ -1,0 +1,47 @@
+{
+    "lastUpdated": "2017-12-13 14:38:28",
+    "issued": "2017-12-11 10:12:01",
+    "ttl": "3d",
+    "name": "Insta Graham | The Analyst",
+    "description": "",
+    "accepted": [1, 2],
+    "rejected": [],
+    "acceptedByTeams": true,
+    "approvedByLeague": false,
+    "approvedByManagement": false,
+    "teams": [1, 2],
+    "players": [18392, 24853, 2453],
+    "picks": [142, 241],
+    "actions": [
+      {
+        "id": 142,
+        "type": "Models/Pick",
+        "from": 1,
+        "to": 2,
+        "notes": [
+          {
+            "id": 1,
+            "note": "Good",
+            "date": "2017-12-11 11:28:11"
+          }
+        ]
+      },
+      {
+        "id": 18392,
+        "type": "Models/Pick",
+        "from": 1,
+        "to": 2,
+        "notes": [],
+      },
+    ],
+    "revisions": [
+      ...trade revision..., ...
+    ],
+    "notes": [
+      {
+        "id": 2,
+        "note": "looks good to me",
+        "date": "2017-12-13 14:38:28"
+      }
+    ]
+}

@@ -19,7 +19,17 @@ class Team extends Model
      *
      * @var array
      */
-    protected $fillable = ['league_id', 'user_id', 'name', 'mascot', 'abbr'];
+    protected $fillable = ['league_id', 'division_id', 'user_id', 'name', 'mascot', 'abbr', 'keepers', 'block'];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'keepers' => 'array',
+        'block' => 'array',
+    ];
 
     /**
      * The "booting" method of the model.
@@ -45,11 +55,6 @@ class Team extends Model
         return $this->name.' '.$this->mascot;
     }
 
-    public function getDivisionAttribute()
-    {
-        return $this->divisions()->where('season_id', season()->id)->get();
-    }
-
     public function league()
     {
         return $this->belongsTo(League::class);
@@ -63,6 +68,11 @@ class Team extends Model
     public function trades()
     {
         return $this->belongsToMany(Trade::class, 'fantasy_trade_teams');
+    }
+
+    public function division()
+    {
+        return $this->belongsTo(Division::class);
     }
 
     public function divisions()

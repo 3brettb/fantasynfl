@@ -18,7 +18,7 @@ class CreateFantasyLineupPlayersTable extends Migration
     {
         Schema::create($this->table_name, function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('roster_id');
+            $table->unsignedBigInteger('lineup_id');
             $table->unsignedBigInteger('player_id');
             $table->smallInteger('projected');
             $table->smallInteger('score');

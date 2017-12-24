@@ -23,4 +23,9 @@ class Lineup extends Model
 
     // relations here
 
+    public function players()
+    {
+        return $this->hasMany(LineupPlayer::class);
+    }
+
 }

@@ -19,7 +19,7 @@ class Activity extends Model
      *
      * @var array
      */
-    protected $fillable = ['league_id', 'content'];
+    protected $fillable = ['league_id', 'content', 'type'];
 
     /**
      * The attributes that should be cast to native types.

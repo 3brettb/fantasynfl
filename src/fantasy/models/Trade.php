@@ -19,7 +19,7 @@ class Trade extends Model
      *
      * @var array
      */
-    protected $fillable = ['league_id', 'season_id', 'user_id', 'status', 'data'];
+    protected $fillable = ['league_id', 'season_id', 'user_id', 'status', 'ttl', 'data'];
 
     /**
      * The attributes that should be cast to native types.

@@ -21,6 +21,8 @@ class CreateFantasySeasonsTable extends Migration
             $table->unsignedBigInteger('league_id');
             $table->string('year', 4);
             $table->longText('standings');
+            $table->longText('postseason');
+            $table->longText('money');
             $table->timestamps();
         });
     }

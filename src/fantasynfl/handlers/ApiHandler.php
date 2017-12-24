@@ -178,6 +178,7 @@ class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
     public function getTeamTrades($team_id){return $this->DATABASE_HANDLER->getTeamTrades($team_id);}
     public function getDivisions($season_id){return $this->DATABASE_HANDLER->getDivisions($season_id);}
     public function getDivision($division_id){return $this->DATABASE_HANDLER->getDivision($division_id);}
+    public function getDivisionTeams($division_id){return $this->DATABASE_HANDLER->getDivisionTeams($division_id);}
     public function getAllDivisionStandings($season_id){return $this->DATABASE_HANDLER->getAllDivisionStandings($season_id);}
     public function getDivisionStandings($division_id){return $this->DATABASE_HANDLER->getDivisionStandings($division_id);}
     public function getDraft($draft_id){return $this->DATABASE_HANDLER->getDraft($draft_id);}
@@ -187,8 +188,7 @@ class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
     public function getGame($game_id){return $this->DATABASE_HANDLER->getGame($game_id);}
     public function getRanking($ranking_id){return $this->DATABASE_HANDLER->getRanking($ranking_id);}
     public function getTrade($trade_id){return $this->DATABASE_HANDLER->getTrade($trade_id);}
-    public function getPlayoffs($season_id){return $this->DATABASE_HANDLER->getPlayoffs($season_id);}
-    public function getPostseason($season_id){return $this->DATABASE_HANDLER->getPostseason($season_id);}
-    public function getOffseason($season_id){return $this->DATABASE_HANDLER->getOffseason($season_id);}
+    public function getPostseason($type, $season_id){return $this->DATABASE_HANDLER->getPostseason($type, $season_id);}
+    public function getUser($user_id){return $this->DATABASE_HANDLER->getUser($user_id);}
 
 }

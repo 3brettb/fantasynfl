@@ -19,7 +19,7 @@ class DraftPick extends Model
      *
      * @var array
      */
-    protected $fillable = ['draft_id', 'team_id', 'owner_id', 'player_id', 'round', 'overall', 'type'];
+    protected $fillable = ['draft_id', 'team_id', 'owner_id', 'player_id', 'round', 'order', 'overall', 'type'];
 
     /**
      * The "booting" method of the model.

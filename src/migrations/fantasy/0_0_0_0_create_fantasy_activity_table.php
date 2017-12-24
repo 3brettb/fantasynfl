@@ -19,6 +19,7 @@ class CreateFantasyActivityTable extends Migration
         Schema::create($this->table_name, function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('league_id');
+            $table->tinyInteger('type');
             $table->longText('content');
             $table->timestamps();
         });

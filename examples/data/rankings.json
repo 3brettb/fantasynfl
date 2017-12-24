@@ -1,0 +1,38 @@
+{
+  "lastUpdated": "2017-12-18 19:52:18",
+  "title": "Week 7: Official Rankings",
+  "rankings": [
+    {
+      "id": 2,
+      "rank": 1,
+      "last": 1,
+      "change": 0,
+      "record": "4-2-0",
+      "notes": "This is a temporary description for Team 2"
+    },
+    {
+      "id": 1,
+      "rank": 2,
+      "last": 4,
+      "change": 2,
+      "record": "3-3-0",
+      "notes": "This is a temporary description for Team 1"
+    },
+    {
+      "id": 4,
+      "rank": 3,
+      "last": 2,
+      "change": -1,
+      "record": "2-4-0",
+      "notes": "This is a temporary description for Team 4"
+    },
+    {
+      "id": 3,
+      "rank": 4,
+      "last": 3,
+      "change": -1,
+      "record": "2-4-0",
+      "notes": "This is a temporary description for Team 3"
+    }
+  ]
+}

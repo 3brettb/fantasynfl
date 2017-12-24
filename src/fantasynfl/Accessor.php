@@ -176,7 +176,7 @@ class Accessor
     }
 
     /**
-     * @return FantasyDTO\League\PlayersDto
+     * @return array
      */
     public static function players()
     {
@@ -185,7 +185,7 @@ class Accessor
 
     /**
      * @param $player_id
-     * @return FantasyDTO\League\PlayerDto
+     * @return mixed
      */
     public static function player($player_id)
     {
@@ -221,7 +221,7 @@ class Accessor
     /**
      * @param $season_number
      * @param $league_id
-     * @return FantasyDTO\Standings\LeagueStandingsDto
+     * @return FantasyDTO\Standings\StandingsDto
      */
     public static function league_standings($season_number, $league_id)
     {
@@ -232,7 +232,7 @@ class Accessor
     /**
      * @param  $season_number
      * @param $league_id
-     * @return FantasyDTO\Standings\DivisionStandingsDto
+     * @return FantasyDTO\Standings\StandingsDto
      */
     public static function division_standings($season_number, $league_id)
     {
@@ -255,7 +255,7 @@ class Accessor
      * @param $week_number
      * @param $season_number
      * @param $league_id
-     * @return FantasyDTO\Rankings\RankingDto
+     * @return FantasyDTO\Rankings\RankingsDto
      */
     public static function rankings($type, $week_number, $season_number, $league_id)
     {
@@ -265,36 +265,15 @@ class Accessor
     }
 
     /**
-     * @param $season_number
-     * @param $league_id
-     * @return FantasyDTO\Season\PlayoffsDto
-     */
-    public static function playoffs($season_number, $league_id)
-    {
-        $season = static::getSeason($season_number, $league_id);
-        return DataReceiver::instance()->getPlayoffs($season->id);
-    }
-
-    /**
+     * @param $type
      * @param $season_number
      * @param $league_id
      * @return FantasyDTO\Season\PostseasonDto
      */
-    public static function postseason($season_number, $league_id)
+    public static function postseason($type, $season_number, $league_id)
     {
         $season = static::getSeason($season_number, $league_id);
-        return DataReceiver::instance()->getPostseason($season->id);
-    }
-
-    /**
-     * @param $season_number
-     * @param $league_id
-     * @return FantasyDTO\Season\OffseasonDto
-     */
-    public static function offseason($season_number, $league_id)
-    {
-        $season = static::getSeason($season_number, $league_id);
-        return DataReceiver::instance()->getOffseason($season->id);
+        return DataReceiver::instance()->getPostseason($type, $season->id);
     }
 
     /**

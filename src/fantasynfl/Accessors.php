@@ -214,7 +214,7 @@ trait Accessors
     /**
      * @param null $type
      * @param null $year
-     * @return \Fantasy\NFL\Fantasy\DTO\Standings\DivisionStandingsDto|\Fantasy\NFL\Fantasy\DTO\Standings\LeagueStandingsDto
+     * @return \Fantasy\NFL\Fantasy\DTO\Standings\StandingsDto
      */
     public static function standings($type = null, $year = null)
     {
@@ -233,7 +233,7 @@ trait Accessors
     /**
      * @param null $week
      * @param null $year
-     * @return \Fantasy\NFL\Fantasy\DTO\Rankings\RankingDto
+     * @return \Fantasy\NFL\Fantasy\DTO\Rankings\RankingsDto
      */
     public static function rankings($week = null, $year = null)
     {
@@ -245,7 +245,7 @@ trait Accessors
     /**
      * @param null $week
      * @param null $year
-     * @return \Fantasy\NFL\Fantasy\DTO\Rankings\RankingDto
+     * @return \Fantasy\NFL\Fantasy\DTO\Rankings\RankingsDto
      */
     public static function otherrankings($week = null, $year = null)
     {
@@ -257,7 +257,7 @@ trait Accessors
     /**
      * @param null $week
      * @param null $year
-     * @return \Fantasy\NFL\Fantasy\DTO\Rankings\RankingDto
+     * @return \Fantasy\NFL\Fantasy\DTO\Rankings\RankingsDto
      */
     public static function allrankings($week = null, $year = null)
     {
@@ -267,33 +267,14 @@ trait Accessors
     }
 
     /**
-     * @param null $year
-     * @return \Fantasy\NFL\Fantasy\DTO\Season\PlayoffsDto
-     */
-    public static function playoffs($year = null)
-    {
-        static::resolveYear($year);
-        return Accessor::playoffs($year, StoredSettings::getLeagueId());
-    }
-
-    /**
+     * @param $type
      * @param null $year
      * @return \Fantasy\NFL\Fantasy\DTO\Season\PostseasonDto
      */
-    public static function postseason($year = null)
+    public static function postseason($type, $year = null)
     {
         static::resolveYear($year);
-        return Accessor::postseason($year, StoredSettings::getLeagueId());
-    }
-
-    /**
-     * @param null $year
-     * @return \Fantasy\NFL\Fantasy\DTO\Season\OffseasonDto
-     */
-    public static function offseason($year = null)
-    {
-        static::resolveYear($year);
-        return Accessor::offseason($year, StoredSettings::getLeagueId());
+        return Accessor::postseason($type, $year, StoredSettings::getLeagueId());
     }
 
     /**

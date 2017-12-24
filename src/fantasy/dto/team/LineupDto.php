@@ -9,7 +9,7 @@ class LineupDto extends MapsDto
 
     static function dtomap($data)
     {
-        // TODO: Implement dtomap() method.
+        return self::mapArray($data->players, LineupPlayerDto::class);
     }
 
 }

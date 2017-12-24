@@ -1,0 +1,40 @@
+{
+  "lastUpdated": "2017-12-19 20:38:10",
+  "dues": 10,
+  "champion": 70,
+  "runnerup": 10,
+  "teams": [
+    {
+      "id": 1,
+      "name": "Insta Graham",
+      "owner": "Brett Brist",
+      "paid": true,
+      "earned": 0,
+      "notes": ""
+    },
+    {
+      "id": 3,
+      "name": "Dunder Mifflin",
+      "owner": "Logan Williams",
+      "paid": true,
+      "earned": 10,
+      "notes": "North Division Champion"
+    },
+    {
+      "id": 2,
+      "name": "The Analyst",
+      "owner": "Eric Brist",
+      "paid": true,
+      "earned": 10,
+      "notes": "League Runner-up"
+    },
+    {
+      "id": 4,
+      "name": "Mata Afa",
+      "owner": "Tim Dutton",
+      "paid": false,
+      "earned": 70,
+      "notes": "League Champion"
+    }
+  ]
+}

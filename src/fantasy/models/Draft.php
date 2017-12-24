@@ -19,7 +19,7 @@ class Draft extends Model
      *
      * @var array
      */
-    protected $fillable = ['season_id', 'complete', 'type'];
+    protected $fillable = ['season_id', 'complete', 'type', 'content'];
 
     /**
      * The attributes that should be cast to native types.
@@ -41,6 +41,11 @@ class Draft extends Model
         parent::boot();
 
         //
+    }
+
+    public function picks()
+    {
+        return $this->hasMany(DraftPick::class);
     }
 
 }

@@ -1,0 +1,17 @@
+{
+  "lastUpdated": "2017-11-13 19:42:52",
+  "available": ["QB", "K"],
+  "looking": ["WR", "RB"],
+  "block": {
+    "QB": [252],
+    "TE": [832],
+    "DEF": [362, 2712]
+  },
+  "locked": {
+    "RB": [2452]
+  },
+  "notes": [
+    "A Note",
+    "Another Note"
+  ]
+}

@@ -81,17 +81,18 @@ class DataReceiver implements AccessesPlayerData, AccessesFantasyData
     public function getTeamTrades($team_id){return $this->handler->getTeamTrades($team_id);}
     public function getDivisions($season_id){return $this->handler->getDivisions($season_id);}
     public function getDivision($division_id){return $this->handler->getDivision($division_id);}
+    public function getDivisionTeams($division_id){return $this->handler->getDivisionTeams($division_id);}
     public function getAllDivisionStandings($season_id){return $this->handler->getAllDivisionStandings($season_id);}
     public function getDivisionStandings($division_id){return $this->handler->getDivisionStandings($division_id);}
     public function getDraft($draft_id){return $this->handler->getDraft($draft_id);}
     public function getDraftPicks($team_id, $draft_id){return $this->handler->getDraftPicks($team_id, $draft_id);}
-    public function getRoster($roster_id){return $this->handler->getRoster($roster_id);}
+    public function getRoster($team_id){return $this->handler->getRoster($team_id);}
     public function getLineup($team_id, $week_id){return $this->handler->getLineup($team_id, $week_id);}
     public function getGame($game_id){return $this->handler->getGame($game_id);}
     public function getRanking($ranking_id){return $this->handler->getRanking($ranking_id);}
     public function getTrade($trade_id){return $this->handler->getTrade($trade_id);}
-    public function getPlayoffs($season_id){return $this->handler->getPlayoffs($season_id);}
-    public function getPostseason($season_id){return $this->handler->getPostseason($season_id);}
-    public function getOffseason($season_id){return $this->handler->getOffseason($season_id);}
+    public function getPostseason($type, $season_id){return $this->handler->getPostseason($type, $season_id);}
+    public function getUser($user_id){return $this->handler->getUser($user_id);}
+
 
 }

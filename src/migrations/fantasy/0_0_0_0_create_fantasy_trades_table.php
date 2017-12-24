@@ -22,6 +22,7 @@ class CreateFantasyTradesTable extends Migration
             $table->unsignedBigInteger('season_id');
             $table->unsignedBigInteger('user_id')->comment('Trade Initiator');
             $table->tinyInteger('status');
+            $table->string("ttl");
             $table->longText('data');
             $table->timestamps();
         });

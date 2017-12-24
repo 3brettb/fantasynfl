@@ -19,7 +19,7 @@ class Season extends Model
      *
      * @var array
      */
-    protected $fillable = ['league_id', 'year', 'standings'];
+    protected $fillable = ['league_id', 'year', 'standings', 'postseason', 'money'];
 
     /**
      * The attributes that should be cast to native types.
@@ -28,6 +28,10 @@ class Season extends Model
      */
     protected $casts = [
         'standings' => 'array',
+        'postseason' => 'array',
+        'playoffs' => 'array',
+        'offseason' => 'array',
+        'money' => 'array',
     ];
 
     /**

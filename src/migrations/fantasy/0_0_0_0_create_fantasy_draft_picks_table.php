@@ -22,6 +22,7 @@ class CreateFantasyDraftPicksTable extends Migration
             $table->unsignedBigInteger('team_id')->comment('Team Place of Pick');
             $table->unsignedBigInteger('owner_id')->comment('Team Owner of Pick');
             $table->unsignedBigInteger('player_id')->nullable();
+            $table->smallInteger('order')->nullable();
             $table->smallInteger('round')->nullable();
             $table->smallInteger('overall')->nullable();
             $table->tinyInteger('type');

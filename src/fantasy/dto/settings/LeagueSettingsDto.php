@@ -11,9 +11,13 @@ class LeagueSettingsDto extends MapsDto
 
     public $roster;
 
+    public $scoring;
+
     public $season;
 
-    public $offseason;
+    public $waivers;
+
+    public $trades;
 
     public $postseason;
 
@@ -22,8 +26,10 @@ class LeagueSettingsDto extends MapsDto
         $obj = new LeagueSettingsDto();
         $obj->id = $data->id;
         $obj->roster = RosterSettingsDto::dtomap($data->roster);
+        $obj->scoring = ScoringSettingsDto::dtomap($data->scoring);
         $obj->season = SeasonSettingsDto::dtomap($data->season);
-        $obj->offseason = OffseasonSettingsDto::dtomap($data->offseason);
+        $obj->waivers = WaiverSettingsDto::dtomap($data->waivers);
+        $obj->trades = TradeSettingsDto::dtomap($data->trades);
         $obj->postseason = PostseasonSettingsDto::dtomap($data->postseason);
         return $obj;
     }

@@ -19,10 +19,13 @@ class CreateFantasyTeamsTable extends Migration
         Schema::create($this->table_name, function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('league_id');
+            $table->unsignedBigInteger('division_id')->comment('Current Division');
             $table->unsignedBigInteger('user_id')->comment('Team Owner');
             $table->string('name', 30);
             $table->string('mascot', 30);
             $table->string('abbr', 4);
+            $table->longText('keepers');
+            $table->longText('block');
             $table->timestamps();
         });
     }

@@ -19,7 +19,7 @@ class LineupPlayer extends Model
      *
      * @var array
      */
-    protected $fillable = ['roster_id', 'player_id', 'projected', 'score', 'type', 'place'];
+    protected $fillable = ['lineup_id', 'player_id', 'projected', 'score', 'type', 'place'];
 
     /**
      * The "booting" method of the model.

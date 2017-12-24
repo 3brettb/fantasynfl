@@ -44,9 +44,19 @@ class Division extends Model
 
     // relations here
 
+    public function getLeagueAttribute()
+    {
+        return $this->season->league;
+    }
+
     public function teams()
     {
         return $this->belongsToMany(Team::class, 'fantasy_division_teams');
+    }
+
+    public function season()
+    {
+        return $this->belongsTo(Season::class);
     }
 
 }

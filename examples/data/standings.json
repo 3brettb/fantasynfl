@@ -1,0 +1,77 @@
+{
+  "lastUpdated": "2017-01-20 10:00:00",
+  "leagueId": 1,
+  "count": 4,
+  "weekId": 7,
+  "type": 1,
+  "standings": [
+    {
+      "id": 1,
+      "name": "Insta Graham",
+      "pointsFor": 345,
+      "pointsAgainst": 297,
+      "record": {
+        "type": 1,
+        "wins": 4,
+        "losses": 2,
+        "ties": 0
+      },
+      "rankings": {
+          "official": 1,
+          "composite": 1.2
+      },
+      "standing": 1
+    },
+    {
+      "id": 2,
+      "name": "The Analyst",
+      "pointsFor": 345,
+      "pointsAgainst": 297,
+      "record": {
+        "type": 1,
+        "wins": 3,
+        "losses": 2,
+        "ties": 1
+      },
+      "rankings": {
+        "official": 2,
+        "composite": 2.5
+      },
+      "standing": 2
+    },
+    {
+      "id": 3,
+      "name": "Dunder Mifflin",
+      "pointsFor": 311,
+      "pointsAgainst": 302,
+      "record": {
+        "type": 1,
+        "wins": 3,
+        "losses": 2,
+        "ties": 1
+      },
+      "rankings": {
+        "official": 3,
+        "composite": 2.8
+      },
+      "standing": 2
+    },
+    {
+      "id": 4,
+      "name": "Mata Afa",
+      "pointsFor": 245,
+      "pointsAgainst": 397,
+      "record": {
+        "type": 1,
+        "wins": 2,
+        "losses": 4,
+        "ties": 0
+      },
+      "rankings": {
+        "official": 4,
+        "composite": 4
+      },
+      "standing": 4
+    }
+  ]
+}

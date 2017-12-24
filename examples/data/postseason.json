@@ -1,0 +1,123 @@
+{
+  "lastUpdated": "2017-12-19 10:00:12",
+  "year": "2017",
+  "teams": [
+    {
+      "id": 3,
+      "name": "Dunder Mifflin",
+      "owner": "Logan Williams",
+      "seed": 1
+    },
+    {
+      "id": 2,
+      "name": "The Analyst",
+      "owner": "Eric Brist",
+      "seed": 2
+    },
+    {
+      "id": 4,
+      "name": "Mata Afa",
+      "owner": "Tim Dutton",
+      "seed": 3
+    },
+    {
+      "id": 1,
+      "name": "Insta Graham",
+      "owner": "Brett Brist",
+      "seed": 4
+    }
+  ],
+  "games": [
+    {
+      "id": 231,
+      "week": 14,
+      "next_winner": 235,
+      "next_loser": -1,
+      "teams": [1, -1],
+      "result": {
+        "winner": 1,
+        "home": 80,
+        "away": 0,
+        "desc": "Bye"
+      }
+    },
+    {
+      "id": 232,
+      "week": 14,
+      "next_winner": 236,
+      "next_loser": -1,
+      "teams": [2, -1],
+      "result": {
+        "winner": 2,
+        "home": 67,
+        "away": 0,
+        "desc": "Bye"
+      }
+    },
+    {
+      "id": 233,
+      "week": 14,
+      "next_winner": 235,
+      "next_loser": -1,
+      "teams": [3, -1],
+      "result": {
+        "winner": 3,
+        "home": 93,
+        "away": 0,
+        "desc": "Bye"
+      }
+    },
+    {
+      "id": 234,
+      "week": 14,
+      "next_winner": 236,
+      "next_loser": -1,
+      "teams": [4, -1],
+      "result": {
+        "winner": 4,
+        "home": 78,
+        "away": 0,
+        "desc": "Bye"
+      }
+    },
+    {
+      "id": 235,
+      "week": 15,
+      "next_winner": 237,
+      "next_loser": -1,
+      "teams": [3, 1],
+      "result": {
+        "winner": 3,
+        "home": 102,
+        "away": 84,
+        "desc": "Dunder Mifflin defeats Insta Graham 102-84"
+      }
+    },
+    {
+      "id": 236,
+      "week": 15,
+      "next_winner": 237,
+      "next_loser": -1,
+      "teams": [4, 2],
+      "result": {
+        "winner": 2,
+        "home": 67,
+        "away": 108,
+        "desc": "The Analyst defeats Mata Afa 108-67"
+      }
+    },
+    {
+      "id": 237,
+      "week": 16,
+      "next_winner": -1,
+      "next_loser": -1,
+      "teams": [],
+      "result": {
+        "winner": -1,
+        "home": 0,
+        "away": 0,
+        "desc": ""
+      }
+    }
+  ]
+}

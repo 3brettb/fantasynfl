@@ -35,6 +35,8 @@ interface AccessesFantasyData
 
     public function getDivision($division_id);
 
+    public function getDivisionTeams($division_id);
+
     public function getAllDivisionStandings($season_id);
 
     public function getDivisionStandings($division_id);
@@ -53,10 +55,8 @@ interface AccessesFantasyData
 
     public function getTrade($trade_id);
 
-    public function getPlayoffs($season_id);
+    public function getPostseason($type, $season_id);
 
-    public function getPostseason($season_id);
-
-    public function getOffseason($season_id);
+    public function getUser($user_id);
 
 }
