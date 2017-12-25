@@ -5,7 +5,7 @@ namespace Fantasy\NFL\FantasyNFL\Handlers;
 interface AccessesPlayerData
 {
 
-    public function getPlayers();
+    public function getPlayers($ids=[]);
 
     public function getPlayer($player_id);
 

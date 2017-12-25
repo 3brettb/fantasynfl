@@ -97,4 +97,15 @@ class Team extends Model
         }
     }
 
+    public function lineups()
+    {
+        $this->hasMany(Lineup::class);
+    }
+
+    public function lineup($week_id=null)
+    {
+        if($week_id == null) $week_id = week()->id;
+        return $this->lineups()->where('week_id', $week_id)->first();
+    }
+
 }

@@ -18,16 +18,17 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
     // ----------------------------------- AccessesPlayerData Implementation -------------------------------------------
     // -----------------------------------------------------------------------------------------------------------------
 
-    public function getPlayers()
+    public function getPlayers($ids=[])
     {
-        $data = Player::all();
+        /*$data = Player::all();
         $players = collect();
         foreach($data as $model)
         {
             $player = StatPlayer::mapModel($model);
             $players->push($player);
         }
-        return $players;
+        return $players;*/
+        // TODO: Figure this method out.
     }
 
     public function getPlayer($player_id)
@@ -253,12 +254,16 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
 
     public function getRoster($team_id)
     {
-        // TODO: Implement getRoster() method.
+        // TODO: check this method
+        $player_id_array = FantasyModel\Team::find($team_id)->roster_players->pluck('player_id');
+        return DataReceiver::instance()->getPlayers($player_id_array);
     }
 
     public function getLineup($team_id, $week_id)
     {
-        // TODO: Implement getLineup() method.
+        // TODO: check this method
+        $player_id_array = FantasyModel\Lineup::find($team_id)->lineup($week_id)->players()->pluck('player_id');
+        return DataReceiver::instance()->getPlayers($player_id_array);
     }
 
     public function getGame($game_id)

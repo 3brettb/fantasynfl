@@ -41,7 +41,7 @@ class DataReceiver implements AccessesPlayerData, AccessesFantasyData
     // -----------------------------------------------------------------------------------------------------------------
 
     // These methods all defer to the handler and are therefore condensed/minimized
-    public function getPlayers(){return $this->handler->getPlayers();}
+    public function getPlayers($ids=[]){return $this->handler->getPlayers($ids);}
     public function getPlayer($player_id){return $this->handler->getPlayer($player_id);}
     public function getPlayerDetails($player_id){return $this->handler->getPlayerDetails($player_id);}
     public function getPlayerSeasonStats($player_id, $position, $season = null){return $this->handler->getPlayerSeasonStats($player_id, $position, $season);}
@@ -74,6 +74,7 @@ class DataReceiver implements AccessesPlayerData, AccessesFantasyData
     public function getSeason($season_id){return $this->handler->getSeason($season_id);}
     public function getSeasonWeeks($season_id){return $this->handler->getSeasonWeeks($season_id);}
     public function getSeasonActivity($season_id){return $this->handler->getSeasonActivity($season_id);}
+    public function getSeasonTrades($season_id){return $this->handler->getSeasonTrades($season_id);}
     public function getWeek($week_id){return $this->handler->getWeek($week_id);}
     public function getWeekGames($week_id){return $this->handler->getWeekGames($week_id);}
     public function getWeekRankings($week_id){return $this->handler->getWeekRankings($week_id);}

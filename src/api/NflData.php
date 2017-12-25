@@ -45,9 +45,15 @@ class NflData extends NFLAPI
 
         foreach($response as $key => $position)
         {
+            // TODO: Do we want to convert these to dto's here? or in the handlers. Also, this could use UsesMapMethods trait
             $response[$key] = self::convert($position, DTO\WeekRanks\WeekRanksDto::class);
         }
         return $response;
+    }
+
+    public static function getPlayers($ids)
+    {
+        // TODO: Implement this method. Determine best way to retrieve a small subset of players by ids
     }
 
     /**

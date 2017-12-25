@@ -18,9 +18,13 @@ class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
     // ----------------------------------- AccessesPlayerData Implementation -------------------------------------------
     // -----------------------------------------------------------------------------------------------------------------
 
-    public function getPlayers()
+    public function getPlayers($ids=[])
     {
-        $data = NflData::getAllPlayers();
+        if(sizeof($ids) > 0){
+            $data = NflData::getAllPlayers();
+        } else {
+            $data = NflData::getPlayers($ids);
+        }
         $players = collect();
         foreach($data as $group)
         {
@@ -171,6 +175,7 @@ class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
     public function getSeason($season_id){return $this->DATABASE_HANDLER->getSeason($season_id);}
     public function getSeasonWeeks($season_id){return $this->DATABASE_HANDLER->getSeasonWeeks($season_id);}
     public function getSeasonActivity($season_id){return $this->DATABASE_HANDLER->getSeasonActivity($season_id);}
+    public function getSeasonTrades($season_id){return $this->DATABASE_HANDLER->getSeasonTrades($season_id);}
     public function getWeek($week_id){return $this->DATABASE_HANDLER->getWeek($week_id);}
     public function getWeekGames($week_id){return $this->DATABASE_HANDLER->getWeekGames($week_id);}
     public function getWeekRankings($week_id){return $this->DATABASE_HANDLER->getWeekRankings($week_id);}
