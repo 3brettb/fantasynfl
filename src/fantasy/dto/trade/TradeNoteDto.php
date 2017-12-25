@@ -2,7 +2,7 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Trade;
 
-use Fantasy\NFL\API\DTO\MapsDto;
+use Fantasy\NFL\Resources\MapsDto;
 
 class TradeNoteDto extends MapsDto
 {

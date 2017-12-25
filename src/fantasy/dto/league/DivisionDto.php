@@ -2,7 +2,7 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\League;
 
-use Fantasy\NFL\API\DTO\MapsDto;
+use Fantasy\NFL\Resources\MapsDto;
 use Fantasy\NFL\Fantasy\DTO\Standings\StandingsDto;
 use Fantasy\NFL\FantasyNFL\Handlers\DataReceiver;
 

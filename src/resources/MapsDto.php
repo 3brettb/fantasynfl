@@ -1,8 +1,6 @@
 <?php
 
-namespace Fantasy\NFL\API\DTO;
-
-use Fantasy\NFL\Resources\UsesMapMethods;
+namespace Fantasy\NFL\Resources;
 
 abstract class MapsDto
 {

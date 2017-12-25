@@ -2,7 +2,7 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Team;
 
-use Fantasy\NFL\API\DTO\MapsDto;
+use Fantasy\NFL\Resources\MapsDto;
 
 class LineupPlayerDto extends MapsDto
 {

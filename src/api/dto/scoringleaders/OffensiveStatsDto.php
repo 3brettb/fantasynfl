@@ -2,7 +2,7 @@
 
 namespace Fantasy\NFL\API\DTO\ScoringLeaders;
 
-use Fantasy\NFL\API\DTO\MapsDto;
+use Fantasy\NFL\Resources\MapsDto;
 
 class OffensiveStatsDto extends MapsDto
 {

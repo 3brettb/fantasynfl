@@ -2,7 +2,7 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Draft;
 
-use Fantasy\NFL\API\DTO\MapsDto;
+use Fantasy\NFL\Resources\MapsDto;
 
 class DraftSelectionDto extends MapsDto
 {

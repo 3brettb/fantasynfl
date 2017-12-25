@@ -2,7 +2,7 @@
 
 namespace Fantasy\NFL\API\DTO\WeekRanks;
 
-use Fantasy\NFL\API\DTO\MapsDto;
+use Fantasy\NFL\Resources\MapsDto;
 
 class WeekRanksDto extends MapsDto
 {

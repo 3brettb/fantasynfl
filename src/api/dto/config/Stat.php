@@ -2,7 +2,7 @@
 
 namespace Fantasy\NFL\API\DTO\Config;
 
-use Fantasy\NFL\API\DTO\MapsDto;
+use Fantasy\NFL\Resources\MapsDto;
 
 class Stat extends MapsDto
 {
