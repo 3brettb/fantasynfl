@@ -2,21 +2,17 @@
 
 namespace Fantasy\NFL\FantasyNFL\Handlers;
 
-use Fantasy\NFL\API\DTO\MapsDto;
+use Fantasy\NFL\Resources\UsesMapMethods;
 use Fantasy\NFL\StatsAPI\Models as StatsModel;
 use Fantasy\NFL\Fantasy\Models as FantasyModel;
 use Fantasy\NFL\Fantasy\DTO as FantasyDTO;
 
-class DatabaseHandler extends MapsDto implements Handler, AccessesPlayerData, AccessesFantasyData
+class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyData
 {
 
-    public function __construct(){}
+    use UsesMapMethods;
 
-    static function dtomap($data)
-    {
-        // Not used. This class implements MapsDto to use the associated methods.
-        // Consider adding those methods as a trait to both this class and MapsDto class
-    }
+    public function __construct(){}
 
     // -----------------------------------------------------------------------------------------------------------------
     // ----------------------------------- AccessesPlayerData Implementation -------------------------------------------
