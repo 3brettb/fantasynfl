@@ -21,6 +21,8 @@ interface AccessesFantasyData
 
     public function getSeasonActivity($season_id);
 
+    public function getSeasonTrades($season_id);
+
     public function getWeek($week_id);
 
     public function getWeekGames($week_id);

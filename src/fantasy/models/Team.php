@@ -80,4 +80,21 @@ class Team extends Model
         return $this->belongsToMany(Division::class, 'fantasy_division_teams');
     }
 
+    public function draft_picks()
+    {
+        return $this->hasMany(DraftPick::class, 'owner_id');
+    }
+
+    public function picks($draft_id=null)
+    {
+        if($draft_id != null)
+        {
+            return $this->draft_picks()->where('draft_id', $draft_id)->get();
+        }
+        else
+        {
+            return $this->draft_picks();
+        }
+    }
+
 }

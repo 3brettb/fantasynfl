@@ -75,4 +75,9 @@ class League extends Model
         return $this->hasManyThrough(Week::class, 'fantasy_seasons', 'league_id', 'season_id');
     }
 
+    public function trades()
+    {
+        return $this->hasMany(Trade::class);
+    }
+
 }

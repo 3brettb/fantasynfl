@@ -19,7 +19,7 @@ class Activity extends Model
      *
      * @var array
      */
-    protected $fillable = ['league_id', 'content', 'type'];
+    protected $fillable = ['league_id', 'season_id', 'content', 'type'];
 
     /**
      * The attributes that should be cast to native types.
@@ -45,6 +45,11 @@ class Activity extends Model
     public function league()
     {
         return $this->belongsTo(League::class);
+    }
+
+    public function season()
+    {
+        return $this->belongsTo(Season::class);
     }
 
 }

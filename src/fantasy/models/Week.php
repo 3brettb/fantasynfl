@@ -2,6 +2,7 @@
 
 namespace Fantasy\NFL\Fantasy\Models;
 
+use Fantasy\NFL\Enums\RankingType;
 use Illuminate\Database\Eloquent\Model;
 
 class Week extends Model
@@ -43,6 +44,11 @@ class Week extends Model
     public function rankings()
     {
         return $this->hasMany(Ranking::class);
+    }
+
+    public function official_rankings()
+    {
+        return $this->rankings()->where('type', RankingType::OFFICIAL)->first();
     }
 
     public function season()

@@ -48,6 +48,11 @@ class Season extends Model
 
     // relations here
 
+    public function activity()
+    {
+        return $this->hasMany(Activity::class);
+    }
+
     public function divisions()
     {
         return $this->hasMany(Division::class);
@@ -61,6 +66,11 @@ class Season extends Model
     public function league()
     {
         return $this->belongsTo(League::class);
+    }
+
+    public function trades()
+    {
+        return $this->hasMany(Trade::class);
     }
 
 }
