@@ -5,7 +5,8 @@ namespace Fantasy\NFL\Resources;
 trait UsesMapMethods
 {
 
-    protected static function mapArray(array $items, $dto_class)
+    // TODO: Update this method to use `array $items` and update all method calls to use $items->toArray() ???
+    protected static function mapArray($items, $dto_class)
     {
         $out = array();
         foreach($items as $item)

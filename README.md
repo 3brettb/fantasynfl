@@ -22,5 +22,21 @@ run `php artisan migrate`
 ## FantasyNFL API
 Get Team Roster
 ```
-FantasyNFL::roster([$team_id]);
+FantasyNFL::roster($team_id);
+```
+Get League
+``` 
+FantasyNFL::find($league_id);
+```
+Get League Activity
+```
+$league->activity()
+```
+Get Entities involved with Activity
+``` 
+$activity->involved[0]->get()
+```
+Get Link `<a> tag` associated with activity
+``` 
+$activity->links[0]->a_tag();
 ```

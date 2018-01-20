@@ -21,14 +21,18 @@ class TradeBlockDto extends MapsDto
 
     static function dtomap($data)
     {
-        $obj = new TradeBlockDto();
-        $obj->lastUpdated = $data->lastUpdated;
-        $obj->available = $data->available;
-        $obj->looking = $data->looking;
-        $obj->block = $data->block;
-        $obj->locked = $data->locked;
-        $obj->notes = $data->notes;
-        return $obj;
+        try {
+            $obj = new TradeBlockDto();
+            $obj->lastUpdated = $data->lastUpdated;
+            $obj->available = $data->available;
+            $obj->looking = $data->looking;
+            $obj->block = $data->block;
+            $obj->locked = $data->locked;
+            $obj->notes = $data->notes;
+            return $obj;
+        } catch(\ErrorException $e) {
+            return null;
+        }
     }
 
 }

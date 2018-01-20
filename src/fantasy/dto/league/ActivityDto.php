@@ -25,7 +25,7 @@ class ActivityDto extends MapsDto
 
     static function dtomap($data)
     {
-        $json = $data->content;
+        $json = json_decode($data->content);
 
         $obj = new ActivityDto();
         $obj->id = $data->id;

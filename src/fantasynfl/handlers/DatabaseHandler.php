@@ -254,7 +254,6 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
 
     public function getRoster($team_id)
     {
-        // TODO: check this method
         $player_id_array = FantasyModel\Team::find($team_id)->roster->pluck('player_id');
         return DataReceiver::instance()->getPlayers($player_id_array);
     }

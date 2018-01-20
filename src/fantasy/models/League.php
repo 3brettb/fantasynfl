@@ -45,9 +45,9 @@ class League extends Model
         return $this->week;
     }
 
-    public function getActivityAttribute()
+    public function activity()
     {
-        // TODO: implement getActivityAttribute() method.
+        return $this->hasMany(Activity::class);
     }
 
     public function getDivisionsAttribute()
