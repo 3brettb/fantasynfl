@@ -37,7 +37,7 @@ class League extends Model
 
     public function getSeasonAttribute()
     {
-        return $this->week()->season;
+        return $this->week->season;
     }
 
     public function getCurrentWeekAttribute()
