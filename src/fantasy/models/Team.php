@@ -27,7 +27,7 @@ class Team extends Model
      * @var array
      */
     protected $casts = [
-        'keepers' => 'json_data',
+        'keepers' => 'array',
         'block' => 'json_data',
     ];
 
