@@ -20,11 +20,17 @@ class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
 
     public function getPlayers($ids=[])
     {
-        if(sizeof($ids) > 0){
-            $data = NflData::getAllPlayers();
-        } else {
-            $data = NflData::getPlayers($ids);
+        if(sizeof($ids) == 0)
+        {
+            return self::getAllPlayers();
         }
+
+        return NflData::getPlayers($ids);
+    }
+
+    public function getAllPlayers()
+    {
+        $data = NflData::getAllPlayers();
         $players = collect();
         foreach($data as $group)
         {

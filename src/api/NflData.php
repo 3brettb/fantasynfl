@@ -3,6 +3,7 @@
 namespace Fantasy\NFL\API;
 
 use Fantasy\NFL\API\DTO;
+use Fantasy\NFL\Fantasy\DTO\League\PlayersDto;
 use Fantasy\NFL\Resources\Common\APIUris as Uri;
 
 class NflData extends NFLAPI
@@ -51,9 +52,23 @@ class NflData extends NFLAPI
         return $response;
     }
 
+    /**
+     * @param $ids
+     * @return PlayerDto[]
+     */
     public static function getPlayers($ids)
     {
-        // TODO: Implement this method. Determine best way to retrieve a small subset of players by ids
+        $query = parent::getPlayersQuery($ids);
+        $response = $query->execute()->normalize()->get();
+        $players = collect();
+        foreach($response as $data)
+        {
+            foreach($data->players as $player)
+            {
+                $players->push($player);
+            }
+        }
+        return PlayersDto::dtomap($players->toArray());
     }
 
     /**

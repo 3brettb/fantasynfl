@@ -97,9 +97,14 @@ class Team extends Model
         }
     }
 
+    public function roster()
+    {
+        return $this->hasMany(RosterPlayer::class);
+    }
+
     public function lineups()
     {
-        $this->hasMany(Lineup::class);
+        return $this->hasMany(Lineup::class);
     }
 
     public function lineup($week_id=null)

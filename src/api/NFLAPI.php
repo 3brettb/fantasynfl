@@ -55,6 +55,22 @@ class NFLAPI
         return unserialize(serialize($query));
     }
 
+    /**
+     * @param $ids
+     * @return QueryGroup
+     */
+    public static function getPlayersQuery($ids)
+    {
+        $query = QueryGroup::define();
+        foreach($ids as $playerId)
+        {
+            $query->query($playerId, self::instance()->get(Uri::DETAILS, [
+                'playerId' => $playerId
+            ]));
+        }
+        return $query;
+    }
+
     public static function getPositionsQueryGroup($uri, array $positions)
     {
         $query = QueryGroup::define();
