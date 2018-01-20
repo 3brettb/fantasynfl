@@ -131,10 +131,15 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
         return FantasyDTO\League\LeagueDto::dtomap($league);
     }
 
-    public function getLeagueActivity($league_id)
+    public function getLeagueActivity($league_id, $id=null)
     {
-        $activity = FantasyModel\League::find($league_id)->activity;
-        return self::mapArray($activity, FantasyDTO\League\ActivityDto::class);
+        if($id == null) {
+            $activity = FantasyModel\League::find($league_id)->activity;
+            return self::mapArray($activity, FantasyDTO\League\ActivityDto::class);
+        } else {
+            $activity = FantasyModel\Activity::find($id);
+            return FantasyDTO\League\ActivityDto::dtomap($activity);
+        }
     }
 
     public function getLeagueStandings($season_id)

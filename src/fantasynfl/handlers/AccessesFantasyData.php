@@ -7,7 +7,7 @@ interface AccessesFantasyData
 
     public function getLeague($league_id);
 
-    public function getLeagueActivity($league_id);
+    public function getLeagueActivity($league_id, $id=null);
 
     public function getLeagueStandings($season_id);
 

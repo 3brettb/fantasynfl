@@ -174,7 +174,7 @@ class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
 
     // These methods all defer to the handler and are therefore condensed/minimized
     public function getLeague($league_id){return $this->DATABASE_HANDLER->getLeague($league_id);}
-    public function getLeagueActivity($league_id){return $this->DATABASE_HANDLER->getLeagueActivity($league_id);}
+    public function getLeagueActivity($league_id, $id=null){return $this->DATABASE_HANDLER->getLeagueActivity($league_id, $id);}
     public function getLeagueStandings($season_id){return $this->DATABASE_HANDLER->getLeagueStandings($season_id);}
     public function getLeagueTrades($league_id){return $this->DATABASE_HANDLER->getLeagueTrades($league_id);}
     public function getLeagueTeams($league_id){return $this->DATABASE_HANDLER->getLeagueTeams($league_id);}

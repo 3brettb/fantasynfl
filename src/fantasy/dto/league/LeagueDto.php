@@ -38,9 +38,9 @@ class LeagueDto extends MapsDto
         return DataReceiver::instance()->getTeam($id);
     }
 
-    public function activity()
+    public function activity($id=null)
     {
-        return DataReceiver::instance()->getLeagueActivity($this->id);
+        return DataReceiver::instance()->getLeagueActivity($this->id, $id);
     }
 
     public function divisions()

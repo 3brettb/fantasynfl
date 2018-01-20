@@ -67,7 +67,7 @@ class DataReceiver implements AccessesPlayerData, AccessesFantasyData
 
     // These methods all defer to the handler and are therefore condensed/minimized
     public function getLeague($league_id){return $this->handler->getLeague($league_id);}
-    public function getLeagueActivity($league_id){return $this->handler->getLeagueActivity($league_id);}
+    public function getLeagueActivity($league_id, $id=null){return $this->handler->getLeagueActivity($league_id, $id);}
     public function getLeagueStandings($season_id){return $this->handler->getLeagueStandings($season_id);}
     public function getLeagueTrades($league_id){return $this->handler->getLeagueTrades($league_id);}
     public function getLeagueTeams($league_id){return $this->handler->getLeagueTeams($league_id);}
