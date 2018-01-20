@@ -2,7 +2,7 @@
 Laravel NFL Fantasy Football
 
 
-##Installation
+### Installation
 
 Create new Laravel Web App `composer require laravel/laravel`
 
@@ -19,7 +19,7 @@ run `php artisan vendor:publish`
 run `php artisan migrate`
 
 
-## FantasyNFL API
+### FantasyNFL API
 Get Team Roster
 ```
 FantasyNFL::roster($team_id);
