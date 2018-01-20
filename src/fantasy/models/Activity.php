@@ -27,7 +27,7 @@ class Activity extends Model
      * @var array
      */
     protected $casts = [
-        'content' => 'array',
+        'content' => 'json_data',
     ];
 
     /**

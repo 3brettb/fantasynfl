@@ -27,11 +27,11 @@ class Season extends Model
      * @var array
      */
     protected $casts = [
-        'standings' => 'array',
-        'postseason' => 'array',
-        'playoffs' => 'array',
-        'offseason' => 'array',
-        'money' => 'array',
+        'standings' => 'json_data',
+        'postseason' => 'json_data',
+        'playoffs' => 'json_data',
+        'offseason' => 'json_data',
+        'money' => 'json_data',
     ];
 
     /**

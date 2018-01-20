@@ -27,7 +27,7 @@ class Postseason extends Model
      * @var array
      */
     protected $casts = [
-        'data' => 'array'
+        'data' => 'json_data'
     ];
 
     /**

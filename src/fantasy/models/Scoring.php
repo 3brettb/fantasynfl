@@ -27,7 +27,7 @@ class Scoring extends Model
      * @var array
      */
     protected $casts = [
-        'json' => 'array',
+        'json' => 'json_data',
     ];
 
     /**

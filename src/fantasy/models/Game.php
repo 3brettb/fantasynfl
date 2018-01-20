@@ -27,7 +27,7 @@ class Game extends Model
      * @var array
      */
     protected $casts = [
-        'stats' => 'array',
+        'stats' => 'json_data',
     ];
 
     /**

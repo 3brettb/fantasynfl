@@ -27,7 +27,7 @@ class Division extends Model
      * @var array
      */
     protected $casts = [
-        'standings' => 'array',
+        'standings' => 'json_data',
     ];
 
     /**
