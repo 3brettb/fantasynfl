@@ -1,7 +1,3 @@
-<!-- background: #ffc327 -->
-<!-- color: #4467b -->
-<!-- font: centurygothic -->
-
 # fantasynfl
 Laravel NFL Fantasy Football
 
