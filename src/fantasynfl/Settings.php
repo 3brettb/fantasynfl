@@ -29,6 +29,14 @@ class Settings
     }
 
     /**
+     * @param $year
+     */
+    public static function setYear($year)
+    {
+        Session::set('year', $year);
+    }
+
+    /**
      * Get the fantasy year stored in session
      *
      * @return int
@@ -39,6 +47,14 @@ class Settings
     }
 
     /**
+     * @param $number
+     */
+    public static function setWeekNumber($number)
+    {
+        Session::set('week_number', $number);
+    }
+
+    /**
      * Get the fantasy week stored in session
      *
      * @return int
@@ -46,6 +62,14 @@ class Settings
     public static function getWeekNumber()
     {
         return (int)Session::get('week_number');
+    }
+
+    /**
+     * @param $team_id
+     */
+    public static function setTeamId($team_id)
+    {
+        Session::set('team_id', $team_id);
     }
 
     /**

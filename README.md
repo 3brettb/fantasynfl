@@ -18,6 +18,19 @@ run `php artisan vendor:publish`
 
 run `php artisan migrate`
 
+Add an `authenticated()` method to LoginController
+```php
+    /**
+     * Perform Fantasy NFL Login actions
+     *
+     * @param Request $request
+     * @param $user
+     */
+    public function authenticated(Request $request, $user)
+    {
+        FantasyNFL::login($user);
+    }
+```
 
 ### FantasyNFL API
 Get Team Roster
