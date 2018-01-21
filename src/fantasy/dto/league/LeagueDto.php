@@ -19,52 +19,88 @@ class LeagueDto extends MapsDto
 
     static function dtomap($data)
     {
-        $obj = new LeagueDto();
-        $obj->id = $data->id;
-        $obj->name = $data->name;
-        $obj->model = $data;
-        return $obj;
+        try {
+            $obj = new LeagueDto();
+            $obj->id = $data->id;
+            $obj->name = $data->name;
+            $obj->model = $data;
+            return $obj;
+        } catch (\ErrorException $e){
+            return null;
+        }
     }
 
     public function players()
     {
-        return DataReceiver::instance()->getPlayers();
+        try{
+            return DataReceiver::instance()->getPlayers();
+        } catch (\ErrorException $e){
+            return [];
+        }
     }
 
     public function teams()
     {
-        return DataReceiver::instance()->getLeagueTeams($this->id);
+        try{
+            return DataReceiver::instance()->getLeagueTeams($this->id);
+        } catch (\ErrorException $e){
+            return [];
+        }
     }
 
     public function team($id)
     {
-        return DataReceiver::instance()->getTeam($id);
+        try{
+            return DataReceiver::instance()->getTeam($id);
+        } catch (\ErrorException $e){
+            return null;
+        }
     }
 
     public function activity($id=null)
     {
-        return DataReceiver::instance()->getLeagueActivity($this->id, $id);
+        try{
+            return DataReceiver::instance()->getLeagueActivity($this->id, $id);
+        } catch (\ErrorException $e){
+            return null;
+        }
     }
 
     public function divisions()
     {
-        return DataReceiver::instance()->getDivisions($this->model->season->id);
+        try{
+            return DataReceiver::instance()->getDivisions($this->model->season->id);
+        } catch (\ErrorException $e){
+            return null;
+        }
     }
 
     public function division($id)
     {
-        return DataReceiver::instance()->getDivision($id);
+        try{
+            return DataReceiver::instance()->getDivision($id);
+        } catch (\ErrorException $e){
+            return null;
+        }
     }
 
     public function week($number=null, $year=null)
     {
-        $id = static::resolveWeekNumber(static::resolveOptionalWeekNumber($number), $year)->id;
-        return DataReceiver::instance()->getWeek($id);
+        try{
+            $id = static::resolveWeekNumber(static::resolveOptionalWeekNumber($number), $year)->id;
+            return DataReceiver::instance()->getWeek($id);
+        } catch (\ErrorException $e){
+            return null;
+        }
     }
 
     public function season($id=null)
     {
-        return DataReceiver::instance()->getSeason($id);
+        try{
+            return DataReceiver::instance()->getSeason($id);
+        } catch (\ErrorException $e){
+            return null;
+        }
     }
 
 }
