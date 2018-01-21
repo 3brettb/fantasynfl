@@ -4,12 +4,9 @@ namespace Fantasy\NFL\FantasyNFL\Handlers;
 
 use Fantasy\NFL\API\NflData;
 use Fantasy\NFL\Enums\StatType;
-use Fantasy\NFL\FantasyNFL\Resolvers\DataResolver;
 
 class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
 {
-
-    use DataResolver;
 
     private $DATABASE_HANDLER;
 
@@ -28,227 +25,147 @@ class ApiHandler implements Handler, AccessesPlayerData, AccessesFantasyData
             return self::getAllPlayers();
         }
 
-        try{
-            return NflData::getPlayers($ids);
-        } catch (\ErrorException $e) {
-            return null;
-        }
+        return NflData::getPlayers($ids);
     }
 
     public function getAllPlayers()
     {
-        try{
-            $data = NflData::getAllPlayers();
-            $players = collect();
-            foreach($data as $group)
+        $data = NflData::getAllPlayers();
+        $players = collect();
+        foreach($data as $group)
+        {
+            foreach($group->players as $json)
             {
-                foreach($group->players as $json)
-                {
-                    $player = Player::mapJson($json);
-                    $players->push($player);
-                }
+                $player = Player::mapJson($json);
+                $players->push($player);
             }
-            return $players;
-        } catch (\ErrorException $e) {
-            return null;
         }
+        return $players;
     }
 
     public function getPlayer($player_id)
     {
-        try{
-            return $this->getPlayerDetails($player_id);
-        } catch (\ErrorException $e) {
-            return null;
-        }
+        return $this->getPlayerDetails($player_id);
     }
 
     public function getPlayerDetails($player_id)
     {
-        try{
-            $dto = NflData::getPlayer($player_id);
-            dd($dto);
-            // TODO: Complete the Map of Dto, Possibly change all maps to mapping DTO's
-            return Player::mapJson($dto);
-        } catch (\ErrorException $e) {
-            return null;
-        }
+        $dto = NflData::getPlayer($player_id);
+        dd($dto);
+        // TODO: Complete the Map of Dto, Possibly change all maps to mapping DTO's
+        return Player::mapJson($dto);
     }
 
     public function getPlayerSeasonStats($player_id, $position, $season = null)
     {
-        try{
-            $dto = static::getSeasonStats($season, $position);
-            // TODO: Implement getPlayerSeasonStats() method.
-            dd($dto);
-        } catch (\ErrorException $e) {
-            return null;
-        }
+        $dto = static::getSeasonStats($season, $position);
+        // TODO: Implement getPlayerSeasonStats() method.
+        dd($dto);
     }
 
     public function getPlayerSeasonProjectedStats($player_id, $position, $season = null)
     {
-        try{
-            $dto = static::getSeasonProjectedStats($season, $position);
-            // TODO: Implement getPlayerSeasonProjectedStats() method.
-            dd($dto);
-        } catch (\ErrorException $e) {
-            return null;
-        }
+        $dto = static::getSeasonProjectedStats($season, $position);
+        // TODO: Implement getPlayerSeasonProjectedStats() method.
+        dd($dto);
     }
 
     public function getPlayerWeekStats($player_id, $position, $season = null)
     {
-        try{
-            $dto = static::getWeekStats($season, $position);
-            // TODO: Implement getPlayerWeekStats() method.
-            dd($dto);
-        } catch (\ErrorException $e) {
-            return null;
-        }
+        $dto = static::getWeekStats($season, $position);
+        // TODO: Implement getPlayerWeekStats() method.
+        dd($dto);
     }
 
     public function getPlayerWeekProjectedStats($player_id, $position, $season = null)
     {
-        try{
-            $dto = static::getWeekProjectedStats($season, $position);
-            // TODO: Implement getPlayerWeekProjectedStats() method.
-            dd($dto);
-        } catch (\ErrorException $e) {
-            return null;
-        }
+        $dto = static::getWeekProjectedStats($season, $position);
+        // TODO: Implement getPlayerWeekProjectedStats() method.
+        dd($dto);
     }
 
     public function getPlayerAdvancedStats($player_id, $position, $week = null, $season = null)
     {
-        try{
-            $dto = static::getAdvancedStats($week, $season, $position);
-            // TODO: Implement getPlayerAdvancedStats() method.
-            dd($dto);
-        } catch (\ErrorException $e) {
-            return null;
-        }
+        $dto = static::getAdvancedStats($week, $season, $position);
+        // TODO: Implement getPlayerAdvancedStats() method.
+        dd($dto);
     }
 
     public function getResearchInfo($week = null, $player_id = null)
     {
-        try{
-            $dto = NflData::getResearch($week);
-            // TODO: Implement getResearchInfo() method.
-            dd($dto);
-        } catch (\ErrorException $e) {
-            return null;
-        }
+        $dto = NflData::getResearch($week);
+        // TODO: Implement getResearchInfo() method.
+        dd($dto);
     }
 
     public function getWeekRanks($week = null, $position = null)
     {
-        try{
-            $dto = NflData::getWeekRanks($week, $position);
-            // TODO: Implement getWeekRanks() method.
-            dd($dto);
-        } catch (\ErrorException $e) {
-            return null;
-        }
+        $dto = NflData::getWeekRanks($week, $position);
+        // TODO: Implement getWeekRanks() method.
+        dd($dto);
     }
 
     public function getNews($player_id = null)
     {
-        try{
-            $dto = NflData::getNews();
-            // TODO: Implement getNews() method.
-            dd($dto);
-        } catch (\ErrorException $e) {
-            return null;
-        }
+        $dto = NflData::getNews();
+        // TODO: Implement getNews() method.
+        dd($dto);
     }
 
     public function getScoringLeaders($week = null, $position = null)
     {
-        try{
-            $dto = NflData::getScoringLeaders($week, $position);
-            // TODO: Implement getScoringLeaders() method.
-            dd($dto);
-        } catch (\ErrorException $e) {
-            return null;
-        }
+        $dto = NflData::getScoringLeaders($week, $position);
+        // TODO: Implement getScoringLeaders() method.
+        dd($dto);
     }
 
     public function getSeasonStats($season = null, $position = null)
     {
-        try{
-            $dto = NflData::getStats(StatType::Season, $position, $season, null);
-            // TODO: Implement getSeasonStats() method.
-            dd($dto);
-        } catch (\ErrorException $e) {
-            return null;
-        }
+        $dto = NflData::getStats(StatType::Season, $position, $season, null);
+        // TODO: Implement getSeasonStats() method.
+        dd($dto);
     }
 
     public function getSeasonProjectedStats($season = null, $position = null)
     {
-        try{
-            $dto = NflData::getStats(StatType::SeasonProjected, $position, $season, null);
-            // TODO: Implement getSeasonProjectedStats() method.
-            dd($dto);
-        } catch (\ErrorException $e) {
-            return null;
-        }
+        $dto = NflData::getStats(StatType::SeasonProjected, $position, $season, null);
+        // TODO: Implement getSeasonProjectedStats() method.
+        dd($dto);
     }
 
     public function getWeekStats($week = null, $position = null)
     {
-        try{
-            $dto = NflData::getStats(StatType::Week, $position, null, $week);
-            // TODO: Implement getWeekStats() method.
-            dd($dto);
-        } catch (\ErrorException $e) {
-            return null;
-        }
+        $dto = NflData::getStats(StatType::Week, $position, null, $week);
+        // TODO: Implement getWeekStats() method.
+        dd($dto);
     }
 
     public function getWeekProjectedStats($week = null, $position = null)
     {
-        try{
-            $dto = NflData::getStats(StatType::WeekProjected, $position, null, $week);
-            // TODO: Implement getWeekProjectedStats() method.
-            dd($dto);
-        } catch (\ErrorException $e) {
-            return null;
-        }
+        $dto = NflData::getStats(StatType::WeekProjected, $position, null, $week);
+        // TODO: Implement getWeekProjectedStats() method.
+        dd($dto);
     }
 
     public function getAdvancedStats($week = null, $season = null, $position = null)
     {
-        try{
-            $dto = NflData::getAdvancedStats($position, $week, $season);
-            // TODO: Implement getAdvancedStats() method.
-            dd($dto);
-        } catch (\ErrorException $e) {
-            return null;
-        }
+        $dto = NflData::getAdvancedStats($position, $week, $season);
+        // TODO: Implement getAdvancedStats() method.
+        dd($dto);
     }
 
     public function getGameStats($gameId)
     {
-        try{
-            $dto = NflData::getGameStats($gameId);
-            // TODO: Implement getGameStats() method.
-            dd($dto);
-        } catch (\ErrorException $e) {
-            return null;
-        }
+        $dto = NflData::getGameStats($gameId);
+        // TODO: Implement getGameStats() method.
+        dd($dto);
     }
 
     public function getStatsConfig()
     {
-        try{
-            $dto = NflData::getStatsConfig();
-            // TODO: implement getStatsConfig() method.
-            dd($dto);
-        } catch (\ErrorException $e) {
-            return null;
-        }
+        $dto = NflData::getStatsConfig();
+        // TODO: implement getStatsConfig() method.
+        dd($dto);
     }
 
     // -----------------------------------------------------------------------------------------------------------------
