@@ -29,7 +29,6 @@ class DataReceiver implements AccessesPlayerData, AccessesFantasyData
 
     /**
      * @return DataReceiver
-     * @throws NotLoggedInException
      */
     public static function instance()
     {
