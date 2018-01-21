@@ -2,6 +2,7 @@
 
 namespace Fantasy\NFL\FantasyNFL\Handlers;
 
+use Fantasy\NFL\FantasyNFL\Resolvers\DataResolver;
 use Fantasy\NFL\Resources\UsesMapMethods;
 use Fantasy\NFL\StatsAPI\Models as StatsModel;
 use Fantasy\NFL\Fantasy\Models as FantasyModel;
@@ -10,7 +11,7 @@ use Fantasy\NFL\Fantasy\DTO as FantasyDTO;
 class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyData
 {
 
-    use UsesMapMethods;
+    use UsesMapMethods, DataResolver;
 
     public function __construct(){}
 
@@ -127,176 +128,289 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
 
     public function getLeague($league_id)
     {
-        $league = FantasyModel\League::find($league_id);
-        return FantasyDTO\League\LeagueDto::dtomap($league);
+        try {
+            $league = FantasyModel\League::find($league_id);
+            return FantasyDTO\League\LeagueDto::dtomap($league);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
+
 
     public function getLeagueActivity($league_id, $id=null)
     {
-        if($id == null) {
-            $activity = FantasyModel\League::find($league_id)->activity;
-            return self::mapArray($activity, FantasyDTO\League\ActivityDto::class);
-        } else {
-            $activity = FantasyModel\Activity::find($id);
-            return FantasyDTO\League\ActivityDto::dtomap($activity);
+        try {
+            if($id == null) {
+                $activity = FantasyModel\League::find($league_id)->activity;
+                return self::mapArray($activity, FantasyDTO\League\ActivityDto::class);
+            } else {
+                $activity = FantasyModel\Activity::find($id);
+                return FantasyDTO\League\ActivityDto::dtomap($activity);
+            }
+        } catch (\ErrorException $e) {
+            return null;
         }
     }
 
     public function getLeagueStandings($season_id)
     {
-        $standings = FantasyModel\Season::find($season_id)->standings;
-        return FantasyDTO\Standings\StandingsDto::dtomap($standings);
+        try{
+            $standings = FantasyModel\Season::find($season_id)->standings;
+            return FantasyDTO\Standings\StandingsDto::dtomap($standings);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getLeagueTrades($league_id)
     {
-        $trades = FantasyModel\League::find($league_id)->trades;
-        return self::mapArray($trades, FantasyDTO\Trade\TradeDto::class);
+        try{
+            $trades = FantasyModel\League::find($league_id)->trades;
+            return self::mapArray($trades, FantasyDTO\Trade\TradeDto::class);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getLeagueTeams($league_id)
     {
-        $teams = FantasyModel\League::find($league_id)->teams;
-        return self::mapArray($teams, FantasyDTO\Team\TeamDto::class);
+        try{
+            $teams = FantasyModel\League::find($league_id)->teams;
+            return self::mapArray($teams, FantasyDTO\Team\TeamDto::class);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getSeason($season_id)
     {
-        $season = FantasyModel\Season::find($season_id);
-        return FantasyDTO\Season\SeasonDto::dtomap($season);
+        try{
+            $season = FantasyModel\Season::find($season_id);
+            return FantasyDTO\Season\SeasonDto::dtomap($season);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getSeasonWeeks($season_id)
     {
-        $weeks = FantasyModel\Season::find($season_id)->weeks;
-        return self::mapArray($weeks, FantasyDTO\Week\WeekDto::class);
+        try{
+            $weeks = FantasyModel\Season::find($season_id)->weeks;
+            return self::mapArray($weeks, FantasyDTO\Week\WeekDto::class);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getSeasonActivity($season_id)
     {
-        $activity = FantasyModel\Season::find($season_id)->activity;
-        return self::mapArray($activity, FantasyDTO\League\ActivityDto::class);
+        try{
+            $activity = FantasyModel\Season::find($season_id)->activity;
+            return self::mapArray($activity, FantasyDTO\League\ActivityDto::class);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getSeasonTrades($season_id)
     {
-        $trades = FantasyModel\Season::find($season_id)->trades;
-        return self::mapArray($trades, FantasyDTO\Trade\TradeDto::class);
+        try{
+            $trades = FantasyModel\Season::find($season_id)->trades;
+            return self::mapArray($trades, FantasyDTO\Trade\TradeDto::class);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getWeek($week_id)
     {
-        $week = FantasyModel\Week::find($week_id);
-        return FantasyDTO\Week\WeekDto::dtomap($week);
+        try{
+            $week = FantasyModel\Week::find($week_id);
+            return FantasyDTO\Week\WeekDto::dtomap($week);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getWeekGames($week_id)
     {
-        $games = FantasyModel\Week::find($week_id)->games;
-        return self::mapArray($games, FantasyDTO\Week\GameDto::class);
+        try{
+            $games = FantasyModel\Week::find($week_id)->games;
+            return self::mapArray($games, FantasyDTO\Week\GameDto::class);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getWeekRankings($week_id)
     {
-        $rankings = FantasyModel\Week::find($week_id)->rankings;
-        return self::mapArray($rankings, FantasyDTO\Rankings\RankingsDto::class);
+        try{
+            $rankings = FantasyModel\Week::find($week_id)->rankings;
+            return self::mapArray($rankings, FantasyDTO\Rankings\RankingsDto::class);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getTeam($team_id)
     {
-        $team = FantasyModel\Team::find($team_id);
-        return FantasyDTO\Team\TeamDto::dtomap($team);
+        try{
+            $team = FantasyModel\Team::find($team_id);
+            return FantasyDTO\Team\TeamDto::dtomap($team);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getTeamTrades($team_id)
     {
-        $trades = FantasyModel\Team::find($team_id)->trades;
-        return self::mapArray($trades, FantasyDTO\Trade\TradeDto::class);
+        try {
+            $trades = FantasyModel\Team::find($team_id)->trades;
+            return self::mapArray($trades, FantasyDTO\Trade\TradeDto::class);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getDivisions($season_id)
     {
-        $divisions = FantasyModel\Season::find($season_id)->divisions;
-        return self::mapArray($divisions, FantasyDTO\League\DivisionDto::class);
+        try{
+            $divisions = FantasyModel\Season::find($season_id)->divisions;
+            return self::mapArray($divisions, FantasyDTO\League\DivisionDto::class);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getDivision($division_id)
     {
-        $division = FantasyModel\Division::find($division_id);
-        return FantasyDTO\League\DivisionDto::dtomap($division);
+        try{
+            $division = FantasyModel\Division::find($division_id);
+            return FantasyDTO\League\DivisionDto::dtomap($division);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getDivisionTeams($division_id)
     {
-        $teams = FantasyModel\Division::find($division_id)->teams;
-        return self::mapArray($teams, FantasyDTO\Team\TeamDto::class);
+        try{
+            $teams = FantasyModel\Division::find($division_id)->teams;
+            return self::mapArray($teams, FantasyDTO\Team\TeamDto::class);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getAllDivisionStandings($season_id)
     {
-        $divisions = FantasyModel\Season::find($season_id)->divisions;
-        $standings = $divisions->pluck('standings');
-        return self::mapArray($standings, FantasyDTO\Standings\StandingsDto::class);
+        try{
+            $divisions = FantasyModel\Season::find($season_id)->divisions;
+            $standings = $divisions->pluck('standings');
+            return self::mapArray($standings, FantasyDTO\Standings\StandingsDto::class);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getDivisionStandings($division_id)
     {
-        $standings = FantasyModel\Division::find($division_id)->standings;
-        return FantasyDTO\Standings\StandingsDto::dtomap($standings);
+        try{
+            $standings = FantasyModel\Division::find($division_id)->standings;
+            return FantasyDTO\Standings\StandingsDto::dtomap($standings);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getDraft($draft_id)
     {
-        $draft = FantasyModel\Draft::find($draft_id);
-        return FantasyDTO\Draft\DraftDto::dtomap($draft);
+        try{
+            $draft = FantasyModel\Draft::find($draft_id);
+            return FantasyDTO\Draft\DraftDto::dtomap($draft);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getDraftPicks($team_id, $draft_id)
     {
-        $picks = FantasyModel\Team::find($team_id)->picks($draft_id);
-        return self::mapArray($picks, FantasyDTO\Draft\DraftPickDto::class);
+        try{
+            $picks = FantasyModel\Team::find($team_id)->picks($draft_id);
+            return self::mapArray($picks, FantasyDTO\Draft\DraftPickDto::class);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getRoster($team_id)
     {
-        $player_id_array = FantasyModel\Team::find($team_id)->roster->pluck('player_id');
-        return DataReceiver::instance()->getPlayers($player_id_array);
+        try{
+            $player_id_array = FantasyModel\Team::find($team_id)->roster->pluck('player_id');
+            return DataReceiver::instance()->getPlayers($player_id_array);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getLineup($team_id, $week_id)
     {
-        // TODO: check this method
-        $player_id_array = FantasyModel\Lineup::find($team_id)->lineup($week_id)->players()->pluck('player_id');
-        return DataReceiver::instance()->getPlayers($player_id_array);
+        try{
+            // TODO: check this method
+            $player_id_array = FantasyModel\Lineup::find($team_id)->lineup($week_id)->players()->pluck('player_id');
+            return DataReceiver::instance()->getPlayers($player_id_array);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getGame($game_id)
     {
-        $game = FantasyModel\Game::find($game_id);
-        return FantasyDTO\Week\GameDto::dtomap($game);
+        try{
+            $game = FantasyModel\Game::find($game_id);
+            return FantasyDTO\Week\GameDto::dtomap($game);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getRanking($ranking_id)
     {
-        $ranking = FantasyModel\Ranking::find($ranking_id);
-        return FantasyDTO\Rankings\RankingsDto::dtomap($ranking);
+        try{
+            $ranking = FantasyModel\Ranking::find($ranking_id);
+            return FantasyDTO\Rankings\RankingsDto::dtomap($ranking);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getTrade($trade_id)
     {
-        $trade = FantasyModel\Trade::find($trade_id);
-        return FantasyDTO\Trade\TradeDto::dtomap($trade);
+        try{
+            $trade = FantasyModel\Trade::find($trade_id);
+            return FantasyDTO\Trade\TradeDto::dtomap($trade);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getPostseason($type, $season_id)
     {
-        // TODO: Implement getPostseason() method.
+        try{
+            // TODO: Implement getPostseason() method.
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
     public function getUser($user_id)
     {
-        $user = FantasyModel\User::find($user_id);
-        return FantasyDTO\League\UserDto::dtomap($user);
+        try{
+            $user = FantasyModel\User::find($user_id);
+            return FantasyDTO\League\UserDto::dtomap($user);
+        } catch (\ErrorException $e) {
+            return null;
+        }
     }
 
 }
