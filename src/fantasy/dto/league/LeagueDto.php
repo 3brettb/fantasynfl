@@ -2,11 +2,14 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\League;
 
+use Fantasy\NFL\FantasyNFL\Resolvers\DataResolver;
 use Fantasy\NFL\Resources\MapsDto;
 use Fantasy\NFL\FantasyNFL\Handlers\DataReceiver;
 
 class LeagueDto extends MapsDto
 {
+
+    use DataResolver;
 
     public $id;
 
@@ -53,8 +56,9 @@ class LeagueDto extends MapsDto
         return DataReceiver::instance()->getDivision($id);
     }
 
-    public function week($id=null)
+    public function week($number=null, $year=null)
     {
+        $id = static::resolveWeekNumber(static::resolveOptionalWeekNumber($number), $year)->id;
         return DataReceiver::instance()->getWeek($id);
     }
 

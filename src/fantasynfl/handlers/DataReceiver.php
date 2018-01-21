@@ -95,5 +95,4 @@ class DataReceiver implements AccessesPlayerData, AccessesFantasyData
     public function getPostseason($type, $season_id){return $this->handler->getPostseason($type, $season_id);}
     public function getUser($user_id){return $this->handler->getUser($user_id);}
 
-
 }

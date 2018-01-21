@@ -29,6 +29,24 @@ class Settings
     }
 
     /**
+     * @param $id
+     */
+    public static function setSeasonId($id)
+    {
+        Session::set('season_id', $id);
+    }
+
+    /**
+     * Get the fantasy season id stored in session
+     *
+     * @return int
+     */
+    public static function getSeasonId()
+    {
+        return (int)Session::get('season_id');
+    }
+
+    /**
      * @param $year
      */
     public static function setYear($year)
@@ -44,6 +62,24 @@ class Settings
     public static function getYear()
     {
         return (int)Session::get('year');
+    }
+
+    /**
+     * @param $id
+     */
+    public static function setWeekId($id)
+    {
+        Session::set('week_id', $id);
+    }
+
+    /**
+     * Get the fantasy week id stored in session
+     *
+     * @return int
+     */
+    public static function getWeekId()
+    {
+        return (int)Session::get('week_id');
     }
 
     /**

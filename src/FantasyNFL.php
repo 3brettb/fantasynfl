@@ -17,8 +17,8 @@ class FantasyNFL
         $league = FantasyModels\League::find($team->league_id);
         self::setLeague($league->id);
         self::setTeamId($team->id);
-        self::setYear($league->season->year);
-        self::setWeek($league->week_id);
+        self::setSeason($league->season);
+        self::setWeek($league->week);
     }
 
 }

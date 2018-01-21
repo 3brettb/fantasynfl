@@ -18,19 +18,21 @@ trait Modifiers
     }
 
     /**
-     * @param $year
+     * @param $season
      */
-    public static function setYear($year)
+    public static function setSeason($season)
     {
-        StoredSettings::setYear($year);
+        StoredSettings::setSeasonId($season->id);
+        StoredSettings::setYear($season->year);
     }
 
     /**
-     * @param $number
+     * @param $week
      */
-    public static function setWeek($number)
+    public static function setWeek($week)
     {
-        StoredSettings::setWeekNumber($number);
+        StoredSettings::setWeekId($week->id);
+        StoredSettings::setWeekNumber($week->number);
     }
 
     /**

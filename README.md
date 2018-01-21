@@ -63,3 +63,9 @@ Get Division Teams
 ```php
 $division->teams()
 ```
+Get Week
+```php
+$league->week() // to get current week
+$league->week($week_number) // to get specific week of current season
+$league->week($week_number, $year) // returns week of the given season and number
+```
