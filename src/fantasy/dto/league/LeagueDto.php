@@ -94,9 +94,10 @@ class LeagueDto extends MapsDto
         }
     }
 
-    public function season($id=null)
+    public function season($year=null)
     {
         try{
+            $id = static::resolveSeasonYear(static::resolveOptionalSeasonYear($year))->id;
             return DataReceiver::instance()->getSeason($id);
         } catch (\ErrorException $e){
             return null;

@@ -19,6 +19,15 @@ class MoneyDto extends MapsDto
 
     static function dtomap($data)
     {
+        try {
+            return self::jsonmap($data);
+        } catch(\ErrorException $e) {
+            return null;
+        }
+    }
+
+    static function jsonmap($data)
+    {
         $obj = new MoneyDto();
         $obj->lastUpdated = $data->lastUpdated;
         $obj->dues = $data->dues;

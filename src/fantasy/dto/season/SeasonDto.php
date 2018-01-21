@@ -23,12 +23,16 @@ class SeasonDto extends MapsDto
 
     static function dtomap($data)
     {
+        $standings = json_decode($data->standings);
+        $postseason = json_decode($data->postseason);
+        $money = json_decode($data->money);
+
         $obj = new SeasonDto();
         $obj->id = $data->id;
         $obj->year = $data->year;
-        $obj->standings = StandingsDto::dtomap($data->standings);
-        $obj->postseason = PostseasonDto::dtomap($data->postseason);
-        $obj->money = MoneyDto::dtomap($data->money);
+        $obj->standings = StandingsDto::dtomap($standings);
+        $obj->postseason = PostseasonDto::dtomap($postseason);
+        $obj->money = MoneyDto::dtomap($money);
         $obj->model = $data;
         return $obj;
     }

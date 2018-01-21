@@ -69,3 +69,8 @@ $league->week() // to get current week
 $league->week($week_number) // to get specific week of current season
 $league->week($week_number, $year) // returns week of the given season and number
 ```
+Get Season
+```php
+$league->season() // to get current season
+$league->season($year) // to get specific season by year
+```

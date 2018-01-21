@@ -17,6 +17,15 @@ class PostseasonTeamDto extends MapsDto
 
     static function dtomap($data)
     {
+        try {
+            return self::jsonmap($data);
+        } catch(\ErrorException $e) {
+            return null;
+        }
+    }
+
+    static function jsonmap($data)
+    {
         $obj = new PostseasonTeamDto();
         $obj->id = $data->id;
         $obj->name = $data->name;

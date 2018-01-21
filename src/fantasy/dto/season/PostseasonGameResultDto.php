@@ -17,6 +17,15 @@ class PostseasonGameResultDto extends MapsDto
 
     static function dtomap($data)
     {
+        try {
+            return self::jsonmap($data);
+        } catch(\ErrorException $e) {
+            return null;
+        }
+    }
+
+    static function jsonmap($data)
+    {
         $obj = new PostseasonGameResultDto();
         $obj->winner = $data->winner;
         $obj->home = $data->home;

@@ -21,6 +21,15 @@ class MoneyTeamDto extends MapsDto
 
     static function dtomap($data)
     {
+        try {
+            return self::jsonmap($data);
+        } catch(\ErrorException $e) {
+            return null;
+        }
+    }
+
+    static function jsonmap($data)
+    {
         $obj = new MoneyTeamDto();
         $obj->id = $data->id;
         $obj->name = $data->name;
