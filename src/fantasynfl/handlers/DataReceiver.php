@@ -2,9 +2,6 @@
 
 namespace Fantasy\NFL\FantasyNFL\Handlers;
 
-use Fantasy\NFL\Exceptions\NotLoggedInException;
-use Illuminate\Support\Facades\Auth;
-
 class DataReceiver implements AccessesPlayerData, AccessesFantasyData
 {
 
@@ -32,19 +29,11 @@ class DataReceiver implements AccessesPlayerData, AccessesFantasyData
      */
     public static function instance()
     {
-        // Resolve Instance
         if(static::$instance == null)
         {
             static::$instance = new DataReceiver();
         }
-
-        // Verify logged in
-        if(Auth::check()) {
-            // Return instance
-            return static::$instance;
-        } else {
-            throw new NotLoggedInException("Session Expired");
-        }
+        return static::$instance;
     }
 
     // -----------------------------------------------------------------------------------------------------------------
