@@ -33,8 +33,8 @@ Add an `authenticated()` method to LoginController
 ```
 
 ### FantasyNFL Documentation
-[API Documentation](documentation/api/DOCUMENTATION.md)
-[Developer Documentation](documentation/dev/DOCUMENTATION.md)
+- [API Documentation](documentation/api/DOCUMENTATION.md)
+- [Developer Documentation](documentation/dev/DOCUMENTATION.md)
 
 Get Team Roster
 ```php
