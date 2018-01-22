@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Settings;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class WaiverSettingsDto extends MapsDto
+class WaiverSettingsDto extends ObjectMapsDto
 {
 
     public $type;
@@ -13,7 +13,7 @@ class WaiverSettingsDto extends MapsDto
 
     public $period;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new WaiverSettingsDto();
         $obj->type = $data->type;

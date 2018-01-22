@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\API\DTO\Advanced;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class StatsDto extends MapsDto
+class StatsDto extends ObjectMapsDto
 {
 
     public $fanPtsAgainstOpponentPts;
@@ -27,7 +27,7 @@ class StatsDto extends MapsDto
 
     public $redzoneG2g;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new StatsDto();
         $obj->fanPtsAgainstOpponentPts = $data->FanPtsAgainstOpponentPts;

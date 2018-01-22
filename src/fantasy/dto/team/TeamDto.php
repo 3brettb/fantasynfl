@@ -2,10 +2,10 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Team;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ModelMapsDto;
 use Fantasy\NFL\FantasyNFL\Handlers\DataReceiver;
 
-class TeamDto extends MapsDto
+class TeamDto extends ModelMapsDto
 {
 
     public $id;
@@ -22,7 +22,7 @@ class TeamDto extends MapsDto
 
     public $model;
 
-    static function dtomap($data)
+    static function mapModel($data)
     {
         $obj = new TeamDto();
         $obj->id = $data->id;
@@ -30,7 +30,7 @@ class TeamDto extends MapsDto
         $obj->mascot = $data->mascot;
         $obj->abbr = $data->abbr;
         $obj->keepers = $data->keepers;
-        $obj->block = TradeBlockDto::dtomap($data->block);
+        $obj->block = TradeBlockDto::map($data->block);
         $obj->model = $data;
         return $obj;
     }

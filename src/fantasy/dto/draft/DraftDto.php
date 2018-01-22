@@ -2,11 +2,11 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Draft;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ModelMapsDto;
 use Fantasy\NFL\Fantasy\DTO\Season\SeasonDto;
 use Fantasy\NFL\FantasyNFL\Handlers\DataReceiver;
 
-class DraftDto extends MapsDto
+class DraftDto extends ModelMapsDto
 {
 
     public $id;
@@ -25,9 +25,9 @@ class DraftDto extends MapsDto
 
     public $model;
 
-    static function dtomap($data)
+    static function mapModel($data)
     {
-        $json = $data->content;
+        $json = json_decode($data->content);
 
         $obj = new DraftDto();
         $obj->id = $data->id;

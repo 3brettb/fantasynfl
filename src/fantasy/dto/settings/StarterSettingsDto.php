@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Settings;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class StarterSettingsDto extends MapsDto
+class StarterSettingsDto extends ObjectMapsDto
 {
 
     public $name;
@@ -13,7 +13,7 @@ class StarterSettingsDto extends MapsDto
 
     public $amount;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new StarterSettingsDto();
         $obj->name = $data->name;

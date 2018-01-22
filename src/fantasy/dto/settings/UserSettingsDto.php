@@ -2,16 +2,16 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Settings;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class UserSettingsDto extends MapsDto
+class UserSettingsDto extends ObjectMapsDto
 {
 
     public $id;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
-        // TODO: Implement dtomap() method.
+        // TODO: Implement mapObject() method.
     }
 
 }

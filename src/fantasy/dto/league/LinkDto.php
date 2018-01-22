@@ -2,16 +2,16 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\League;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class LinkDto extends MapsDto
+class LinkDto extends ObjectMapsDto
 {
 
     public $name;
 
     public $src;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new LinkDto();
         $obj->name = $data->name;

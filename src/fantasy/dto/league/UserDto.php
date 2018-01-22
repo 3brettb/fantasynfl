@@ -2,16 +2,16 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\League;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ModelMapsDto;
 
-class UserDto extends MapsDto
+class UserDto extends ModelMapsDto
 {
 
     public $id;
 
     public $model;
 
-    static function dtomap($data)
+    static function mapModel($data)
     {
         $obj = new UserDto();
         $obj->id = $data->id;

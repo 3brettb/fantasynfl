@@ -2,16 +2,16 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Draft;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class DraftKeeperDto extends MapsDto
+class DraftKeeperDto extends ObjectMapsDto
 {
 
     public $teamId;
 
     public $playerId;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new DraftKeeperDto();
         $obj->teamId = $data->teamId;

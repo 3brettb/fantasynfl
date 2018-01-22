@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\API\DTO\PlayerDetails;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class VideoDto extends MapsDto
+class VideoDto extends ObjectMapsDto
 {
 
     public $id;
@@ -29,7 +29,7 @@ class VideoDto extends MapsDto
 
     public $gamePlayId;
 
-    public static function dtomap($data)
+    public static function mapObject($data)
     {
         $obj = new VideoDto();
         $obj->id = $data->id;

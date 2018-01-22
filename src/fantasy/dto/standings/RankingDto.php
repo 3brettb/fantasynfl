@@ -2,25 +2,16 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Standings;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class RankingDto extends MapsDto
+class RankingDto extends ObjectMapsDto
 {
 
     public $official;
 
     public $composite;
 
-    static function dtomap($data)
-    {
-        try {
-            return self::jsonmap($data);
-        } catch(\ErrorException $e) {
-            return null;
-        }
-    }
-
-    static function jsonmap($data)
+    static function mapObject($data)
     {
         $obj = new RankingDto();
         $obj->official = $data->official;

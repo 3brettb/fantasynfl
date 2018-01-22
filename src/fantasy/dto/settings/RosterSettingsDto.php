@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Settings;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class RosterSettingsDto extends MapsDto
+class RosterSettingsDto extends ObjectMapsDto
 {
 
     public $starters;
@@ -17,7 +17,7 @@ class RosterSettingsDto extends MapsDto
 
     public $keepers;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new RosterSettingsDto();
         $obj->starters = self::mapArray($data->starters, StarterSettingsDto::class);

@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\API\DTO\ScoringLeaders;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class ScoringLeadersDto extends MapsDto
+class ScoringLeadersDto extends ObjectMapsDto
 {
 
     public $season;
@@ -13,7 +13,7 @@ class ScoringLeadersDto extends MapsDto
 
     public $positions;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new ScoringLeadersDto();
         $obj->season = $data->season;

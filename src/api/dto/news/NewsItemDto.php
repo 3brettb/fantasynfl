@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\API\DTO\News;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class NewsItemDto extends MapsDto
+class NewsItemDto extends ObjectMapsDto
 {
 
     public $id;
@@ -31,7 +31,7 @@ class NewsItemDto extends MapsDto
 
     public $analysis;
 
-    public static function dtomap($data)
+    public static function mapObject($data)
     {
         $obj = new NewsItemDto();
         $obj->id = $data->id;

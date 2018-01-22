@@ -2,10 +2,10 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Draft;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ModelMapsDto;
 use Fantasy\NFL\FantasyNFL\Handlers\DataReceiver;
 
-class DraftPickDto extends MapsDto
+class DraftPickDto extends ModelMapsDto
 {
 
     public $id;
@@ -20,7 +20,7 @@ class DraftPickDto extends MapsDto
 
     public $model;
 
-    static function dtomap($data)
+    static function mapModel($data)
     {
         $obj = new DraftPickDto();
         $obj->id = $data->id;

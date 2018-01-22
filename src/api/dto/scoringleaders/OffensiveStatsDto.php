@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\API\DTO\ScoringLeaders;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class OffensiveStatsDto extends MapsDto
+class OffensiveStatsDto extends ObjectMapsDto
 {
 
     public $PassYds;
@@ -27,7 +27,7 @@ class OffensiveStatsDto extends MapsDto
 
     public $FumLost;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new OffensiveStatsDto();
         $obj->PassYds = $data->PassYds;

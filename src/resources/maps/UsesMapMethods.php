@@ -1,6 +1,6 @@
 <?php
 
-namespace Fantasy\NFL\Resources;
+namespace Fantasy\NFL\Resources\Maps;
 
 trait UsesMapMethods
 {
@@ -11,7 +11,7 @@ trait UsesMapMethods
         $out = array();
         foreach($items as $item)
         {
-            array_push($out, $dto_class::dtomap($item));
+            array_push($out, $dto_class::map($item));
         }
         return $out;
     }
@@ -29,7 +29,7 @@ trait UsesMapMethods
     protected static function mapWithVars($data, $vars, $dto_class)
     {
         $data->dto_vars = $vars;
-        return $dto_class::dtomap($data);
+        return $dto_class::map($data);
     }
 
 }

@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Trade;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class TradeNoteDto extends MapsDto
+class TradeNoteDto extends ObjectMapsDto
 {
 
     public $user_id;
@@ -13,7 +13,7 @@ class TradeNoteDto extends MapsDto
 
     public $date;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new TradeNoteDto();
         $obj->user_id = $data->id;

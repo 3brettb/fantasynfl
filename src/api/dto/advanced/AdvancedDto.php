@@ -2,16 +2,16 @@
 
 namespace Fantasy\NFL\API\DTO\Advanced;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class AdvancedDto extends MapsDto
+class AdvancedDto extends ObjectMapsDto
 {
 
     public $position;
 
     public $players;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $key = self::getKey($data);
 

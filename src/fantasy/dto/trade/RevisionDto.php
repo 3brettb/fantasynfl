@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Trade;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class RevisionDto extends MapsDto
+class RevisionDto extends ObjectMapsDto
 {
 
     public $lastUpdated;
@@ -35,7 +35,7 @@ class RevisionDto extends MapsDto
 
     public $notes;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new RevisionDto();
         $obj->lastUpdated = $data->lastUpdated;

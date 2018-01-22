@@ -2,16 +2,16 @@
 
 namespace Fantasy\NFL\API\DTO\WeekRanks;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class WeekRanksDto extends MapsDto
+class WeekRanksDto extends ObjectMapsDto
 {
 
     public $lastUpdated;
 
     public $players;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new WeekRanksDto();
         $obj->lastUpdated = $data->lastUpdated;

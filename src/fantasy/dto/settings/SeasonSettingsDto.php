@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Settings;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class SeasonSettingsDto extends MapsDto
+class SeasonSettingsDto extends ObjectMapsDto
 {
 
     public $divisions;
@@ -27,11 +27,11 @@ class SeasonSettingsDto extends MapsDto
 
     public $schedule;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new SeasonSettingsDto();
         $obj->divisions = self::mapArray($data->divisions, DivisionSettingsDto::class);
-        $obj->schedule = ScheduleSettingsDto::dtomap($data->schedule);
+        $obj->schedule = ScheduleSettingsDto::map($data->schedule);
         return $obj;
     }
 

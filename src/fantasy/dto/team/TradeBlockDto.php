@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Team;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class TradeBlockDto extends MapsDto
+class TradeBlockDto extends ObjectMapsDto
 {
 
     public $lastUpdated;
@@ -19,7 +19,7 @@ class TradeBlockDto extends MapsDto
 
     public $notes;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         try {
             $obj = new TradeBlockDto();

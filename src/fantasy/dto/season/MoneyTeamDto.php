@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Season;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class MoneyTeamDto extends MapsDto
+class MoneyTeamDto extends ObjectMapsDto
 {
 
     public $id;
@@ -19,16 +19,7 @@ class MoneyTeamDto extends MapsDto
 
     public $notes;
 
-    static function dtomap($data)
-    {
-        try {
-            return self::jsonmap($data);
-        } catch(\ErrorException $e) {
-            return null;
-        }
-    }
-
-    static function jsonmap($data)
+    static function mapObject($data)
     {
         $obj = new MoneyTeamDto();
         $obj->id = $data->id;

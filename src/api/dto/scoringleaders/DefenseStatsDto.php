@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\API\DTO\ScoringLeaders;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class DefenseStatsDto extends MapsDto
+class DefenseStatsDto extends ObjectMapsDto
 {
 
     public $Sack;
@@ -21,7 +21,7 @@ class DefenseStatsDto extends MapsDto
 
     public $PtsAllowed;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new DefenseStatsDto();
         $obj->Sack = $data->Sack;

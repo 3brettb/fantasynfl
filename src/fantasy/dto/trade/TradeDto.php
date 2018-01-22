@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Trade;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ModelMapsDto;
 
-class TradeDto extends MapsDto
+class TradeDto extends ModelMapsDto
 {
 
     public $id;
@@ -43,9 +43,9 @@ class TradeDto extends MapsDto
 
     public $model;
 
-    static function dtomap($data)
+    static function mapModel($data)
     {
-        $json = $data->data;
+        $json = json_decode($data->data);
 
         $obj = new TradeDto();
         $obj->id = $data->id;

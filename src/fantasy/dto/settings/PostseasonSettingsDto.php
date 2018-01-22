@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Settings;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class PostseasonSettingsDto extends MapsDto
+class PostseasonSettingsDto extends ObjectMapsDto
 {
 
     public $start_week;
@@ -13,7 +13,7 @@ class PostseasonSettingsDto extends MapsDto
 
     public $num_playoff_teams;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new PostseasonSettingsDto();
         $obj->start_week = $data->start_week;

@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Season;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class PostseasonTeamDto extends MapsDto
+class PostseasonTeamDto extends ObjectMapsDto
 {
 
     public $id;
@@ -15,16 +15,7 @@ class PostseasonTeamDto extends MapsDto
 
     public $seed;
 
-    static function dtomap($data)
-    {
-        try {
-            return self::jsonmap($data);
-        } catch(\ErrorException $e) {
-            return null;
-        }
-    }
-
-    static function jsonmap($data)
+    static function mapObject($data)
     {
         $obj = new PostseasonTeamDto();
         $obj->id = $data->id;

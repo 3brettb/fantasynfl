@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Standings;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\JsonMapsDto;
 
-class StandingsDto extends MapsDto
+class StandingsDto extends JsonMapsDto
 {
 
     public $leagueId;
@@ -19,16 +19,7 @@ class StandingsDto extends MapsDto
 
     public $type;
 
-    static function dtomap($data)
-    {
-        try {
-            return self::jsonmap($data);
-        } catch(\ErrorException $e) {
-            return null;
-        }
-    }
-
-    static function jsonmap($data)
+    static function mapJson($data)
     {
         $obj = new StandingsDto();
         $obj->leagueId = $data->leagueId;

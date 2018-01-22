@@ -2,14 +2,14 @@
 
 namespace Fantasy\NFL\API\DTO\PlayerDetails;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class PlayersDto extends MapsDto
+class PlayersDto extends ObjectMapsDto
 {
 
     public $players;
 
-    public static function dtomap($data)
+    public static function mapObject($data)
     {
         $obj = new PlayersDto();
         $obj->players = parent::mapArray($data->players, PlayerDto::class);

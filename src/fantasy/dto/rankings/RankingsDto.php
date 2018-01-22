@@ -2,10 +2,10 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Rankings;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ModelMapsDto;
 use Fantasy\NFL\FantasyNFL\Handlers\DataReceiver;
 
-class RankingsDto extends MapsDto
+class RankingsDto extends ModelMapsDto
 {
 
     public $lastUpdated;
@@ -18,9 +18,9 @@ class RankingsDto extends MapsDto
 
     public $model;
 
-    static function dtomap($data)
+    static function mapModel($data)
     {
-        $json = $data->data;
+        $json = json_decode($data->data);
 
         $obj = new RankingsDto();
         $obj->lastUpdated = $json->lastUpdated;

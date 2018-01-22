@@ -2,16 +2,16 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Settings;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class ScheduleSettingsDto extends MapsDto
+class ScheduleSettingsDto extends ObjectMapsDto
 {
 
     public $start_week;
 
     public $end_week;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new ScheduleSettingsDto();
         $obj->start_week = $data->start_week;

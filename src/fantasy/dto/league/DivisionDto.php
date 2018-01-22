@@ -2,11 +2,11 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\League;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ModelMapsDto;
 use Fantasy\NFL\Fantasy\DTO\Standings\StandingsDto;
 use Fantasy\NFL\FantasyNFL\Handlers\DataReceiver;
 
-class DivisionDto extends MapsDto
+class DivisionDto extends ModelMapsDto
 {
 
     public $id;
@@ -15,7 +15,7 @@ class DivisionDto extends MapsDto
 
     public $model;
 
-    static function dtomap($data)
+    static function mapModel($data)
     {
         $obj = new DivisionDto();
         $obj->id = $data->id;
@@ -41,7 +41,7 @@ class DivisionDto extends MapsDto
 
     public function standings()
     {
-        return StandingsDto::dtomap($this->model->standings);
+        return StandingsDto::map($this->model->standings);
     }
 
 }

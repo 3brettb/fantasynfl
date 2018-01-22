@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Team;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class LineupPlayerDto extends MapsDto
+class LineupPlayerDto extends ObjectMapsDto
 {
 
     public $projected;
@@ -15,7 +15,7 @@ class LineupPlayerDto extends MapsDto
 
     public $place;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new LineupPlayerDto();
         $obj->projected = $data->projected;

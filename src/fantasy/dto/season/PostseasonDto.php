@@ -2,10 +2,10 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Season;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\JsonMapsDto;
 use Fantasy\NFL\FantasyNFL\Handlers\DataReceiver;
 
-class PostseasonDto extends MapsDto
+class PostseasonDto extends JsonMapsDto
 {
 
     public $type;
@@ -22,25 +22,16 @@ class PostseasonDto extends MapsDto
 
     public $games;
 
-    static function dtomap($data)
-    {
-        try {
-            return self::jsonmap($data);
-        } catch(\ErrorException $e) {
-            return null;
-        }
-    }
-
-    static function jsonmap($data)
+    static function mapJson($data)
     {
         $obj = new PostseasonDto();
         $obj->type = $data->type;
         $obj->start_week_id = $data->start_week_id;
         $obj->end_week_id = $data->end_week_id;
-        $obj->lastUpdated = $json->lastUpdated;
-        $obj->year = $json->year;
-        $obj->teams = self::mapArray($json->teams, PostseasonTeamDto::class);
-        $obj->games = self::mapArray($json->games, PostseasonGameDto::class);
+        $obj->lastUpdated = $data->lastUpdated;
+        $obj->year = $data->year;
+        $obj->teams = self::mapArray($data->teams, PostseasonTeamDto::class);
+        $obj->games = self::mapArray($data->games, PostseasonGameDto::class);
         return $obj;
     }
 

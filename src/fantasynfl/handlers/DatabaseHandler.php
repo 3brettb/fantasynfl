@@ -2,7 +2,7 @@
 
 namespace Fantasy\NFL\FantasyNFL\Handlers;
 
-use Fantasy\NFL\Resources\UsesMapMethods;
+use Fantasy\NFL\Resources\Maps\UsesMapMethods;
 use Fantasy\NFL\StatsAPI\Models as StatsModel;
 use Fantasy\NFL\Fantasy\Models as FantasyModel;
 use Fantasy\NFL\Fantasy\DTO as FantasyDTO;
@@ -128,7 +128,7 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
     public function getLeague($league_id)
     {
         $league = FantasyModel\League::find($league_id);
-        return FantasyDTO\League\LeagueDto::dtomap($league);
+        return FantasyDTO\League\LeagueDto::map($league);
     }
 
     public function getLeagueActivity($league_id, $id=null)
@@ -138,14 +138,14 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
             return self::mapArray($activity, FantasyDTO\League\ActivityDto::class);
         } else {
             $activity = FantasyModel\Activity::find($id);
-            return FantasyDTO\League\ActivityDto::dtomap($activity);
+            return FantasyDTO\League\ActivityDto::map($activity);
         }
     }
 
     public function getLeagueStandings($season_id)
     {
         $standings = FantasyModel\Season::find($season_id)->standings;
-        return FantasyDTO\Standings\StandingsDto::dtomap($standings);
+        return FantasyDTO\Standings\StandingsDto::map($standings);
     }
 
     public function getLeagueTrades($league_id)
@@ -163,7 +163,7 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
     public function getSeason($season_id)
     {
         $season = FantasyModel\Season::find($season_id);
-        return FantasyDTO\Season\SeasonDto::dtomap($season);
+        return FantasyDTO\Season\SeasonDto::map($season);
     }
 
     public function getSeasonWeeks($season_id)
@@ -187,7 +187,7 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
     public function getWeek($week_id)
     {
         $week = FantasyModel\Week::find($week_id);
-        return FantasyDTO\Week\WeekDto::dtomap($week);
+        return FantasyDTO\Week\WeekDto::map($week);
     }
 
     public function getWeekGames($week_id)
@@ -205,7 +205,7 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
     public function getTeam($team_id)
     {
         $team = FantasyModel\Team::find($team_id);
-        return FantasyDTO\Team\TeamDto::dtomap($team);
+        return FantasyDTO\Team\TeamDto::map($team);
     }
 
     public function getTeamTrades($team_id)
@@ -223,7 +223,7 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
     public function getDivision($division_id)
     {
         $division = FantasyModel\Division::find($division_id);
-        return FantasyDTO\League\DivisionDto::dtomap($division);
+        return FantasyDTO\League\DivisionDto::map($division);
     }
 
     public function getDivisionTeams($division_id)
@@ -242,13 +242,13 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
     public function getDivisionStandings($division_id)
     {
         $standings = FantasyModel\Division::find($division_id)->standings;
-        return FantasyDTO\Standings\StandingsDto::dtomap($standings);
+        return FantasyDTO\Standings\StandingsDto::map($standings);
     }
 
     public function getDraft($draft_id)
     {
         $draft = FantasyModel\Draft::find($draft_id);
-        return FantasyDTO\Draft\DraftDto::dtomap($draft);
+        return FantasyDTO\Draft\DraftDto::map($draft);
     }
 
     public function getDraftPicks($team_id, $draft_id)
@@ -273,19 +273,19 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
     public function getGame($game_id)
     {
         $game = FantasyModel\Game::find($game_id);
-        return FantasyDTO\Week\GameDto::dtomap($game);
+        return FantasyDTO\Week\GameDto::map($game);
     }
 
     public function getRanking($ranking_id)
     {
         $ranking = FantasyModel\Ranking::find($ranking_id);
-        return FantasyDTO\Rankings\RankingsDto::dtomap($ranking);
+        return FantasyDTO\Rankings\RankingsDto::map($ranking);
     }
 
     public function getTrade($trade_id)
     {
         $trade = FantasyModel\Trade::find($trade_id);
-        return FantasyDTO\Trade\TradeDto::dtomap($trade);
+        return FantasyDTO\Trade\TradeDto::map($trade);
     }
 
     public function getPostseason($type, $season_id)
@@ -296,7 +296,7 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
     public function getUser($user_id)
     {
         $user = FantasyModel\User::find($user_id);
-        return FantasyDTO\League\UserDto::dtomap($user);
+        return FantasyDTO\League\UserDto::map($user);
     }
 
 }

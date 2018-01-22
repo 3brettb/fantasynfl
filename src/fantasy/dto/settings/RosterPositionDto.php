@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Settings;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class RosterPositionDto extends MapsDto
+class RosterPositionDto extends ObjectMapsDto
 {
 
     public $position;
@@ -13,7 +13,7 @@ class RosterPositionDto extends MapsDto
 
     public $maximum;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new RosterPositionDto();
         $obj->position = $data->position;

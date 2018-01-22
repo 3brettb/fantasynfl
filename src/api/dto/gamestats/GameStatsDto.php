@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\API\DTO\GameStats;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class GameStatsDto extends MapsDto
+class GameStatsDto extends ObjectMapsDto
 {
 
     public $playerStats;
@@ -13,7 +13,7 @@ class GameStatsDto extends MapsDto
 
     public $isWeekGamesCompleted;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new GameStatsDto();
         $obj->playerStats = self::mapPlayers($data->playerStats);
@@ -28,7 +28,7 @@ class GameStatsDto extends MapsDto
         foreach($data as $playerId => $playerStats)
         {
             $playerStats->id = $playerId;
-            $out[$playerId] = PlayerDto::dtomap($playerStats);
+            $out[$playerId] = PlayerDto::map($playerStats);
         }
         return $out;
     }
@@ -39,7 +39,7 @@ class GameStatsDto extends MapsDto
         foreach($data as $gameId => $gameData)
         {
             $gameData->id = $gameId;
-            $out[$gameId] = GameDataDto::dtomap($gameData);
+            $out[$gameId] = GameDataDto::map($gameData);
         }
         return $out;
     }

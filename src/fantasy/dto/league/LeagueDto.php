@@ -3,10 +3,10 @@
 namespace Fantasy\NFL\Fantasy\DTO\League;
 
 use Fantasy\NFL\FantasyNFL\Resolvers\DataResolver;
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ModelMapsDto;
 use Fantasy\NFL\FantasyNFL\Handlers\DataReceiver;
 
-class LeagueDto extends MapsDto
+class LeagueDto extends ModelMapsDto
 {
 
     use DataResolver;
@@ -17,7 +17,7 @@ class LeagueDto extends MapsDto
 
     public $model;
 
-    static function dtomap($data)
+    static function mapModel($data)
     {
         try {
             $obj = new LeagueDto();

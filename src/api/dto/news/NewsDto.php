@@ -2,16 +2,16 @@
 
 namespace Fantasy\NFL\API\DTO\News;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class NewsDto extends MapsDto
+class NewsDto extends ObjectMapsDto
 {
 
     public $lastUpdated;
 
     public $news;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new NewsDto();
         $obj->lastUpdated = $data->lastUpdated;

@@ -2,11 +2,11 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Season;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ModelMapsDto;
 use Fantasy\NFL\Fantasy\DTO\Standings\StandingsDto;
 use Fantasy\NFL\FantasyNFL\Handlers\DataReceiver;
 
-class SeasonDto extends MapsDto
+class SeasonDto extends ModelMapsDto
 {
 
     public $id;
@@ -21,18 +21,14 @@ class SeasonDto extends MapsDto
 
     public $model;
 
-    static function dtomap($data)
+    static function mapModel($data)
     {
-        $standings = json_decode($data->standings);
-        $postseason = json_decode($data->postseason);
-        $money = json_decode($data->money);
-
         $obj = new SeasonDto();
         $obj->id = $data->id;
         $obj->year = $data->year;
-        $obj->standings = StandingsDto::dtomap($standings);
-        $obj->postseason = PostseasonDto::dtomap($postseason);
-        $obj->money = MoneyDto::dtomap($money);
+        $obj->standings = StandingsDto::map($data->standings);
+        $obj->postseason = PostseasonDto::map($data->postseason);
+        $obj->money = MoneyDto::map($data->money);
         $obj->model = $data;
         return $obj;
     }

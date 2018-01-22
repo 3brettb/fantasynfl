@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Standings;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class RecordDto extends MapsDto
+class RecordDto extends ObjectMapsDto
 {
 
     public $type;
@@ -15,16 +15,7 @@ class RecordDto extends MapsDto
 
     public $ties;
 
-    static function dtomap($data)
-    {
-        try {
-            return self::jsonmap($data);
-        } catch(\ErrorException $e) {
-            return null;
-        }
-    }
-
-    static function jsonmap($data)
+    static function mapObject($data)
     {
         $obj = new RecordDto();
         $obj->type = $data->type;

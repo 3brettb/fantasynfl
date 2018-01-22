@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Settings;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class TradeSettingsDto extends MapsDto
+class TradeSettingsDto extends ObjectMapsDto
 {
 
     public $allow;
@@ -15,7 +15,7 @@ class TradeSettingsDto extends MapsDto
 
     public $review;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new TradeSettingsDto();
         $obj->allow = $data->allow;

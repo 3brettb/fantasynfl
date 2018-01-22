@@ -2,16 +2,16 @@
 
 namespace Fantasy\NFL\API\DTO\Research;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class ResearchDto extends MapsDto
+class ResearchDto extends ObjectMapsDto
 {
 
     public $lastUpdated;
 
     public $players;
 
-    public static function dtomap($data)
+    public static function mapObject($data)
     {
         $obj = new ResearchDto();
         $obj->lastUpdated = $data->lastUpdated;

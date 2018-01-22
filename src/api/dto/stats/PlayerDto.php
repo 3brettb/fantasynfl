@@ -2,10 +2,10 @@
 
 namespace Fantasy\NFL\API\DTO\Stats;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 use Fantasy\NFL\API\DTO\PlayerDetails\StatDto;
 
-class PlayerDto extends MapsDto
+class PlayerDto extends ObjectMapsDto
 {
 
     public $id;
@@ -20,7 +20,7 @@ class PlayerDto extends MapsDto
 
     public $stats;
 
-    public static function dtomap($data)
+    public static function mapObject($data)
     {
         $obj = new PlayerDto();
         $obj->id = $data->id;

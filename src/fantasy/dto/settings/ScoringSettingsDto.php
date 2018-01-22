@@ -2,12 +2,12 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Settings;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class ScoringSettingsDto extends MapsDto
+class ScoringSettingsDto extends ObjectMapsDto
 {
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new ScoringSettingsDto();
         foreach($data as $key => $value)

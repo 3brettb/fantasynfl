@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Settings;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class LeagueSettingsDto extends MapsDto
+class LeagueSettingsDto extends ObjectMapsDto
 {
 
     public $id;
@@ -21,16 +21,16 @@ class LeagueSettingsDto extends MapsDto
 
     public $postseason;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new LeagueSettingsDto();
         $obj->id = $data->id;
-        $obj->roster = RosterSettingsDto::dtomap($data->roster);
-        $obj->scoring = ScoringSettingsDto::dtomap($data->scoring);
-        $obj->season = SeasonSettingsDto::dtomap($data->season);
-        $obj->waivers = WaiverSettingsDto::dtomap($data->waivers);
-        $obj->trades = TradeSettingsDto::dtomap($data->trades);
-        $obj->postseason = PostseasonSettingsDto::dtomap($data->postseason);
+        $obj->roster = RosterSettingsDto::map($data->roster);
+        $obj->scoring = ScoringSettingsDto::map($data->scoring);
+        $obj->season = SeasonSettingsDto::map($data->season);
+        $obj->waivers = WaiverSettingsDto::map($data->waivers);
+        $obj->trades = TradeSettingsDto::map($data->trades);
+        $obj->postseason = PostseasonSettingsDto::map($data->postseason);
         return $obj;
     }
 

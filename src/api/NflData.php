@@ -15,7 +15,7 @@ class NflData extends NFLAPI
 
     public static function convert($response_data, $dto_class)
     {
-        return $dto_class::dtomap($response_data);
+        return $dto_class::map($response_data);
     }
 
     /**
@@ -68,7 +68,7 @@ class NflData extends NFLAPI
                 $players->push($player);
             }
         }
-        return PlayersDto::dtomap($players->toArray());
+        return PlayersDto::map($players->toArray());
     }
 
     /**

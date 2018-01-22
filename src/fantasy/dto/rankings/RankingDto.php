@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\Rankings;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 
-class RankingDto extends MapsDto
+class RankingDto extends ObjectMapsDto
 {
 
     public $id;
@@ -19,7 +19,7 @@ class RankingDto extends MapsDto
 
     public $notes;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new RankingDto();
         $obj->id = $data->id;

@@ -2,9 +2,9 @@
 
 namespace Fantasy\NFL\Fantasy\DTO\League;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\Maps\ModelMapsDto;
 
-class ActivityDto extends MapsDto
+class ActivityDto extends ModelMapsDto
 {
 
     public $id;
@@ -23,7 +23,7 @@ class ActivityDto extends MapsDto
 
     public $model;
 
-    static function dtomap($data)
+    static function mapModel($data)
     {
         $json = json_decode($data->content);
 

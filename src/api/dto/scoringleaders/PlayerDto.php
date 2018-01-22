@@ -2,10 +2,10 @@
 
 namespace Fantasy\NFL\API\DTO\ScoringLeaders;
 
-use Fantasy\NFL\Resources\MapsDto;
+use Fantasy\NFL\Resources\ObjectMapsDto;
 use Fantasy\NFL\Enums\PositionStrings;
 
-class PlayerDto extends MapsDto
+class PlayerDto extends ObjectMapsDto
 {
 
     public $id;
@@ -36,7 +36,7 @@ class PlayerDto extends MapsDto
 
     public $status;
 
-    static function dtomap($data)
+    static function mapObject($data)
     {
         $obj = new PlayerDto();
         $obj->id = $data->id;
@@ -64,15 +64,15 @@ class PlayerDto extends MapsDto
             case PositionStrings::RB:
             case PositionStrings::WR:
             case PositionStrings::TE:
-                return OffensiveStatsDto::dtomap($data);
+                return OffensiveStatsDto::map($data);
             case PositionStrings::K:
-                return KickingStatsDto::dtomap($data);
+                return KickingStatsDto::map($data);
             case PositionStrings::DEF:
-                return DefenseStatsDto::dtomap($data);
+                return DefenseStatsDto::map($data);
             case PositionStrings::DB:
             case PositionStrings::LB:
             case PositionStrings::DL:
-                return DefensiveStatsDto::dtomap($data);
+                return DefensiveStatsDto::map($data);
         }
     }
 }
