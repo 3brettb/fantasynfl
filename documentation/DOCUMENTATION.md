@@ -1,4 +1,4 @@
-# FantasyNFL API Documentation
+# FantasyNFL Documentation
 ## Directory
 - [Home](https://github.com/3brettb/fantasynfl)
 - [Installation](../README.md#installation)
