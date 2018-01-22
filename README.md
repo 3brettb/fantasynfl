@@ -32,7 +32,9 @@ Add an `authenticated()` method to LoginController
     }
 ```
 
-### FantasyNFL API
+### FantasyNFL API Documentation
+[Documentation found here](documentation/DOCUMENTATION.md)
+
 Get Team Roster
 ```php
 FantasyNFL::roster($team_id);
