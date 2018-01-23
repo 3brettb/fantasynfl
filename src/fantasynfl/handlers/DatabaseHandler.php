@@ -2,6 +2,7 @@
 
 namespace Fantasy\NFL\FantasyNFL\Handlers;
 
+use Fantasy\NFL\API\NflData;
 use Fantasy\NFL\Resources\Maps\UsesMapMethods;
 use Fantasy\NFL\StatsAPI\Models as StatsModel;
 use Fantasy\NFL\Fantasy\Models as FantasyModel;
@@ -265,9 +266,12 @@ class DatabaseHandler implements Handler, AccessesPlayerData, AccessesFantasyDat
 
     public function getLineup($team_id, $week_id)
     {
-        // TODO: check this method
-        $player_id_array = FantasyModel\Lineup::find($team_id)->lineup($week_id)->players()->pluck('player_id');
-        return DataReceiver::instance()->getPlayers($player_id_array);
+        $lineup = FantasyModel\Lineup::where('team_id', $team_id)->where("week_id", $week_id)->first();
+        $lineup_players = FantasyModel\LineupPlayer::where('lineup_id', $lineup->id)->get();
+        $player_ids = $lineup_players->pluck('player_id');
+        $players = NflData::getLineupPlayers($player_ids);
+        $players = FantasyDTO\Team\LineupPlayerData::convertToLineupPlayerDtos($players, $lineup_players);
+        return self::mapArray($players, FantasyDTO\Team\LineupPlayerDto::class);
     }
 
     public function getGame($game_id)

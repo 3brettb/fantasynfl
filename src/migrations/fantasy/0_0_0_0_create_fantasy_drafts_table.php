@@ -19,6 +19,7 @@ class CreateFantasyDraftsTable extends Migration
         Schema::create($this->table_name, function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('season_id');
+            $table->smallInteger('sec_per_pick');
             $table->boolean('complete');
             $table->tinyInteger('type');
             $table->longText('content')->comment('Draft Order and Historical Picks');

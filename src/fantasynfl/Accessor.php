@@ -10,6 +10,8 @@ use Fantasy\NFL\FantasyNFL\Handlers\DataReceiver;
 class Accessor
 {
 
+    // TODO: Possibly - check each single id lookups to see if an id is passed or a model. If model, map. This aviods uneccessary lookups
+
     /**
      * Find a league by id
      * @param $league_id
@@ -55,7 +57,7 @@ class Accessor
      * Get Season Week collection
      * @param $season_number
      * @param $league_id
-     * @return FantasyDTO\Season\WeeksDto
+     * @return FantasyDTO\Week\WeekDto[]
      */
     public static function weeks($season_number, $league_id)
     {
@@ -99,7 +101,7 @@ class Accessor
      * Return Division Collection
      * @param $season_number
      * @param $league_id
-     * @return FantasyDTO\League\DivisionsDto
+     * @return FantasyDTO\League\DivisionDto[]
      */
     public static function divisions($season_number, $league_id)
     {
@@ -126,8 +128,8 @@ class Accessor
     {
         $season = static::getSeason($season_number, $league_id);
         $divisions = $season->divisions()->pluck('id')->toArray();
-        $division = FantasyModels\DivisionTeam::where('team_id', $team_id)->whereIn('division_id', $divisions)->first();
-        return self::division($division->id);
+        $division_team = FantasyModels\DivisionTeam::where('team_id', $team_id)->whereIn('division_id', $divisions)->first();
+        return self::division($division_team->division_id);
     }
 
     /**
@@ -145,7 +147,7 @@ class Accessor
      * @param $team_id
      * @param $year
      * @param $league_id
-     * @return FantasyDTO\Draft\DraftPicksDto
+     * @return FantasyDTO\Draft\DraftPickDto[]
      */
     public static function draft_picks($team_id, $year, $league_id)
     {
@@ -168,7 +170,7 @@ class Accessor
 
     /**
      * @param $team_id
-     * @return FantasyDTO\Team\RosterDto
+     * @return FantasyDTO\League\PlayerDto[]
      */
     public static function roster($team_id)
     {
@@ -196,7 +198,7 @@ class Accessor
      * @param $week_number
      * @param $season_number
      * @param $league_id
-     * @return FantasyDTO\Week\GamesDto
+     * @return FantasyDTO\Week\GameDto[]
      */
     public static function games($week_number, $season_number, $league_id)
     {
@@ -287,7 +289,7 @@ class Accessor
 
     /**
      * @param $league_id
-     * @return FantasyDTO\Trade\TradesDto
+     * @return FantasyDTO\Trade\TradeDto[]
      */
     public static function league_trades($league_id)
     {
@@ -296,7 +298,7 @@ class Accessor
 
     /**
      * @param $team_id
-     * @return FantasyDTO\Trade\TradesDto
+     * @return FantasyDTO\Trade\TradeDto[]
      */
     public static function team_trades($team_id)
     {

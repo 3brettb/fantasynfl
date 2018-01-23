@@ -5,9 +5,12 @@ namespace Fantasy\NFL\API;
 use Fantasy\NFL\API\DTO;
 use Fantasy\NFL\Fantasy\DTO\League\PlayersDto;
 use Fantasy\NFL\Resources\Common\APIUris as Uri;
+use Fantasy\NFL\Resources\Maps\UsesMapMethods;
 
 class NflData extends NFLAPI
 {
+
+    use UsesMapMethods;
 
     private static $count = 5000;
 
@@ -54,7 +57,7 @@ class NflData extends NFLAPI
 
     /**
      * @param $ids
-     * @return PlayerDto[]
+     * @return PlayersDto[]
      */
     public static function getPlayers($ids)
     {
@@ -69,6 +72,25 @@ class NflData extends NFLAPI
             }
         }
         return PlayersDto::map($players->toArray());
+    }
+
+    /**
+     * @param $ids
+     * @return DTO\PlayerDetails\PlayerDto[]
+     */
+    public static function getLineupPlayers($ids)
+    {
+        $query = parent::getPlayersQuery($ids);
+        $response = $query->execute()->normalize()->get();
+        $players = collect();
+        foreach($response as $data)
+        {
+            foreach($data->players as $player)
+            {
+                $players->push($player);
+            }
+        }
+        return static::mapArray($players, DTO\PlayerDetails\PlayerDto::class);
     }
 
     /**

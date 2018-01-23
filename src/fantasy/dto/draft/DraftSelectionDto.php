@@ -7,6 +7,8 @@ use Fantasy\NFL\Resources\Maps\ObjectMapsDto;
 class DraftSelectionDto extends ObjectMapsDto
 {
 
+    public $ownerId;
+
     public $teamId;
 
     public $playerId;
@@ -20,6 +22,7 @@ class DraftSelectionDto extends ObjectMapsDto
     static function mapObject($data)
     {
         $obj = new DraftSelectionDto();
+        $obj->ownerId = $data->ownerId;
         $obj->teamId = $data->teamId;
         $obj->playerId = $data->playerId;
         $obj->overall = $data->overall;

@@ -15,6 +15,8 @@ class PlayerDto extends ObjectMapsDto
 
     public $name;
 
+    public $position;
+
     public $teamAbbr;
 
     public $status;
@@ -36,6 +38,7 @@ class PlayerDto extends ObjectMapsDto
         $obj->esbid = $data->esbid;
         $obj->gsisPlayerId = $data->gsisPlayerId;
         $obj->name = $data->name;
+        $obj->position = $data->position;
         $obj->teamAbbr = $data->teamAbbr;
         $obj->status = $data->status;
         $obj->injuryGameStatus = $data->injuryGameStatus;

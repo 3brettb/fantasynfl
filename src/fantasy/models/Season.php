@@ -73,4 +73,9 @@ class Season extends Model
         return $this->hasMany(Trade::class);
     }
 
+    public function draft()
+    {
+        return $this->hasOne(Draft::class);
+    }
+
 }
