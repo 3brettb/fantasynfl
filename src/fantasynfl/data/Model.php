@@ -8,7 +8,7 @@ class Model
 {
 
     /**
-     * Laravel Model reference
+     * Laravel Models reference
      */
     protected $reference = null;
 
@@ -20,15 +20,23 @@ class Model
     /**
      * Can this model be represented as JSON
      */
-    protected $canHandleJson = false;
+    protected static $canHandleJson = false;
 
     /**
      * Model constructor.
-     * @param $data
+     * Private so you can only use create()
      */
-    public function __construct($data)
+    private function __construct(){}
+
+    /**
+     * Static constructor
+     * @param $data
+     * @return mixed
+     */
+    public static function create($data)
     {
-        $this->map($data);
+        $obj = new static();
+        return (is_object($data)) ? $obj->map($data) : null;
     }
 
     /**
@@ -42,11 +50,11 @@ class Model
         // Map each of the specified properties
         foreach($properties as $property)
         {
-            $property->map($this, $data, $this->canHandleJson);
+            $property->map($this, $data);
         }
 
         // If mapping a model reference, save the reference
-        if(isset($this->model) && get_class($data) == $this->reference)
+        if(get_class($data) == $this->reference)
         {
             $this->model = $data;
         }
@@ -64,8 +72,8 @@ class Model
             if(is_array($property))
             {
                 $a = $property[0];
-                $b = $property[1];
-                $c = (isset($property[2]) ? $property[2] : null);
+                $b = isset($property[1]) ? $property[1] : null;
+                $c = isset($property[2]);
                 array_push($properties, new MapProperty($a, $b, $c));
             }
             else
@@ -74,6 +82,32 @@ class Model
             }
         }
         return $properties;
+    }
+
+    /**
+     * @return bool
+     */
+    public static function handlesJson()
+    {
+        return static::$canHandleJson;
+    }
+
+    /**
+     * @param $name
+     * @return null
+     */
+    public function __get($name)
+    {
+        return (isset($this->$name)) ? $name : null;
+    }
+
+    /**
+     * @param $name
+     * @param $value
+     */
+    public function __set($name, $value)
+    {
+        $this->$name = $value;
     }
 
 }

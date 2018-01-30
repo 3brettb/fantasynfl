@@ -7,41 +7,71 @@ class MapProperty
 
     private $property;
 
-    private $mappedTo;
-
     private $mapToClass;
 
-    public function __construct($property, $mappedTo = null, $mapToClass = null)
+    private $dataIsArray;
+
+    public function __construct($property, $mapToClass = null, $dataIsArray = false)
     {
         $this->property = $property;
-        $this->mappedTo = ($mappedTo != null) ? $mappedTo : $property;
         $this->mapToClass = $mapToClass;
+        $this->dataIsArray = ($dataIsArray && ($mapToClass != null));
     }
 
-    public function map(&$model, $data, $asJson)
+    public function map(&$model, $data)
     {
-        self::handleJson($data, $asJson);
-
         $p = $this->property;
-        $m = $this->mappedTo;
+        if($this->mapToClass != null){
 
-        if($this->mapToClass == null) {
-            $model->$p = $data->$m;
+            self::checkForJson($data, $p, $this->mapToClass::handlesJson(), $this->dataIsArray);
+
+            if($this->dataIsArray) {
+                $this->mapArray($model, $data);
+            } else {
+                $model->$p = $this->mapToClass::create($data->$p);
+            }
         } else {
-            $model->$p = new $this->mapToClass($data->$m);
+            $model->$p = $data->$p;
         }
     }
 
-    private function handleJson(&$data, $asJson)
+    private function mapArray(&$model, $data)
     {
-        if($asJson && !is_object($data))
+        $p = $this->property;
+        $model->$p = collect();
+
+        if($data->$p != null && (self::testIsArray($data->$p))) {
+            foreach ($data->$p as $item) {
+                $model->$p->push($this->mapToClass::create($item));
+            }
+        }
+    }
+
+    private static function testIsArray($obj)
+    {
+        if(is_array($obj)) return true;
+        else if(!is_object($obj)) return false;
+        else {
+            return get_class($obj) === get_class(collect());
+        }
+    }
+
+    private static function checkForJson(&$data, $property, $canHandleJson, $isArray)
+    {
+        if($canHandleJson && is_string($data->$property))
         {
-            // translate to json only if:
-            // - the model can handle json ($asJson)
-            // - the data is not already an object (!is_object($data))
-            // - the data is a string (handled on JsonObject construction
-            // If there is an error decoding json, JsonObject is {}
-            $data = new JsonObject($data);
+            try{
+                $decoded = json_decode($data->$property);
+                if($isArray && $decoded != null){
+                    $data->$property = JsonObject::asDecodedArray($decoded);
+                } else if($decoded == null) {
+                    $data->$property = null;
+                } else {
+                    $data->$property = JsonObject::asDecoded($decoded);
+                }
+            } catch (\ErrorException $e) {
+                return;
+            }
         }
     }
 

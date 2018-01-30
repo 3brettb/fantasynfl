@@ -1,24 +1,24 @@
 <?php
 
-namespace Fantasy\NFL\FantasyNFL\Data\League;
+namespace Fantasy\NFL\FantasyNFL\Data\Activity;
 
 use Fantasy\NFL\FantasyNFL\Data\Request;
 
-trait HasLeagueData
+trait HasActivityData
 {
-    
+
     // ------ Accessors ------------------------------------------------------------------------------------------------
 
-    protected function getLeague(Request $request)
+    protected function getActivity(Request $request)
     {
-        return LeagueDataController::getLeague($request->arguments(['id']));
+        return ActivityDataController::getActivity($request->arguments(['league_id']));
     }
 
     // ------ Aliases --------------------------------------------------------------------------------------------------
 
-    protected function league(Request $request)
+    protected function activity(Request $request)
     {
-        return $this->getLeague($request);
+        return $this->getActivity($request);
     }
 
 }

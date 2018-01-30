@@ -10,12 +10,12 @@ class League extends Model
 
     public $name;
 
-    public $model;
-
     /**
-     * @var string Laravel Model Reference
+     * @var string Laravel Models Reference
      */
-    public $reference = \Fantasy\NFL\Fantasy\Models\League::class;
+    protected $reference = \Fantasy\NFL\FantasyNFL\Models\League::class;
+
+    public $model;
 
     /**
      * @var array Properties to map

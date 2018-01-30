@@ -8,6 +8,22 @@ class Settings
 {
 
     /**
+     * @param $league
+     * @param $team
+     */
+    public static function initializeSession($league, $team)
+    {
+        $season = $league->season;
+        $week = $league->week;
+        Settings::setLeagueId($league->id);
+        Settings::setTeamId($team->id);
+        Settings::setSeasonId($season->id);
+        Settings::setYear($season->year);
+        Settings::setWeekId($week->id);
+        Settings::setWeekNumber($week->number);
+    }
+
+    /**
      * Returns the saved league id from session
      *
      * @return integer

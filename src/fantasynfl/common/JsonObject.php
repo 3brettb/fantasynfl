@@ -7,7 +7,7 @@ class JsonObject
 
     private $json;
 
-    public function __construct($json_string)
+    private function __construct($json_string)
     {
         if(!is_object($json_string) && is_string($json_string)) {
             try {
@@ -18,6 +18,36 @@ class JsonObject
         } else {
             $this->json = json_decode("{}");
         }
+    }
+
+    public static function asJson($string)
+    {
+        $obj = new JsonObject($string);
+        return (self::isNullObject($obj)) ? null : $obj;
+    }
+
+    public static function asDecoded($decoded)
+    {
+        $obj = new JsonObject("{}");
+        $obj->json = $decoded;
+        return (self::isNullObject($obj)) ? null : $obj;
+    }
+
+    public static function asDecodedArray($decodedArray)
+    {
+        $out = collect();
+        foreach($decodedArray as $item)
+        {
+            $out->push(self::asDecoded($item));
+        }
+        return $out;
+    }
+
+    private static function isNullObject($obj)
+    {
+        // Override this for now, maybe we want a blank object
+        return false;
+        //return ($obj->json == json_decode("{}"));
     }
 
     public function __get($name)

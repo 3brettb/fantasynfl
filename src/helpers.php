@@ -3,9 +3,12 @@
 use Fantasy\NFL\FantasyNFL\Settings as FantasySettings;
 use Fantasy\NFL\FantasyNFL;
 
-function cast($obj, $class)
+/**
+ * @return FantasyNFL\FantasyData
+ */
+function fantasy()
 {
-    return \Fantasy\NFL\Resources\Cast::cast($obj, $class);
+    return FantasyNFL::instance();
 }
 
 function season()

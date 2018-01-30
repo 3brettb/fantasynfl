@@ -66,14 +66,18 @@ class Request
         $this->names = $names;
         for($i=0; $i < sizeof($names); $i++)
         {
-            $this->arguments[$this->names[$i]] = $this->values[$i];
+            if(isset($this->values[$i])) {
+                $this->arguments[$this->names[$i]] = $this->values[$i];
+            } else {
+                $this->arguments[$this->names[$i]] = null;
+            }
         }
         return $this;
     }
 
     public function issetOr($name, $alt)
     {
-        if($this->__isset($name))
+        if($this->__isset($name) && $this->__get($name) != null)
         {
             return $this->__get($name);
         }

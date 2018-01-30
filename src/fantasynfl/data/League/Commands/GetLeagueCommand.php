@@ -12,13 +12,18 @@ class GetLeagueCommand extends Command
 
     private $league_id;
 
+    protected $model = \Fantasy\NFL\FantasyNFL\Data\League\Models\League::class;
+
     public function __construct(Request $request)
     {
         $this->league_id = $request->issetOr('id', Settings::getLeagueId());
     }
 
+    /**
+     * @return array|mixed
+     */
     protected  function execute()
     {
-        $league = League::find($this->league_id);
+        return League::find($this->league_id);
     }
 }

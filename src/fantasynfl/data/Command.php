@@ -5,6 +5,8 @@ namespace Fantasy\NFL\FantasyNFL\Data;
 abstract class Command
 {
 
+    protected $class = Model::class;
+
     /**
      * @return array
      */
@@ -15,7 +17,9 @@ abstract class Command
      */
     public function exec()
     {
-        return collect($this->execute());
+        return collect($this->execute())->map(function($item){
+            return new $this->class->map($item);
+        });
     }
 
 }
